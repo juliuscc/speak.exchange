@@ -21,9 +21,10 @@ jobs:
 
       # Only run this if the push is on the master branch
 
-      # - run: echo "speak.exchange" > out/CNAME
-      #   if: github.ref == 'refs/heads/master'
-      - run: touch out/.nojekyll
+      - name: Add GitHub Pages Config Files
+        run: |
+          echo "speak.exchange" > out/CNAME
+          touch out/.nojekyll
         if: github.ref == 'refs/heads/master'
       - name: Add ssh deploy key (for semantic-release)
         env:
