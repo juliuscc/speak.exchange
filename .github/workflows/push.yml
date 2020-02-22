@@ -15,7 +15,9 @@ jobs:
       - name: Installing dependencies
         run: npm ci
       - name: Lint files
-        run: npm run lint
+        run: |
+          npm run check-prettier
+          npm run lint
       - name: Building web page
         run: npm run ci-build
 

@@ -9,6 +9,7 @@
     "export": "next export",
     "ci-build": "npm-run-all -s build export",
     "lint": "eslint \"**/*.js\"",
+    "check-prettier": "prettier '**/*' --check",
     "publish": "gh-pages -d out --dotfiles --user \"Julius Celik <julius.cc@hotmail.com>\" --repo \"git@github.com:juliuscc/speak.exchange.git\""
   },
   "repository": {
