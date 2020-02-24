@@ -1,6 +1,6 @@
-import App, { Container } from 'next/app';
-import { createGlobalStyle } from 'styled-components';
-import Page from '../components/Page';
+import App, { Container } from 'next/app'
+import { createGlobalStyle } from 'styled-components'
+import Page from '../components/Page'
 
 const GlobalStyle = createGlobalStyle`
 	::selection {
@@ -31,21 +31,21 @@ const GlobalStyle = createGlobalStyle`
 		font-size: 16px;
 		font-weight: 300;
 	}
-`;
+`
 
 export default class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
-    let pageProps = {};
+    let pageProps = {}
 
     if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx);
+      pageProps = await Component.getInitialProps(ctx)
     }
 
-    return { pageProps };
+    return { pageProps }
   }
 
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps } = this.props
 
     return (
       <Container>
@@ -54,6 +54,6 @@ export default class MyApp extends App {
           <Component {...pageProps} />
         </Page>
       </Container>
-    );
+    )
   }
 }

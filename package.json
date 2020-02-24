@@ -45,7 +45,8 @@
     "*.{js,jsx,ts,tsx,md,html,css,yml,json}": "prettier --write"
   },
   "prettier": {
-    "singleQuote": true
+    "singleQuote": true,
+    "semi": false
   },
   "eslintConfig": {
     "extends": [

@@ -1,7 +1,7 @@
 const fontNames = {
   title: 'Raleway',
   text: 'Roboto'
-};
+}
 
 const theme = {
   colors: {
@@ -20,8 +20,8 @@ const theme = {
     title: `'${fontNames.title}', '${fontNames.text}', sans-serif`,
     text: `'${fontNames.text}', sans-serif`
   }
-};
+}
 
-export { fontNames };
+export { fontNames }
 
-export default theme;
+export default theme

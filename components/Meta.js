@@ -1,5 +1,5 @@
-import Head from 'next/head';
-import { fontNames } from '../utils/theme';
+import Head from 'next/head'
+import { fontNames } from '../utils/theme'
 
 const Meta = () => (
   <Head>
@@ -42,6 +42,6 @@ const Meta = () => (
     />
     <meta name="theme-color" content="#ffffff" />
   </Head>
-);
+)
 
-export default Meta;
+export default Meta
