@@ -1,9 +1,13 @@
-import Container from '../components/fragments/Container'
+import Navbar from '../components/Navbar'
+import Search from '../container/SearchExchange'
+import Exchange from '../container/Exchange'
 
 const Home = () => (
-  <Container>
-    <h1>Hello world!</h1>
-  </Container>
+  <>
+    <Navbar />
+    <Search />
+    <Exchange />
+  </>
 )
 
 export default Home
