@@ -1,7 +1,3 @@
-import styled from 'styled-components'
+import SearchBar from '../components/SearchBar'
 
-const SearchWrapper = styled.div`
-  border: 1px solid red;
-`
-
-export default () => <SearchWrapper>Search!</SearchWrapper>
+export default () => <SearchBar />
