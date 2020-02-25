@@ -6,10 +6,9 @@ const fontNames = {
 const theme = {
   colors: {
     white: '#fff',
-    black: '#000',
+    black: '#3C3C3C',
     focusBackground: '#EDEDED',
     border: '#CCCCCC',
-    text: '#3C3C3C',
     primary: '#05B8E6',
     primaryMuted: '#86C6DE',
     primaryInactive: 'rgba(5, 184, 230, 0.5)',
