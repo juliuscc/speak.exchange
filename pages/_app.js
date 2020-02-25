@@ -1,6 +1,6 @@
 import App, { Container } from 'next/app'
 import { createGlobalStyle } from 'styled-components'
-import Page from '../components/Page'
+import Page from '../presentational/Page'
 
 const GlobalStyle = createGlobalStyle`
 	::selection {

@@ -1,3 +1,3 @@
-import SearchBar from '../components/SearchBar'
+import SearchBar from '../presentational/SearchBar'
 
 export default () => <SearchBar />

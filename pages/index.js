@@ -1,4 +1,4 @@
-import Navbar from '../components/Navbar'
+import Navbar from '../presentational/Navbar'
 import Search from '../container/SearchExchange'
 import Exchange from '../container/Exchange'
 
