@@ -7,7 +7,8 @@ const theme = {
   colors: {
     white: '#fff',
     black: '#000',
-    focusBackground: '#CCCCCC',
+    focusBackground: '#EDEDED',
+    border: '#CCCCCC',
     text: '#3C3C3C',
     primary: '#05B8E6',
     primaryMuted: '#86C6DE',
