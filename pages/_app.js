@@ -22,7 +22,6 @@ const GlobalStyle = createGlobalStyle`
 		margin: 0;
 		background-color: ${props => props.theme.colors.white};
 		color: ${props => props.theme.colors.text};
-		/* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
 		font-family: ${({ theme }) => theme.fonts.text};
 	}
 
@@ -38,6 +37,7 @@ const GlobalStyle = createGlobalStyle`
 	}
 	
 	* {
+		font-weight: 300;
 		box-sizing:border-box;
 	}
 `

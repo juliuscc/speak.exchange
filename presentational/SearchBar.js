@@ -70,7 +70,7 @@ const StyledSearchIcon = styled(SearchIcon)`
 
 export default () => (
   <Wrapper>
-    <Container>
+    <Container narrow>
       <LanguageSelectWrapper>
         <LanguageSelect>
           <option>
