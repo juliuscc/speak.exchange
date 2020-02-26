@@ -1,4 +1,4 @@
-import App, { Container } from 'next/app'
+import App from 'next/app'
 import { createGlobalStyle } from 'styled-components'
 import Page from '../presentational/Page'
 
@@ -57,12 +57,10 @@ export default class MyApp extends App {
     const { Component, pageProps } = this.props
 
     return (
-      <Container>
-        <Page>
-          <GlobalStyle />
-          <Component {...pageProps} />
-        </Page>
-      </Container>
+      <Page>
+        <GlobalStyle />
+        <Component {...pageProps} />
+      </Page>
     )
   }
 }
