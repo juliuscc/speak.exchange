@@ -68,7 +68,7 @@ const StyledSearchIcon = styled(SearchIcon)`
   width: 20px;
 `
 
-export default () => (
+export default ({ translationQuery, onTranslationQueryChange }) => (
   <Wrapper>
     <Container narrow>
       <LanguageSelectWrapper>
@@ -117,7 +117,11 @@ export default () => (
         <CharacterSelect>å ä ö</CharacterSelect>
       </LanguageSelectWrapper>
       <SearchBar>
-        <SearchBox placeholder="Start typing to search" />
+        <SearchBox
+          placeholder="Start typing to search"
+          onChange={onTranslationQueryChange}
+          value={translationQuery}
+        />
         <SearchButton>
           <StyledSearchIcon />
         </SearchButton>
