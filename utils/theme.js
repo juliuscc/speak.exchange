@@ -1,6 +1,6 @@
 const fontNames = {
-  title: 'Raleway',
-  text: 'Roboto'
+  title: 'Catamaran',
+  text: 'Open Sans'
 }
 
 const theme = {
@@ -18,6 +18,9 @@ const theme = {
   fonts: {
     title: `'${fontNames.title}', '${fontNames.text}', sans-serif`,
     text: `'${fontNames.text}', sans-serif`
+  },
+  transparencies: {
+    inactive: '0.5'
   }
 }
 
