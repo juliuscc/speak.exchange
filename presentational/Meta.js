@@ -7,7 +7,10 @@ const Meta = () => (
     <meta charSet="utf-8" />
     <title key="title">Speak Exchange</title>
     <link
-      href={`https://fonts.googleapis.com/css?family=${fontNames.text}:300,600|${fontNames.title}:600,800`}
+      href={`https://fonts.googleapis.com/css?family=${fontNames.text.replace(
+        ' ',
+        '+'
+      )}:300,600|${fontNames.title.replace(' ', '+')}:600,800`}
       rel="stylesheet"
     />
 
