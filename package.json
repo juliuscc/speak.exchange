@@ -69,7 +69,8 @@
         "absolute-first"
       ],
       "import/newline-after-import": "error",
-      "react/jsx-props-no-spreading": 0
+      "react/jsx-props-no-spreading": 0,
+      "react/no-array-index-key": 0
     }
   },
   "babel": {

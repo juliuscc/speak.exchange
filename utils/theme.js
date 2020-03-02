@@ -13,6 +13,7 @@ const theme = {
     primaryMuted: '#86C6DE',
     primaryInactive: 'rgba(5, 184, 230, 0.5)',
     primaryMutedInactive: 'rgba(134, 198, 222, 0.5)',
+    primaryHighlighted: '#0AA0DE',
     selection: '#86C6DE'
   },
   fonts: {

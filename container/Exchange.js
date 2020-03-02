@@ -1,11 +1,27 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { fetchTranslation } from '../utils/fetchers'
 import Container from '../presentational/fragments/Container'
+import Translation from '../presentational/Translation'
 
-const Bold = styled.span`
-  font-weight: bold;
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`
+
+const Spinner = styled.div`
+  border: 10px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 10px solid #3498db;
+  width: 70px;
+  height: 70px;
+  animation: ${rotate} 1s linear infinite;
+  margin: 50px auto;
 `
 
 export default () => {
@@ -33,14 +49,11 @@ export default () => {
 
   return (
     <Container>
-      <h1>Exchange</h1>
-      <div>
-        <Bold>Loading:</Bold> {loading.toString()}
-      </div>
-      <p>
-        <Bold>Result:</Bold>
-      </p>
-      <div>{JSON.stringify(translation)}</div>
+      {loading || !translation ? (
+        <Spinner />
+      ) : (
+        <Translation translationResult={translation} />
+      )}
     </Container>
   )
 }
