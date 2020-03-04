@@ -28,10 +28,14 @@ export default () => {
   const router = useRouter()
   const { search } = router.query
 
-  const [loading, setLoading] = useState(true)
-  const [translation, setTranslation] = useState(undefined)
+  const [loading, setLoading] = useState(false)
+  const [translation, setTranslation] = useState(null)
 
   useEffect(() => {
+    if (!search) {
+      return setTranslation(null)
+    }
+
     let cancelled = false
 
     setLoading(true)
@@ -49,11 +53,15 @@ export default () => {
 
   return (
     <Container>
-      {loading || !translation ? (
-        <Spinner />
-      ) : (
-        <Translation translationResult={translation} />
-      )}
+      {(() => {
+        if ((!loading && !translation) || search === '') {
+          return <div>Welcome to speak.exchange!</div>
+        }
+        if (loading || !translation) {
+          return <Spinner />
+        }
+        return <Translation translationResult={translation} />
+      })()}
     </Container>
   )
 }
