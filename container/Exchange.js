@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { fetchTranslation } from '../utils/fetchers'
 import Container from '../presentational/fragments/Container'
+import TitleBar from '../presentational/fragments/TitleBar'
 import Translation from '../presentational/Translation'
 
 const rotate = keyframes`
@@ -13,7 +14,6 @@ const rotate = keyframes`
     transform: rotate(360deg);
   }
 `
-
 const Spinner = styled.div`
   border: 10px solid #f3f3f3;
   border-radius: 50%;
@@ -56,7 +56,7 @@ export default () => {
     <Container>
       {(() => {
         if ((!loading && !translation) || search === '') {
-          return <div>Welcome to speak.exchange!</div>
+          return <TitleBar>Welcome to speak.exchange!</TitleBar>
         }
         if (loading || !translation) {
           return <Spinner />

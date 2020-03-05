@@ -10,7 +10,7 @@ const Meta = () => (
       href={`https://fonts.googleapis.com/css?family=${fontNames.text.replace(
         ' ',
         '+'
-      )}:300,600|${fontNames.title.replace(' ', '+')}:600,800`}
+      )}:300,600,700|${fontNames.title.replace(' ', '+')}:600,800`}
       rel="stylesheet"
     />
 

@@ -25,9 +25,19 @@ const GlobalStyle = createGlobalStyle`
 		font-family: ${({ theme }) => theme.fonts.text};
 	}
 
-	h1, h2, h3, h4, h5, h6 {
+	h1 {
 		font-family: ${({ theme }) => theme.fonts.title};
 		font-weight: 800;
+	}
+
+	h2 {
+		font-family: ${({ theme }) => theme.fonts.title};
+		font-weight: 600;
+	}
+
+	h3, h4, h5, h6 {
+		font-family: ${({ theme }) => theme.fonts.text};
+		font-weight: 600;
 	}
 
 	p {
