@@ -10,11 +10,14 @@ class SearchExchange extends React.Component {
     const { router } = props
 
     this.debouncedURLUpdate = debounce(() => {
-      const { translationQuery } = this.state
-      router.push(`/?search=${translationQuery}`)
+      const { translationQuery, language } = this.state
+
+      router.push(
+        `/?search=${translationQuery}&language=${language ? 'fr' : 'en'}`
+      )
     }, 300)
 
-    this.state = { translationQuery: '' }
+    this.state = { translationQuery: '', language: true }
   }
 
   componentDidMount() {
@@ -29,13 +32,23 @@ class SearchExchange extends React.Component {
     )
   }
 
+  languageChange = () => {
+    this.setState(prevState => ({
+      language: !prevState.language
+    }))
+  }
+
   render = () => {
-    const { translationQuery } = this.state
+    const { translationQuery, language } = this.state
     return (
-      <SearchBar
-        translationQuery={translationQuery}
-        onTranslationQueryChange={this.handleChange}
-      />
+      <>
+        <SearchBar
+          language={language}
+          onLanguageChange={this.languageChange}
+          translationQuery={translationQuery}
+          onTranslationQueryChange={this.handleChange}
+        />
+      </>
     )
   }
 }

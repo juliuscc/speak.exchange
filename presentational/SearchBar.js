@@ -1,43 +1,13 @@
 import styled from 'styled-components'
 import { Search as SearchIcon } from 'styled-icons/zondicons/Search'
+import { ArrowLeftRight } from 'styled-icons/remix-line/ArrowLeftRight'
+import React from 'react'
+
 import Container from './fragments/Container'
 
 const Wrapper = styled.div`
   background: ${({ theme }) => theme.colors.focusBackground};
   padding: 20px;
-`
-
-const LanguageSelectWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin: 5px 0;
-`
-
-const LanguageSelect = styled.select`
-  background: ${({ theme }) => theme.colors.white};
-  padding: 10px;
-  border: 1px solid ${({ theme }) => theme.colors.border};
-  border-radius: 10px 10px 10px 10px;
-  font-size: 15px;
-  position: relative;
-  appearance: none;
-  display: block;
-
-  &:after {
-    /* background-color: ${({ theme }) => theme.colors.primary}; */
-    position: absolute;
-    content: '';
-    top: 14px;
-    right: 10px;
-    width: 0;
-    height: 0;
-    border: 6px solid transparent;
-    border-color: #fff transparent transparent transparent;
-  }
-`
-
-const CharacterSelect = styled.div`
-  padding: 5px;
 `
 
 const SearchBar = styled.div`
@@ -68,54 +38,87 @@ const StyledSearchIcon = styled(SearchIcon)`
   width: 20px;
 `
 
-export default ({ translationQuery, onTranslationQueryChange }) => (
+const LanguageWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 5px 0;
+  flex-direction: column;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+`
+
+const LanguageSelectWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10;
+`
+
+const LanguageSelect = ({ language, onClick }) => {
+  return (
+    <>
+      <Language>{language ? 'French' : 'English'}</Language>
+      <SwitchButton onClick={onClick}>
+        <StyledArrowLeftRight />
+      </SwitchButton>
+      <Language> {language ? 'English' : 'French'}</Language>
+    </>
+  )
+}
+
+const SwitchButton = styled.button`
+  padding: 0;
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  background: transparent;
+  border-radius: 5px;
+  background-color: ${({ theme }) => theme.colors.primary};
+  height: 30px;
+  width: 40px;
+  margin: 0 10px;
+  cursor: pointer;
+`
+
+const StyledArrowLeftRight = styled(ArrowLeftRight)`
+  width: 20px;
+  height: 20px;
+  color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.primary};
+  border-radius: 20px;
+`
+
+const Language = styled.div`
+  width: 75px;
+  text-align: center;
+`
+
+const CharacterSelect = styled.div`
+  padding: 5px;
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-family: ${({ theme }) => theme.fonts.text};
+  font-size: 20px;
+  font-weight: 600;
+  height: 100%;
+  align-items: center;
+`
+
+export default ({
+  language,
+  onLanguageChange,
+  translationQuery,
+  onTranslationQueryChange
+}) => (
   <Wrapper>
     <Container narrow>
-      <LanguageSelectWrapper>
-        <LanguageSelect>
-          <option>
-            <span role="img" aria-label="US Flag">
-              🇺🇸
-            </span>
-            Eng
-            <span role="img" aria-label="Two-way arrow">
-              ↔
-            </span>
-            <span role="img" aria-label="Swedish Flag">
-              🇸🇪
-            </span>
-            Swe
-          </option>
-          <option>
-            <span role="img" aria-label="US Flag">
-              🇺🇸
-            </span>
-            Eng
-            <span role="img" aria-label="Two-way arrow">
-              ↔
-            </span>
-            <span role="img" aria-label="Swedish Flag">
-              🇸🇪
-            </span>
-            Swe
-          </option>
-          <option>
-            <span role="img" aria-label="US Flag">
-              🇺🇸
-            </span>
-            Eng
-            <span role="img" aria-label="Two-way arrow">
-              ↔
-            </span>
-            <span role="img" aria-label="Swedish Flag">
-              🇸🇪
-            </span>
-            Swe
-          </option>
-        </LanguageSelect>
-
+      <LanguageWrapper>
+        <LanguageSelectWrapper>
+          <LanguageSelect language={language} onClick={onLanguageChange} />
+        </LanguageSelectWrapper>
         <CharacterSelect>å ä ö</CharacterSelect>
-      </LanguageSelectWrapper>
+      </LanguageWrapper>
       <SearchBar>
         <SearchBox
           placeholder="Start typing to search"

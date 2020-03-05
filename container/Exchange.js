@@ -26,7 +26,8 @@ const Spinner = styled.div`
 
 export default () => {
   const router = useRouter()
-  const { search } = router.query
+  const { search, language } = router.query
+  const languageTo = language === 'en' ? 'fr' : 'en'
 
   const [loading, setLoading] = useState(false)
   const [translation, setTranslation] = useState(null)
@@ -40,7 +41,7 @@ export default () => {
 
     setLoading(true)
 
-    fetchTranslation(search, 'en', 'fr').then(response => {
+    fetchTranslation(search, language, languageTo).then(response => {
       if (cancelled) return
       setLoading(false)
       setTranslation(response)
