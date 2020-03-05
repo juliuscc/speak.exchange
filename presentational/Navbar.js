@@ -10,18 +10,16 @@ const NavWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `
+const TitleWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 40px;
+`
 
-const LogInWrapper = styled.div`
-  padding-right: 30px;
+const StyledLinkWrapper = styled.div`
   display: flex;
-  position: absolute;
-  top: 0;
-  right: 0;
-  font-family: ${({ theme }) => theme.fonts.text};
-  font-size: 20px;
-  font-weight: 600;
-  height: 100%;
-  align-items: center;
+  justify-content: ${props => (props.right ? 'flex-end' : 'flex-start')};
+  width: 300px;
 `
 
 const StyledLink = styled.a`
@@ -29,6 +27,7 @@ const StyledLink = styled.a`
   margin: 20px;
   align-items: center;
   display: flex;
+
   flex-direction: column;
   opacity: ${({ active, theme }) =>
     active ? 1 : theme.transparencies.inactive};
@@ -36,13 +35,6 @@ const StyledLink = styled.a`
   :hover {
     opacity: 1;
   }
-`
-
-const TitleWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-right: 20px;
-  margin-left: 20px;
 `
 
 const Title = styled.span`
@@ -58,27 +50,44 @@ const Subtitle = styled.span`
   font-weight: 600;
 `
 
+const LogInWrapper = styled.div`
+  padding-right: 30px;
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-family: ${({ theme }) => theme.fonts.text};
+  font-size: 20px;
+  font-weight: 600;
+  height: 100%;
+  align-items: center;
+`
+
 const Navbar = ({ router: { pathname } }) => (
   <NavWrapper>
     <TitleWrapper>
-      <Link href="/" passHref>
-        <StyledLink active={pathname === '/'}>
-          <div>
-            <Title>speak.</Title>
-            <Title muted>exchange</Title>
-          </div>
-          <Subtitle>bilingual dictionary</Subtitle>
-        </StyledLink>
-      </Link>
-      <Link href="/repeat" passHref>
-        <StyledLink active={pathname === '/repeat'}>
-          <div>
-            <Title>speak.</Title>
-            <Title muted>repeat</Title>
-          </div>
-          <Subtitle>vocabulary trainer</Subtitle>
-        </StyledLink>
-      </Link>
+      <StyledLinkWrapper right>
+        <Link href="/" passHref>
+          <StyledLink active={pathname === '/'}>
+            <div>
+              <Title>speak.</Title>
+              <Title muted>exchange</Title>
+            </div>
+            <Subtitle>bilingual dictionary</Subtitle>
+          </StyledLink>
+        </Link>
+      </StyledLinkWrapper>
+      <StyledLinkWrapper>
+        <Link href="/repeat" passHref>
+          <StyledLink active={pathname === '/repeat'}>
+            <div>
+              <Title>speak.</Title>
+              <Title muted>repeat</Title>
+            </div>
+            <Subtitle>vocabulary trainer</Subtitle>
+          </StyledLink>
+        </Link>
+      </StyledLinkWrapper>
     </TitleWrapper>
     <LogInWrapper>Log in</LogInWrapper>
   </NavWrapper>
