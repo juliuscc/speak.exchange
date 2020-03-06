@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { fetchTranslation } from '../utils/fetchers'
 import Container from '../presentational/fragments/Container'
+import TitleBar from '../presentational/fragments/TitleBar'
 import Translation from '../presentational/Translation'
 import SearchHistory from '../presentational/SearchHistory'
 
