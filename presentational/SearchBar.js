@@ -106,13 +106,25 @@ const CharacterSelect = styled.div`
   height: 100%;
   align-items: center;
 `
+const CharButton = styled.button`
+  padding: 0 6px;
+  background-color: ${({ theme }) => theme.colors.focusBackground};
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+`
+
+const CharacterButton = ({ char, onClick }) => (
+  <CharButton onClick={onClick}>{char}</CharButton>
+)
 
 export default ({
   language,
   onLanguageChange,
   translationQuery,
   onTranslationQueryChange,
-  triggerSearch
+  triggerSearch,
+  addSpecialCharacter
 }) => (
   <Wrapper>
     <Container narrow>
@@ -120,7 +132,26 @@ export default ({
         <LanguageSelectWrapper>
           <LanguageSelect language={language} onClick={onLanguageChange} />
         </LanguageSelectWrapper>
-        <CharacterSelect>à â é è ê ë ï î ô ù û ç œ æ</CharacterSelect>
+        <CharacterSelect>
+          {[
+            'à',
+            'â',
+            'é',
+            'è',
+            'ê',
+            'ë',
+            'ï',
+            'î',
+            'ô',
+            'ù',
+            'û',
+            'ç',
+            'œ',
+            'æ'
+          ].map(char => (
+            <CharacterButton char={char} onClick={addSpecialCharacter(char)} />
+          ))}
+        </CharacterSelect>
       </LanguageWrapper>
       <SearchBar>
         <SearchBox

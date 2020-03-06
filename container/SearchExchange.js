@@ -41,6 +41,11 @@ class SearchExchange extends React.Component {
     )
   }
 
+  addSpecialCharacter = char => () =>
+    this.setState(prevState => ({
+      translationQuery: prevState.translationQuery + char
+    }))
+
   render = () => {
     const { translationQuery, language } = this.state
     return (
@@ -51,6 +56,7 @@ class SearchExchange extends React.Component {
           translationQuery={translationQuery}
           onTranslationQueryChange={this.handleChange}
           triggerSearch={this.debouncedURLUpdate}
+          addSpecialCharacter={this.addSpecialCharacter}
         />
       </>
     )
