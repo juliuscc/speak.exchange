@@ -1,6 +1,7 @@
 import styled, { ThemeProvider } from 'styled-components'
 import theme from '../utils/theme'
 import Meta from './Meta'
+import { FireBaseAuthProvider } from '../container/FireBaseAuthProvider'
 
 const PageWrapper = styled.div`
   display: flex;
@@ -13,14 +14,16 @@ const FlexContent = styled.div`
 `
 
 const Page = ({ children }) => (
-  <ThemeProvider theme={theme}>
-    <>
-      <PageWrapper>
-        <Meta />
-        <FlexContent>{children}</FlexContent>
-      </PageWrapper>
-    </>
-  </ThemeProvider>
+  <FireBaseAuthProvider>
+    <ThemeProvider theme={theme}>
+      <>
+        <PageWrapper>
+          <Meta />
+          <FlexContent>{children}</FlexContent>
+        </PageWrapper>
+      </>
+    </ThemeProvider>
+  </FireBaseAuthProvider>
 )
 
 export default Page
