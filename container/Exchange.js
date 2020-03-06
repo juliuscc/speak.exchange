@@ -17,7 +17,7 @@ const rotate = keyframes`
 const Spinner = styled.div`
   border: 10px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 10px solid #3498db;
+  border-top: 10px solid ${({ theme }) => theme.colors.primary};
   width: 70px;
   height: 70px;
   animation: ${rotate} 1s linear infinite;
