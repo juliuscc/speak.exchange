@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { fetchTranslation } from '../utils/fetchers'
 import Container from '../presentational/fragments/Container'
-import TitleBar from '../presentational/fragments/TitleBar'
 import Translation from '../presentational/Translation'
 import SearchHistory from '../presentational/SearchHistory'
 
@@ -29,9 +28,29 @@ const ExchangeGrid = styled.div`
   grid-template-columns: auto 900px auto;
   grid-column-gap: 20px;
   justify-items: center;
+  // justify-content: center; // potential style option
 `
-const TitleBarContainer = styled.div`
+const LogoContainer = styled.div`
   width: 100%;
+  padding: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`
+const LogoImage = styled.img`
+  padding: 20px;
+`
+const LogoTextLeft = styled.h1`
+  color: ${({ theme }) => theme.colors.primary};
+  font-size: 50px;
+  justify-self: end;
+  align-self: flex-start;
+`
+const LogoTextRight = styled.h1`
+  color: ${({ theme }) => theme.colors.primaryMuted};
+  font-size: 50px;
+  justify-self: start;
+  align-self: flex-end;
 `
 
 export default () => {
@@ -68,7 +87,20 @@ export default () => {
         <SearchHistory />
         {(() => {
           if ((!loading && !translation) || search === '') {
-            return <TitleBarContainer />
+            return (
+              <LogoContainer>
+                <LogoTextLeft logoSide="left">speak</LogoTextLeft>
+                {/* <div /> */}
+                <LogoImage
+                  src="/images/logo.png"
+                  alt="Welcome to speak.exchange!"
+                  width="250"
+                  height="250"
+                />
+                {/* <div /> */}
+                <LogoTextRight logoSide="right">exchange</LogoTextRight>
+              </LogoContainer>
+            )
           }
           if (loading || !translation) {
             return <Spinner />

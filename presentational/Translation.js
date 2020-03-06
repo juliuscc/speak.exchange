@@ -51,6 +51,9 @@ const Example = styled.p`
   color: ${({ theme }) => theme.colors.black};
   opacity: 70%;
 `
+const TitleBarContainer = styled.div`
+  width: 100%;
+`
 
 const ResultRow = ({ from, toType, to, example, index }) => (
   <>
@@ -71,7 +74,9 @@ const TranslationResult = ({
 }) => (
   <>
     {translationForms.length === 0 && word !== '' ? (
-      <TitleBar>No translation found for {word}.</TitleBar>
+      <TitleBarContainer>
+        <TitleBar>No translation found for {word}.</TitleBar>
+      </TitleBarContainer>
     ) : (
       <TranslationResultContainer>
         <TitleBar>{word}</TitleBar>
