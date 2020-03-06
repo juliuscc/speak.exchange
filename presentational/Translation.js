@@ -1,10 +1,14 @@
 import styled from 'styled-components'
 import TitleBar from './fragments/TitleBar'
 
+const TranslationResultContainer = styled.div`
+  width: 100%;
+  padding-bottom: 40px;
+`
 const Translations = styled.div`
   display: grid;
   grid-template-columns: 90px 770px;
-  margin: 0 0 20px 0;
+  margin: 0 0 0px 0;
   grid-row-gap: 15px;
 `
 const WordClass = styled.span`
@@ -69,7 +73,7 @@ const TranslationResult = ({
     {translationForms.length === 0 && word !== '' ? (
       <TitleBar>No translation found for {word}.</TitleBar>
     ) : (
-      <>
+      <TranslationResultContainer>
         <TitleBar>{word}</TitleBar>
         <Translations>
           {translationForms
@@ -86,7 +90,7 @@ const TranslationResult = ({
               />
             ))}
         </Translations>
-      </>
+      </TranslationResultContainer>
     )}
   </>
 )

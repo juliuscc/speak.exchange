@@ -2,8 +2,8 @@ import styled from 'styled-components'
 import screenSizes from '../../utils/screen-sizes'
 
 const Container = styled.div`
-  width: ${props => (props.narrow ? '40%' : '80%')};
-  max-width: 960px;
+  width: ${props => (props.narrow ? '40%' : '100%')};
+  max-width: 100%;
   margin: 0 auto;
   padding: 0 20px;
   box-sizing: border-box;

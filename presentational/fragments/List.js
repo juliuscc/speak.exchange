@@ -1,17 +1,18 @@
 import styled from 'styled-components'
 
-const ListHeader = styled.div`
-  font: ${({ theme }) => theme.fonts.title};
+const ListContainer = styled.div`
+  padding: 0 20px 20px 20px;
+`
+const ListHeader = styled.h1`
   color: ${({ theme }) => theme.colors.primaryMuted};
-  margin-left: 90px;
 `
 const ListBody = styled.p``
 const ListButton = styled.button``
 
 export default ({ title, content, link }) => (
-  <>
+  <ListContainer>
     <ListHeader>{title}</ListHeader>
     <ListBody>{content}</ListBody>
     <ListButton>{link}</ListButton>
-  </>
+  </ListContainer>
 )

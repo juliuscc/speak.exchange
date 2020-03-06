@@ -3,7 +3,7 @@ import List from './fragments/List'
 const SearchHistory = () => {
   return (
     <>
-      <List title="Search History" content={['filler', 'hello']} link="yes" />
+      <List title="search history" content={['filler', 'hello']} link="yes" />
     </>
   )
 }
