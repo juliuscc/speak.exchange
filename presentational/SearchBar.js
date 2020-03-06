@@ -13,6 +13,7 @@ const Wrapper = styled.div`
 const SearchBar = styled.div`
   display: flex;
   flex-direction: row;
+  padding-bottom: 10px;
 `
 
 const SearchBox = styled.input`
@@ -46,14 +47,12 @@ const LanguageWrapper = styled.div`
   flex-direction: column;
   position: relative;
   justify-content: center;
-  align-items: center;
 `
 
 const LanguageSelectWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 10;
 `
 
 const LanguageSelect = ({ language, onClick }) => {
@@ -91,17 +90,19 @@ const StyledArrowLeftRight = styled(ArrowLeftRight)`
 const Language = styled.div`
   width: 75px;
   text-align: center;
+  font-weight: 600;
 `
 
 const CharacterSelect = styled.div`
-  padding: 5px;
+  padding: 10px;
   display: flex;
   position: absolute;
   top: 0;
   right: 0;
   font-family: ${({ theme }) => theme.fonts.text};
+  font-color: ${({ theme }) => theme.colors.black};
+  opacity: 70%;
   font-size: 20px;
-  font-weight: 600;
   height: 100%;
   align-items: center;
 `
@@ -119,7 +120,7 @@ export default ({
         <LanguageSelectWrapper>
           <LanguageSelect language={language} onClick={onLanguageChange} />
         </LanguageSelectWrapper>
-        <CharacterSelect>å ä ö</CharacterSelect>
+        <CharacterSelect>à â é è ê ë ï î ô ù û ç œ æ</CharacterSelect>
       </LanguageWrapper>
       <SearchBar>
         <SearchBox
