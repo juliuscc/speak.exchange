@@ -5,6 +5,7 @@ import { fetchTranslation } from '../utils/fetchers'
 import Container from '../presentational/fragments/Container'
 import TitleBar from '../presentational/fragments/TitleBar'
 import Translation from '../presentational/Translation'
+import SearchHistory from '../presentational/fragments/List'
 
 const rotate = keyframes`
   from {
@@ -61,7 +62,12 @@ export default () => {
         if (loading || !translation) {
           return <Spinner />
         }
-        return <Translation translationResult={translation} />
+        return (
+          <>
+            <SearchHistory />
+            <Translation translationResult={translation} />
+          </>
+        )
       })()}
     </Container>
   )
