@@ -31,6 +31,7 @@ const SearchButton = styled.button`
   border-style: solid solid solid none;
   border-radius: 0px 10px 10px 0px;
   width: 40px;
+  cursor: pointer;
 `
 
 const StyledSearchIcon = styled(SearchIcon)`
@@ -109,7 +110,8 @@ export default ({
   language,
   onLanguageChange,
   translationQuery,
-  onTranslationQueryChange
+  onTranslationQueryChange,
+  triggerSearch
 }) => (
   <Wrapper>
     <Container narrow>
@@ -125,7 +127,7 @@ export default ({
           onChange={onTranslationQueryChange}
           value={translationQuery}
         />
-        <SearchButton>
+        <SearchButton onClick={triggerSearch}>
           <StyledSearchIcon />
         </SearchButton>
       </SearchBar>

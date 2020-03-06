@@ -50,7 +50,7 @@ export default () => {
     return () => {
       cancelled = true
     }
-  }, [search])
+  }, [search, language])
 
   return (
     <Container>

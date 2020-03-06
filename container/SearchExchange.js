@@ -33,9 +33,12 @@ class SearchExchange extends React.Component {
   }
 
   languageChange = () => {
-    this.setState(prevState => ({
-      language: !prevState.language
-    }))
+    this.setState(
+      prevState => ({
+        language: !prevState.language
+      }),
+      this.debouncedURLUpdate
+    )
   }
 
   render = () => {
@@ -47,6 +50,7 @@ class SearchExchange extends React.Component {
           onLanguageChange={this.languageChange}
           translationQuery={translationQuery}
           onTranslationQueryChange={this.handleChange}
+          triggerSearch={this.debouncedURLUpdate}
         />
       </>
     )
