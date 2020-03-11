@@ -41,6 +41,17 @@ class SearchExchange extends React.Component {
     )
   }
 
+  triggerSearch = () => {
+    const { router } = this.props
+
+    const { translationQuery, language } = this.state
+
+    router.push(`/?search=${translationQuery}`)
+    router.push(
+      `/?search=${translationQuery}&language=${language ? 'fr' : 'en'}`
+    )
+  }
+
   addSpecialCharacter = char => () =>
     this.setState(
       prevState => ({
@@ -58,7 +69,7 @@ class SearchExchange extends React.Component {
           onLanguageChange={this.languageChange}
           translationQuery={translationQuery}
           onTranslationQueryChange={this.handleChange}
-          triggerSearch={this.debouncedURLUpdate}
+          triggerSearch={this.triggerSearch}
           addSpecialCharacter={this.addSpecialCharacter}
         />
       </>
