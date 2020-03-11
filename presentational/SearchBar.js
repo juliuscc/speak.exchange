@@ -7,7 +7,7 @@ import Container from './fragments/Container'
 
 const Wrapper = styled.div`
   background: ${({ theme }) => theme.colors.focusBackground};
-  padding: 20px;
+  padding: 20px 0;
 `
 
 const SearchBar = styled.div`
@@ -127,7 +127,7 @@ export default ({
   addSpecialCharacter
 }) => (
   <Wrapper>
-    <Container narrow>
+    <Container>
       <LanguageWrapper>
         <LanguageSelectWrapper>
           <LanguageSelect language={language} onClick={onLanguageChange} />
