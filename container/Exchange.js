@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { fetchTranslation } from '../utils/fetchers'
 import Container from '../presentational/fragments/Container'
-import TitleBar from '../presentational/fragments/TitleBar'
 import Translation from '../presentational/Translation'
 
 const rotate = keyframes`
@@ -22,6 +21,11 @@ const Spinner = styled.div`
   height: 70px;
   animation: ${rotate} 1s linear infinite;
   margin: 50px auto;
+`
+
+const WelcomeText = styled.h1`
+  color: ${({ theme }) => theme.colors.primaryHighlighted};
+  text-align: center;
 `
 
 export default () => {
@@ -56,7 +60,7 @@ export default () => {
     <Container>
       {(() => {
         if (!loading && !translation) {
-          return <TitleBar>Welcome to speak.exchange!</TitleBar>
+          return <WelcomeText>Welcome to speak.exchange!</WelcomeText>
         }
         if (loading || !translation) {
           return <Spinner />
