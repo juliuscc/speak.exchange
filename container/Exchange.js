@@ -26,7 +26,7 @@ const Spinner = styled.div`
 
 export default () => {
   const router = useRouter()
-  const { search, language } = router.query
+  const { search = '', language = 'en' } = router.query
   const languageTo = language === 'en' ? 'fr' : 'en'
 
   const [loading, setLoading] = useState(false)
@@ -55,7 +55,7 @@ export default () => {
   return (
     <Container>
       {(() => {
-        if ((!loading && !translation) || search === '') {
+        if (!loading && !translation) {
           return <TitleBar>Welcome to speak.exchange!</TitleBar>
         }
         if (loading || !translation) {
