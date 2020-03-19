@@ -1,10 +1,10 @@
 import Navbar from '../presentational/Navbar'
-import Deck from '../container/Deck'
+import RepeatHomeContainer from '../container/RepeatHomeContainer'
 
 const Repeat = () => (
   <>
     <Navbar />
-    <Deck />
+    <RepeatHomeContainer />
   </>
 )
 export default Repeat

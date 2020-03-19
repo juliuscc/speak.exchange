@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { db } from '../utils/firebaseConfig'
 import { firebaseContext } from './FireBaseAuthProvider'
-import RepeatView from '../presentational/RepeatView'
+import RepeatHome from '../presentational/RepeatHome'
 
 const Deck = ({ userId }) => {
   const [name, setDeckName] = useState('')
@@ -37,7 +37,7 @@ const Deck = ({ userId }) => {
 
   return (
     <>
-      <RepeatView
+      <RepeatHome
         deckNames={decks}
         value={name}
         changeFunction={setDeckNameState}

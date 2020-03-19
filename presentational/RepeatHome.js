@@ -67,6 +67,8 @@ export default ({ deckNames, value, changeFunction, submitFunction }) => (
           >
             Create deck
           </button>
+
+          <Link href="/editDeck">+</Link>
         </DeckBox>
         {Object.entries(deckNames).map(([id, deck]) => (
           <DeckBox key={id}>
