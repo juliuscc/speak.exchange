@@ -1,17 +1,8 @@
 import React from 'react'
 import withFirebaseAuth from 'react-with-firebase-auth'
-import * as firebase from 'firebase/app'
 import 'firebase/auth'
-import config from '../utils/firebaseConfig'
 
-const firebaseApp = !firebase.apps.length
-  ? firebase.initializeApp(config)
-  : firebase.app()
-const firebaseAppAuth = firebaseApp.auth()
-
-const providers = {
-  googleProvider: new firebase.auth.GoogleAuthProvider()
-}
+import { firebaseAppAuth, providers } from '../utils/firebaseConfig'
 
 export const firebaseContext = React.createContext()
 

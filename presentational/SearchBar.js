@@ -149,7 +149,11 @@ export default ({
             'œ',
             'æ'
           ].map(char => (
-            <CharacterButton char={char} onClick={addSpecialCharacter(char)} />
+            <CharacterButton
+              key={char}
+              char={char}
+              onClick={addSpecialCharacter(char)}
+            />
           ))}
         </CharacterSelect>
       </LanguageWrapper>

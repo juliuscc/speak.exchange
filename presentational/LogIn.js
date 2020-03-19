@@ -16,6 +16,7 @@ const UserProfile = styled.div`
   justify-content: center;
   align-items: center;
   font-family: ${({ theme }) => theme.fonts.text};
+  z-index: 1;
 `
 
 const ProfileImage = styled.img`
@@ -98,8 +99,8 @@ const PopUp = ({
           <ProfileImage src={photoUrl} />
           <ProfileName> {displayName} </ProfileName>
           <ButtonWrapper>
-            <MyProfile onClick={MyProfile}>MyProfile</MyProfile>
-            <Settings onClick={Settings}>Settings</Settings>
+            <MyProfile>MyProfile</MyProfile>
+            <Settings>Settings</Settings>
           </ButtonWrapper>
           <SignOut onClick={signOut}>Log Out</SignOut>
         </PopUpBox>
