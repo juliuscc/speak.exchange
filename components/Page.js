@@ -1,7 +1,7 @@
 import styled, { ThemeProvider } from 'styled-components'
 import theme from '../utils/theme'
 import Meta from './Meta'
-import { FireBaseAuthProvider } from '../container/FireBaseAuthProvider'
+import { FireBaseAuthProvider } from './FireBaseAuthProvider'
 
 const PageWrapper = styled.div`
   display: flex;

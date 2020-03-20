@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { withRouter } from 'next/router'
 import styled from 'styled-components'
-import LogInContainer from '../container/LogInContainer'
+import LogInButton from './LogInButton'
 
 const NavWrapper = styled.div`
   display: flex;
@@ -66,7 +66,7 @@ const Navbar = ({ router: { pathname } }) => (
         </StyledLink>
       </Link>
     </TitleWrapper>
-    <LogInContainer />
+    <LogInButton />
   </NavWrapper>
 )
 

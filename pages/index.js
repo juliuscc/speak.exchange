@@ -1,6 +1,6 @@
-import Navbar from '../presentational/Navbar'
-import Search from '../container/SearchExchange'
-import Translation from '../presentational/Translation'
+import Navbar from '../components/ui-fragments/Navbar'
+import Search from '../components/exchange/SearchExchange'
+import Translation from '../components/exchange/Translation'
 
 const Home = () => (
   <>

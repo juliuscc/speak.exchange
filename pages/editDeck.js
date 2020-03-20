@@ -1,5 +1,5 @@
-import Navbar from '../presentational/Navbar'
-import EditDeckContainer from '../container/EditDeckContainer'
+import Navbar from '../components/ui-fragments/Navbar'
+import EditDeckContainer from '../components/deck/EditDeckContainer'
 
 const Deck = () => (
   <>

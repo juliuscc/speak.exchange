@@ -1,5 +1,5 @@
-import Navbar from '../presentational/Navbar'
-import RepeatHomeContainer from '../container/RepeatHomeContainer'
+import Navbar from '../components/ui-fragments/Navbar'
+import RepeatHomeContainer from '../components/browse-decks/RepeatHomeContainer'
 
 const Repeat = () => (
   <>

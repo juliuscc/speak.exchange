@@ -2,8 +2,8 @@ import styled from 'styled-components'
 import { Search as SearchIcon } from 'styled-icons/zondicons/Search'
 import { ArrowLeftRight } from 'styled-icons/remix-line/ArrowLeftRight'
 import React from 'react'
-import screenSizes from '../utils/screen-sizes'
-import Container from './fragments/Container'
+import screenSizes from '../../utils/screen-sizes'
+import Container from '../ui-fragments/Container'
 
 const Wrapper = styled.div`
   background: ${({ theme }) => theme.colors.focusBackground};

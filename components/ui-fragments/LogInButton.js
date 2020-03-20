@@ -1,4 +1,7 @@
+import { useContext } from 'react'
 import styled from 'styled-components'
+import { firebaseContext } from '../FireBaseAuthProvider'
+import useToggle from '../../utils/toggle-hook'
 
 const LogInWrapper = styled.div`
   padding-right: 30px;
@@ -83,19 +86,18 @@ const SignIn = styled.button`
   font-weight: 600;
   cursor: pointer;
 `
-const PopUp = ({
-  photoUrl,
-  displayName,
-  signOut,
-  action,
-  visibility,
-  children
-}) => {
+const PopUp = ({ photoUrl, displayName, signOut }) => {
+  const [visible, toggleVisible] = useToggle(false)
+
   return (
     <>
       <UserProfile>
-        <ProfileImage src={photoUrl} alt="profile picture" onClick={action} />
-        <PopUpBox visible={visibility}>
+        <ProfileImage
+          src={photoUrl}
+          alt="profile picture"
+          onClick={toggleVisible}
+        />
+        <PopUpBox visible={visible}>
           <ProfileImage src={photoUrl} />
           <ProfileName> {displayName} </ProfileName>
           <ButtonWrapper>
@@ -104,32 +106,27 @@ const PopUp = ({
           </ButtonWrapper>
           <SignOut onClick={signOut}>Log Out</SignOut>
         </PopUpBox>
-        {children}
       </UserProfile>
     </>
   )
 }
 
-export default ({
-  popUpVisible,
-  togglePopUpVisible,
-  user,
-  signIn,
-  signOut
-}) => (
-  <LogInWrapper>
-    {user ? (
-      <>
-        <PopUp
-          photoUrl={user.photoURL}
-          displayName={user.displayName}
-          signOut={signOut}
-          visibility={popUpVisible}
-          action={togglePopUpVisible}
-        />
-      </>
-    ) : (
-      <SignIn onClick={signIn}>Log in</SignIn>
-    )}
-  </LogInWrapper>
-)
+export default () => {
+  const { user, signInWithGoogle, signOut } = useContext(firebaseContext)
+
+  return (
+    <LogInWrapper>
+      {user ? (
+        <>
+          <PopUp
+            photoUrl={user.photoURL}
+            displayName={user.displayName}
+            signOut={signOut}
+          />
+        </>
+      ) : (
+        <SignIn onClick={signInWithGoogle}>Log in</SignIn>
+      )}
+    </LogInWrapper>
+  )
+}

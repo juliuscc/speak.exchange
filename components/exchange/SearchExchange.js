@@ -1,7 +1,7 @@
 import React from 'react'
 import { withRouter } from 'next/router'
-import SearchBar from '../presentational/SearchBar'
-import debounce from '../utils/debounce'
+import SearchBar from './SearchBar'
+import debounce from '../../utils/debounce'
 
 class SearchExchange extends React.Component {
   constructor(props) {

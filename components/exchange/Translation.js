@@ -1,8 +1,8 @@
 import styled, { keyframes } from 'styled-components'
-import screenSizes from '../utils/screen-sizes'
-import useSearchTranslation from '../utils/translation-hook'
-import Container from './fragments/Container'
-import ErrorBox from './fragments/ErrorBox'
+import screenSizes from '../../utils/screen-sizes'
+import useSearchTranslation from '../../utils/translation-hook'
+import Container from '../ui-fragments/Container'
+import ErrorBox from '../ui-fragments/ErrorBox'
 
 const wordClassWidth = '50px'
 

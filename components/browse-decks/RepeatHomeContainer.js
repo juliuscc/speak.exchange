@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { db } from '../utils/firebaseConfig'
-import { firebaseContext } from './FireBaseAuthProvider'
-import RepeatHome from '../presentational/RepeatHome'
+import { db } from '../../utils/firebaseConfig'
+import { firebaseContext } from '../FireBaseAuthProvider'
+import RepeatHome from './RepeatHome'
 
 const Deck = ({ userId }) => {
   const [name, setDeckName] = useState('')
