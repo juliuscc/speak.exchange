@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Search as SearchIcon } from 'styled-icons/zondicons/Search'
 import { ArrowLeftRight } from 'styled-icons/remix-line/ArrowLeftRight'
 import React from 'react'
-
+import screenSizes from '../utils/screen-sizes'
 import Container from './fragments/Container'
 
 const Wrapper = styled.div`
@@ -53,6 +53,10 @@ const LanguageSelectWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    justify-content: center;
+  }
 `
 
 const LanguageSelect = ({ language, onClick }) => {
@@ -94,24 +98,34 @@ const Language = styled.div`
 `
 
 const CharacterSelect = styled.div`
-  padding: 10px;
+  padding: 10px 0;
+  padding-right: -6px;
   display: flex;
   position: absolute;
   top: 0;
   right: 0;
   font-family: ${({ theme }) => theme.fonts.text};
-  font-color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.black};
   opacity: 70%;
   font-size: 20px;
   height: 100%;
   align-items: center;
+
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    display: none;
+  }
 `
+
 const CharButton = styled.button`
   padding: 0 6px;
   background-color: ${({ theme }) => theme.colors.focusBackground};
   border: none;
   font-size: 16px;
   cursor: pointer;
+
+  @media screen and (max-width: ${screenSizes.tablet.max}) {
+    padding: 0 5px;
+  }
 `
 
 const CharacterButton = ({ char, onClick }) => (
