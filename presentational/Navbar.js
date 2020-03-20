@@ -57,7 +57,7 @@ const Navbar = ({ router: { pathname } }) => (
         </StyledLink>
       </Link>
       <Link href="/repeat" passHref>
-        <StyledLink active={pathname === '/repeat' || '/editDeck'}>
+        <StyledLink active={pathname !== '/'}>
           <div>
             <Title>speak.</Title>
             <Title muted>repeat</Title>
