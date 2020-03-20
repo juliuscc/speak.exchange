@@ -1,7 +1,42 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import screenSizes from '../utils/screen-sizes'
+import useSearchTranslation from '../utils/translation-hook'
+import Container from './fragments/Container'
+import ErrorBox from './fragments/ErrorBox'
 
 const wordClassWidth = '50px'
+
+const LoadingOverlay = styled.div`
+  opacity: ${({ loading, theme }) =>
+    loading ? theme.transparencies.inactive : 1};
+`
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`
+
+const Spinner = styled.div`
+  border: 10px solid ${({ theme }) => theme.colors.focusBackground};
+  border-radius: 50%;
+  border-top: 10px solid ${({ theme }) => theme.colors.primary};
+  width: 70px;
+  height: 70px;
+  animation: ${rotate} 1s linear infinite;
+  position: absolute;
+  top: 70px;
+  left: calc(50% - 35px);
+  filter: drop-shadow(0px 0px 10px #ddd);
+`
+
+const WelcomeText = styled.h1`
+  color: ${({ theme }) => theme.colors.primaryHighlighted};
+  text-align: center;
+`
 
 const Translations = styled.div`
   display: grid;
@@ -104,13 +139,14 @@ const ResultRow = ({ from, toType, to, example, index }) => (
 )
 
 const TranslationResult = ({
-  translationResult: { word, translations: translationForms }
+  translationResult: { word, translations: translationForms },
+  loading
 }) => (
   <>
-    {translationForms.length === 0 && word !== '' ? (
-      <TitleBar>No translation found for {word}.</TitleBar>
-    ) : (
-      <>
+    <LoadingOverlay loading={loading}>
+      {translationForms.length === 0 && word !== '' ? (
+        <TitleBar>No translation found for {word}.</TitleBar>
+      ) : (
         <Translations>
           <TitleBar>{word}</TitleBar>
           {translationForms
@@ -127,9 +163,42 @@ const TranslationResult = ({
               />
             ))}
         </Translations>
-      </>
-    )}
+      )}
+    </LoadingOverlay>
+    {loading && <Spinner />}
   </>
 )
 
-export default TranslationResult
+export default () => {
+  const { status, translation, error } = useSearchTranslation()
+
+  return (
+    <Container>
+      {(() => {
+        if (status === 'idle') {
+          return <WelcomeText>Welcome to speak.exchange!</WelcomeText>
+        }
+        if (status === 'pending') {
+          return translation ? (
+            <TranslationResult translationResult={translation} loading />
+          ) : (
+            <Spinner />
+          )
+        }
+        if (status === 'resolved') {
+          return <TranslationResult translationResult={translation} />
+        }
+
+        // eslint-disable-next-line no-console
+        console.error(error)
+
+        return (
+          <ErrorBox>
+            There was an error with fetching the translation. Please refresh the
+            page.
+          </ErrorBox>
+        )
+      })()}
+    </Container>
+  )
+}

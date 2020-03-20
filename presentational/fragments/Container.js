@@ -7,7 +7,7 @@ const Container = styled.div`
   margin: 0 auto;
   padding: 0 20px;
   box-sizing: border-box;
-
+  position: relative;
   @media screen and (max-width: ${screenSizes.tablet.max}) {
     width: 85%;
   }

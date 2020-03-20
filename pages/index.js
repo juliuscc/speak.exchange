@@ -1,12 +1,12 @@
 import Navbar from '../presentational/Navbar'
 import Search from '../container/SearchExchange'
-import Exchange from '../container/Exchange'
+import Translation from '../presentational/Translation'
 
 const Home = () => (
   <>
     <Navbar />
     <Search />
-    <Exchange />
+    <Translation />
   </>
 )
 
