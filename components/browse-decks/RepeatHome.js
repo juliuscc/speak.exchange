@@ -2,8 +2,8 @@ import styled from 'styled-components'
 import React from 'react'
 import Link from 'next/link'
 import DeckSearch from './DeckSearch'
-import AddDeck from './AddDeck'
 import DeckBox from './DeckBox'
+import { RelativeSpinner } from '../ui-fragments/Spinner'
 
 const DeckView = styled.div`
   height: 100vh;
@@ -19,6 +19,12 @@ const DeckWrapper = styled.div`
   align-content: flex-start;
   background-color: ${({ theme }) => theme.colors.white};
 `
+
+const AddDeck = ({ loading, onClick }) => (
+  <DeckBox hollow as="button" onClick={onClick} disabled={loading}>
+    {loading ? <RelativeSpinner /> : '+'}
+  </DeckBox>
+)
 
 export default ({ decks, createDeck }) => (
   <>
