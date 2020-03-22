@@ -2,7 +2,7 @@ import React from 'react'
 import withFirebaseAuth from 'react-with-firebase-auth'
 import 'firebase/auth'
 
-import { firebaseAppAuth, providers } from '../utils/firebaseConfig'
+import { firebaseAppAuth, providers } from '../utils/firebase-config'
 
 export const firebaseContext = React.createContext()
 

@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-unfetch'
 import { onlyResolvesLast } from 'awesome-only-resolves-last-promise/dist'
-import { SERVERLESS_WORD_LOOKUP_URL } from './apiConfig'
+import { SERVERLESS_WORD_LOOKUP_URL } from './api-config'
 
 /* eslint-disable import/prefer-default-export */
 export const fetchTranslation = onlyResolvesLast((word, from, to) => {

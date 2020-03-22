@@ -1,6 +1,6 @@
 import { useReducer, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { db } from '../../utils/firebaseConfig'
+import { db } from '../../utils/firebase-config'
 
 const useEditDeck = () => {
   const editDeckReducer = (state, action) => {

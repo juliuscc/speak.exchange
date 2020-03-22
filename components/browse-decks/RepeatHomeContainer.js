@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { db } from '../../utils/firebaseConfig'
+import { db } from '../../utils/firebase-config'
 import { firebaseContext } from '../FireBaseAuthProvider'
 import RepeatHome from './RepeatHome'
 
