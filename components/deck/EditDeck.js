@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { transparentize } from 'polished'
 import Link from 'next/link'
 import Container from '../ui-fragments/Container'
 import WordCardEdit from './WordCardEdit'
@@ -57,13 +58,17 @@ const HollowWordCard = styled.button`
   border-style: dashed;
   border-color: ${({ theme }) => theme.colors.white};
   border-width: 4px;
-  background: none;
+  background: ${({ theme }) => transparentize(1, theme.colors.white)};
   font-family: ${({ theme }) => theme.fonts.text};
   font-size: 100px;
   color: ${({ theme }) => theme.colors.white};
   padding: 20px;
   margin-top: 20px;
   cursor: pointer;
+
+  :hover {
+    background: ${({ theme }) => transparentize(0.8, theme.colors.white)};
+  }
 `
 
 export default ({
@@ -87,7 +92,7 @@ export default ({
         />
         <ButtonsWrapper>
           <Button type="button" onClick={submitChanges} disabled={!edited}>
-            Save changes
+            {edited ? 'Save changes' : 'All changes are saved'}
           </Button>
           <Link href="/repeat">
             <Button type="button" cancel>

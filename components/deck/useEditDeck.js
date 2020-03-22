@@ -30,7 +30,8 @@ const useEditDeck = () => {
           case 'uploading': {
             return {
               ...state,
-              status: 'resolved'
+              status: 'resolved',
+              edited: false
             }
           }
           default: {

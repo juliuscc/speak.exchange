@@ -1,5 +1,9 @@
 import styled, { keyframes } from 'styled-components'
 
+export const SpinnerContainer = styled.div`
+  position: relative;
+`
+
 const rotate = keyframes`
   from {
     transform: rotate(0deg);
@@ -23,3 +27,9 @@ const Spinner = styled.div`
 `
 
 export default Spinner
+
+export const RelativeSpinner = styled(Spinner)`
+  position: relative;
+  top: 0;
+  left: 0;
+`

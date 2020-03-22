@@ -1,34 +1,33 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { db } from '../../utils/firebase-config'
-import { firebaseContext } from '../FireBaseAuthProvider'
 import RepeatHome from './RepeatHome'
+import LoggedInView from '../ui-fragments/LoggedInView'
+import useViewDecks from './useViewDecks'
+import Spinner, { SpinnerContainer } from '../ui-fragments/Spinner'
+import ErrorBox from '../ui-fragments/ErrorBox'
 
-const Deck = ({ userId }) => {
-  const [decks, setDecks] = useState({})
+const Decks = ({ user: { uid } }) => {
+  const { status, decks, error, createDeck } = useViewDecks(uid)
 
-  useEffect(
-    () =>
-      db
-        .collection('decks')
-        .where('uid', '==', userId)
-        .onSnapshot(querySnapshot => {
-          const deckObject = {}
-          querySnapshot.forEach(doc => {
-            deckObject[doc.id] = doc.data()
-          })
-          setDecks(deckObject)
-        }),
+  if (status === 'preloaded' || status === 'adding')
+    return (
+      <SpinnerContainer>
+        <Spinner />
+      </SpinnerContainer>
+    )
+  if (status === 'loaded')
+    return <RepeatHome decks={decks || {}} createDeck={createDeck} />
 
-    [userId]
+  // eslint-disable-next-line no-console
+  console.error(error)
+
+  return (
+    <ErrorBox>
+      There was an error with fetching your decks. Please refresh the page.
+    </ErrorBox>
   )
-
-  return <RepeatHome decks={decks} />
 }
 
-export default () => {
-  const fbContext = useContext(firebaseContext)
-  if (fbContext.user) {
-    return <Deck userId={fbContext.user.uid} />
-  }
-  return <div>Please log in</div>
-}
+export default () => (
+  <LoggedInView>
+    <Decks />
+  </LoggedInView>
+)
