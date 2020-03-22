@@ -19,7 +19,7 @@ const DeckWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
 `
 
-const DeckBox = styled.div`
+const DeckBox = styled.a`
   display: flex;
   flex: 0 0 auto;
   width: 150px;
@@ -29,53 +29,33 @@ const DeckBox = styled.div`
   border-radius: 10px;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.primaryMuted};
+  border-style: ${props => (props.hollow ? 'dashed' : 'none')};
+  border-color: ${({ theme }) => theme.colors.primaryMuted};
+  border-width: 4px;
+  background-color: ${props =>
+    props.hollow ? props.theme.colors.white : props.theme.colors.primaryMuted};
   font-family: ${({ theme }) => theme.fonts.text};
   font-size: 30px;
   font-weight: 600;
-  color: ${({ theme }) => theme.fonts.white};
-`
-const StyledLink = styled.a`
+  color: ${props =>
+    props.hollow ? props.theme.colors.primaryMuted : props.theme.colors.white};
   text-decoration: none;
-  opacity: ${({ active, theme }) =>
-    active ? 1 : theme.transparencies.inactive};
-
-  :hover {
-    opacity: 1;
-  }
+  cursor: pointer;
 `
 
-export default ({ deckNames, value, changeFunction, submitFunction }) => (
+export default ({ decks }) => (
   <>
     <ViewBar />
     <DeckView>
       <DeckSearch />
       <DeckWrapper>
-        <DeckBox>
-          <form>
-            <input
-              type="text"
-              placeholder="Name of deck"
-              onChange={changeFunction}
-              value={value}
-            />
-          </form>
-          <button
-            onClick={submitFunction}
-            type="button"
-            disabled={value === ''}
-          >
-            Create deck
-          </button>
-
-          <Link href="/editDeck">+</Link>
-        </DeckBox>
-        {Object.entries(deckNames).map(([id, deck]) => (
-          <DeckBox key={id}>
-            <Link href="/">
-              <StyledLink>{deck.deckName}</StyledLink>
-            </Link>
-          </DeckBox>
+        <Link href="/editDeck">
+          <DeckBox hollow>+</DeckBox>
+        </Link>
+        {Object.entries(decks).map(([id, deck]) => (
+          <Link key={id} href={`/edit-deck?id=${id}`}>
+            <DeckBox key={id}>{deck.name}</DeckBox>
+          </Link>
         ))}
       </DeckWrapper>
     </DeckView>

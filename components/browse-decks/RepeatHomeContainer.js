@@ -4,20 +4,7 @@ import { firebaseContext } from '../FireBaseAuthProvider'
 import RepeatHome from './RepeatHome'
 
 const Deck = ({ userId }) => {
-  const [name, setDeckName] = useState('')
-
   const [decks, setDecks] = useState({})
-
-  const setDeckNameState = event => setDeckName(event.target.value)
-  const submit = () => {
-    const deck = {
-      uid: userId,
-      deckName: name,
-      words: []
-    }
-    db.collection('decks').add(deck)
-    setDeckName('')
-  }
 
   useEffect(
     () =>
@@ -32,19 +19,10 @@ const Deck = ({ userId }) => {
           setDecks(deckObject)
         }),
 
-    [userId, name]
+    [userId]
   )
 
-  return (
-    <>
-      <RepeatHome
-        deckNames={decks}
-        value={name}
-        changeFunction={setDeckNameState}
-        submitFunction={submit}
-      />
-    </>
-  )
+  return <RepeatHome decks={decks} />
 }
 
 export default () => {

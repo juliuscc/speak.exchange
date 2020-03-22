@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect, useReducer } from 'react'
-import { fetchTranslation } from './fetchers'
+import { fetchTranslation } from '../../utils/fetchers'
 
 const useSearchTranslation = () => {
   const router = useRouter()

@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import styled from 'styled-components'
 import { firebaseContext } from '../FireBaseAuthProvider'
-import useToggle from '../../utils/toggle-hook'
+import useToggle from '../../utils/useToggle'
 
 const LogInWrapper = styled.div`
   padding-right: 30px;

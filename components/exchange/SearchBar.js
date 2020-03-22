@@ -1,9 +1,10 @@
 import styled from 'styled-components'
-import { Search as SearchIcon } from 'styled-icons/zondicons/Search'
-import { ArrowLeftRight } from 'styled-icons/remix-line/ArrowLeftRight'
 import React from 'react'
+import { ArrowLeftRight } from 'styled-icons/remix-line/ArrowLeftRight'
 import screenSizes from '../../utils/screen-sizes'
 import Container from '../ui-fragments/Container'
+import { SearchInput } from '../ui-fragments/Input'
+import { IconButton } from '../ui-fragments/Button'
 
 const Wrapper = styled.div`
   background: ${({ theme }) => theme.colors.focusBackground};
@@ -14,30 +15,6 @@ const SearchBar = styled.div`
   display: flex;
   flex-direction: row;
   padding-bottom: 10px;
-`
-
-const SearchBox = styled.input`
-  background: ${({ theme }) => theme.colors.white};
-  padding: 10px 20px;
-  border: 1px solid ${({ theme }) => theme.colors.border};
-  border-radius: 10px 0px 0px 10px;
-  flex: 1;
-  font-size: 18px;
-`
-
-const SearchButton = styled.button`
-  background: ${({ theme }) => theme.colors.primary};
-  padding: 10px;
-  border: 1px ${({ theme }) => theme.colors.border};
-  border-style: solid solid solid none;
-  border-radius: 0px 10px 10px 0px;
-  width: 40px;
-  cursor: pointer;
-`
-
-const StyledSearchIcon = styled(SearchIcon)`
-  color: ${({ theme }) => theme.colors.white};
-  width: 20px;
 `
 
 const LanguageWrapper = styled.div`
@@ -59,37 +36,22 @@ const LanguageSelectWrapper = styled.div`
   }
 `
 
+const SlimIconButton = styled(IconButton)`
+  height: 30px;
+  padding: 0;
+  border-radius: 5px;
+  margin: 0 10px;
+`
+
 const LanguageSelect = ({ language, onClick }) => {
   return (
     <>
       <Language>{language ? 'French' : 'English'}</Language>
-      <SwitchButton onClick={onClick}>
-        <StyledArrowLeftRight />
-      </SwitchButton>
+      <SlimIconButton onClick={onClick} icon={ArrowLeftRight} />
       <Language> {language ? 'English' : 'French'}</Language>
     </>
   )
 }
-
-const SwitchButton = styled.button`
-  padding: 0;
-  border: 1px solid ${({ theme }) => theme.colors.border};
-  background: transparent;
-  border-radius: 5px;
-  background-color: ${({ theme }) => theme.colors.primary};
-  height: 30px;
-  width: 40px;
-  margin: 0 10px;
-  cursor: pointer;
-`
-
-const StyledArrowLeftRight = styled(ArrowLeftRight)`
-  width: 20px;
-  height: 20px;
-  color: ${({ theme }) => theme.colors.white};
-  background-color: ${({ theme }) => theme.colors.primary};
-  border-radius: 20px;
-`
 
 const Language = styled.div`
   width: 75px;
@@ -172,14 +134,12 @@ export default ({
         </CharacterSelect>
       </LanguageWrapper>
       <SearchBar>
-        <SearchBox
+        <SearchInput
           placeholder="Start typing to search"
           onChange={onTranslationQueryChange}
           value={translationQuery}
+          onClick={triggerSearch}
         />
-        <SearchButton onClick={triggerSearch}>
-          <StyledSearchIcon />
-        </SearchButton>
       </SearchBar>
     </Container>
   </Wrapper>

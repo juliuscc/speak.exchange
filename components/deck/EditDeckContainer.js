@@ -1,56 +1,70 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { db } from '../../utils/firebaseConfig'
-import { firebaseContext } from '../FireBaseAuthProvider'
-import RepeatHome from '../browse-decks/RepeatHome'
+import styled from 'styled-components'
+import EditDeck from './EditDeck'
+import useEditDeck from './useEditDeck'
+import Spinner from '../ui-fragments/Spinner'
+import ErrorBox from '../ui-fragments/ErrorBox'
 
-const Deck = ({ userId }) => {
-  const [name, setDeckName] = useState('')
-
-  const [decks, setDecks] = useState({})
-
-  const setDeckNameState = event => setDeckName(event.target.value)
-  const submit = () => {
-    const deck = {
-      uid: userId,
-      deckName: name,
-      words: []
-    }
-    db.collection('decks').add(deck)
-    setDeckName('')
-  }
-
-  useEffect(
-    () =>
-      db
-        .collection('decks')
-        .where('uid', '==', userId)
-        .onSnapshot(querySnapshot => {
-          const deckObject = {}
-          querySnapshot.forEach(doc => {
-            deckObject[doc.id] = doc.data()
-          })
-          setDecks(deckObject)
-        }),
-
-    [userId, name]
-  )
-
-  return (
-    <>
-      <RepeatHome
-        deckNames={decks}
-        value={name}
-        changeFunction={setDeckNameState}
-        submitFunction={submit}
-      />
-    </>
-  )
-}
+const SpinnerContainer = styled.div`
+  position: relative;
+`
 
 export default () => {
-  const fbContext = useContext(firebaseContext)
-  if (fbContext.user) {
-    return <Deck userId={fbContext.user.uid} />
+  const {
+    status,
+    deck,
+    error,
+    edited,
+    updateName,
+    updateCard,
+    addCard,
+    submitChanges
+  } = useEditDeck()
+
+  if (status === 'start' || status === 'fetching') {
+    return (
+      <SpinnerContainer>
+        <Spinner />
+      </SpinnerContainer>
+    )
   }
-  return <div>Please log in</div>
+  if (status === 'resolved') {
+    return (
+      <EditDeck
+        name={deck.name}
+        cards={deck.cards}
+        updateName={updateName}
+        updateCardWithIndex={updateCard}
+        addCard={addCard}
+        submitChanges={submitChanges}
+        edited={edited}
+      />
+    )
+  }
+  if (status === 'uploading') {
+    return (
+      <SpinnerContainer>
+        <EditDeck
+          name={deck.name}
+          cards={deck.cards}
+          updateName={updateName}
+          updateCardWithIndex={updateCard}
+          addCard={addCard}
+          submitChanges={submitChanges}
+          edited={edited}
+          loading
+        />
+        <Spinner />
+      </SpinnerContainer>
+    )
+  }
+
+  // eslint-disable-next-line no-console
+  console.error(error)
+
+  return (
+    <ErrorBox>
+      {(error && error.message) ||
+        'Something went wrong. Try going back to your decks or refreshing the page after a while.'}
+    </ErrorBox>
+  )
 }

@@ -46,6 +46,10 @@ const GlobalStyle = createGlobalStyle`
 		font-weight: 300;
 	}
 	
+	a, button {
+		transition: all 0.2s;
+	}
+
 	* {
 		font-weight: 300;
 		box-sizing:border-box;
