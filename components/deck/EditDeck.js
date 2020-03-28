@@ -11,6 +11,8 @@ const Background = styled.fieldset`
   background-color: ${({ theme }) => theme.colors.focusBackground};
   width: 100%;
   border: none;
+  padding: 0;
+  margin: 0;
 
   :disabled {
     opacity: 0.5;
