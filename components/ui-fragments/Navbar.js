@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { withRouter } from 'next/router'
 import styled from 'styled-components'
 import LogInButton from './LogInButton'
+import screenSizes from '../../utils/screen-sizes'
 
 const NavWrapper = styled.div`
   display: flex;
@@ -9,11 +10,20 @@ const NavWrapper = styled.div`
   position: relative;
   justify-content: center;
   align-items: center;
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    display: block;
+  }
 `
 const TitleWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 40px;
+
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    grid-template-columns: 1fr;
+    align-items: start;
+    margin: 20px;
+  }
 `
 
 const Title = styled.span`
@@ -27,6 +37,9 @@ const Subtitle = styled.span`
   color: ${({ theme }) => theme.colors.black};
   font-family: ${({ theme }) => theme.fonts.text};
   font-weight: 600;
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    display: none;
+  }
 `
 
 const StyledLink = styled.a`
@@ -41,6 +54,11 @@ const StyledLink = styled.a`
 
   :hover {
     opacity: 1;
+  }
+
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    align-items: start;
+    margin: 0px;
   }
 `
 
