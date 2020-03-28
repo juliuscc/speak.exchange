@@ -72,6 +72,7 @@ const HollowWordCard = styled.button`
 `
 
 export default ({
+  id,
   name,
   updateName,
   cards,
@@ -79,7 +80,8 @@ export default ({
   addCard,
   submitChanges,
   edited,
-  loading
+  loading,
+  removeCardWithIndex
 }) => (
   <Background disabled={loading}>
     <Container>
@@ -94,7 +96,7 @@ export default ({
           <Button type="button" onClick={submitChanges} disabled={!edited}>
             {edited ? 'Save changes' : 'All changes are saved'}
           </Button>
-          <Link href="/repeat">
+          <Link href={`/view-deck?id=${id}`}>
             <Button type="button" cancel>
               Cancel
             </Button>
@@ -107,6 +109,7 @@ export default ({
             key={i}
             card={card}
             setCardWithField={updateCardWithIndex(i)}
+            removeCard={removeCardWithIndex(i)}
           />
         ))}
 

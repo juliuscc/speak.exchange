@@ -121,6 +121,15 @@ const useEditDeck = () => {
       })
     })
 
+  const removeCard = index => () =>
+    dispatch({
+      type: 'local_update',
+      updateFn: oldDeck => ({
+        ...oldDeck,
+        cards: oldDeck.cards.filter((_el, i) => i !== index)
+      })
+    })
+
   const submitChanges = () => {
     dispatch({ type: 'submit_changes' })
 
@@ -133,6 +142,17 @@ const useEditDeck = () => {
       .catch(error => dispatch({ type: 'error', error }))
   }
 
+  const removeDeck = () => {
+    dispatch({ type: 'submit_changes' })
+
+    db.collection('decks')
+      .doc(id)
+      .delete()
+      .then(() => {
+        router.push('/repeat')
+      })
+      .catch(error => dispatch({ type: 'error', error }))
+  }
   return {
     status: state.status,
     deck: state.deck,
@@ -141,7 +161,10 @@ const useEditDeck = () => {
     updateName,
     updateCard,
     addCard,
-    submitChanges
+    submitChanges,
+    id,
+    removeCard,
+    removeDeck
   }
 }
 

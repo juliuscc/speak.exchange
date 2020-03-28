@@ -1,13 +1,13 @@
 import Navbar from '../components/ui-fragments/Navbar'
-import EditDeck from '../components/deck/EditDeck'
+import ViewDeck from '../components/deck/ViewDeck'
 import deckHOC from '../components/deck/withDeck'
 
-const EditDeckContainer = () => deckHOC(EditDeck)
+const ViewDeckContainer = () => deckHOC(ViewDeck)
 
 const Deck = () => (
   <>
     <Navbar />
-    <EditDeckContainer />
+    <ViewDeckContainer />
   </>
 )
 

@@ -33,7 +33,7 @@ export default ({ decks, createDeck }) => (
       <DeckWrapper>
         <AddDeck onClick={createDeck} />
         {Object.entries(decks).map(([id, deck]) => (
-          <Link key={id} href={`/edit-deck?id=${id}`}>
+          <Link key={id} href={`/view-deck?id=${id}`}>
             <DeckBox key={id}>{deck.name}</DeckBox>
           </Link>
         ))}

@@ -27,6 +27,10 @@ const FixedSizeButton = styled(Button)`
   padding: 0%;
 `
 
+export const DangerButton = styled(Button)`
+  background-color: ${({ theme }) => theme.colors.danger};
+`
+
 export const IconButton = ({ icon, ...rest }) => {
   const StyledIcon = styled(icon)`
     color: ${({ theme }) => theme.colors.white};

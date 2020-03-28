@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import EditDeck from './EditDeck'
 import useEditDeck from './useEditDeck'
 import Spinner from '../ui-fragments/Spinner'
 import ErrorBox from '../ui-fragments/ErrorBox'
@@ -8,7 +7,7 @@ const SpinnerContainer = styled.div`
   position: relative;
 `
 
-export default () => {
+export default Presentational => {
   const {
     status,
     deck,
@@ -17,7 +16,10 @@ export default () => {
     updateName,
     updateCard,
     addCard,
-    submitChanges
+    submitChanges,
+    id,
+    removeCard,
+    removeDeck
   } = useEditDeck()
 
   if (status === 'start' || status === 'fetching') {
@@ -29,7 +31,7 @@ export default () => {
   }
   if (status === 'resolved') {
     return (
-      <EditDeck
+      <Presentational
         name={deck.name}
         cards={deck.cards}
         updateName={updateName}
@@ -37,13 +39,16 @@ export default () => {
         addCard={addCard}
         submitChanges={submitChanges}
         edited={edited}
+        id={id}
+        removeCardWithIndex={removeCard}
+        removeDeck={removeDeck}
       />
     )
   }
   if (status === 'uploading') {
     return (
       <SpinnerContainer>
-        <EditDeck
+        <Presentational
           name={deck.name}
           cards={deck.cards}
           updateName={updateName}
@@ -52,6 +57,9 @@ export default () => {
           submitChanges={submitChanges}
           edited={edited}
           loading
+          id={id}
+          removeCardWithIndex={removeCard}
+          removeDeck={removeDeck}
         />
         <Spinner />
       </SpinnerContainer>

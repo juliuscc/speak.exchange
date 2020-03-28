@@ -1,4 +1,7 @@
 import styled from 'styled-components'
+import { DeleteBin } from 'styled-icons/remix-line/DeleteBin'
+
+import { IconButton } from '../ui-fragments/Button'
 
 const WordCard = styled.div`
   display: flex;
@@ -13,6 +16,7 @@ const WordCard = styled.div`
   color: ${({ theme }) => theme.colors.primaryMuted};
   padding: 20px;
   margin-top: 20px;
+  position: relative;
 `
 const InputWrapper = styled.form``
 
@@ -26,15 +30,31 @@ const Word = styled.input`
   }
 `
 
+const Button = styled(IconButton)`
+  position: absolute;
+  background-color: white;
+  border: none;
+  padding: 0;
+  right: 10px;
+  top: 10px;
+  width: auto;
+  height: auto;
+
+  svg {
+    color: ${({ theme }) => theme.colors.primary};
+  }
+`
+
 const Seperator = styled.hr`
   width: 300px;
   height: 10px;
   border: 0.5px solid ${({ theme }) => theme.colors.border};
 `
 
-export default ({ card, setCardWithField }) => {
+export default ({ card, setCardWithField, removeCard }) => {
   return (
     <WordCard>
+      <Button icon={DeleteBin} onClick={removeCard} />
       <InputWrapper>
         <Word
           type="text"
