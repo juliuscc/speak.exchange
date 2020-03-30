@@ -29,7 +29,7 @@ export default () => (
     <Link href="/repeat">
       <ViewLinks>My Decks</ViewLinks>
     </Link>
-    <Link href="/repeat">
+    <Link href="/all-decks">
       <ViewLinks>Browse Decks</ViewLinks>
     </Link>
   </ViewBar>

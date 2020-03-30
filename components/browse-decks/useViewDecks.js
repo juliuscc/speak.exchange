@@ -40,23 +40,24 @@ const useViewDecks = uid => {
   })
 
   useEffect(() => {
-    return db
-      .collection('decks')
-      .where('uid', '==', uid)
-      .onSnapshot(
-        { includeMetadataChanges: true },
-        querySnapshot => {
-          if (querySnapshot.metadata.hasPendingWrites) return
+    const query = uid
+      ? db.collection('decks').where('uid', '==', uid)
+      : db.collection('decks')
 
-          const decks = {}
-          querySnapshot.forEach(doc => {
-            decks[doc.id] = doc.data()
-          })
+    return query.onSnapshot(
+      { includeMetadataChanges: true },
+      querySnapshot => {
+        if (querySnapshot.metadata.hasPendingWrites) return
 
-          dispatch({ type: 'update', decks })
-        },
-        error => dispatch({ type: 'error', error })
-      )
+        const decks = {}
+        querySnapshot.forEach(doc => {
+          decks[doc.id] = doc.data()
+        })
+
+        dispatch({ type: 'update', decks })
+      },
+      error => dispatch({ type: 'error', error })
+    )
   }, [uid])
 
   const createDeck = () => {

@@ -19,7 +19,8 @@ export default Presentational => {
     submitChanges,
     id,
     removeCard,
-    removeDeck
+    removeDeck,
+    uid
   } = useEditDeck()
 
   if (status === 'start' || status === 'fetching') {
@@ -42,6 +43,8 @@ export default Presentational => {
         id={id}
         removeCardWithIndex={removeCard}
         removeDeck={removeDeck}
+        uid={uid}
+        deck={deck}
       />
     )
   }
@@ -60,6 +63,8 @@ export default Presentational => {
           id={id}
           removeCardWithIndex={removeCard}
           removeDeck={removeDeck}
+          uid={uid}
+          deck={deck}
         />
         <Spinner />
       </SpinnerContainer>

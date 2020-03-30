@@ -48,24 +48,41 @@ const WordsWrapper = styled.div`
   padding-bottom: 50px;
 `
 
-export default ({ name, cards, id, removeDeck }) => (
+export default ({ name, cards, id, removeDeck, uid, deck }) => (
   <Background>
     <Container>
       <TitleBar>
         <DeckName>{name}</DeckName>
         <ButtonsWrapper>
-          <Link key={id} href={`/edit-deck?id=${id}`}>
-            <Button type="button">Edit deck</Button>
-          </Link>
+          {uid === deck.uid ? (
+            <Link key={id} href={`/edit-deck?id=${id}`}>
+              <Button type="button">Edit deck</Button>
+            </Link>
+          ) : null
+          // <Button type="button">Add deck</Button>
+          }
+
           {/* <Link href="/repeat">
             <Button type="button">Test</Button>
           </Link> */}
-          <Link href="/repeat">
-            <Button type="button" cancel>
-              Go back
-            </Button>
-          </Link>
-          <DangerButton type="button" onClick={removeDeck}>
+          {uid === deck.uid ? (
+            <Link href="/repeat">
+              <Button type="button" cancel>
+                Go back
+              </Button>
+            </Link>
+          ) : (
+            <Link href="/all-decks">
+              <Button type="button" cancel>
+                Go back
+              </Button>
+            </Link>
+          )}
+          <DangerButton
+            type="button"
+            onClick={removeDeck}
+            disabled={uid !== deck.uid}
+          >
             Delete
           </DangerButton>
         </ButtonsWrapper>

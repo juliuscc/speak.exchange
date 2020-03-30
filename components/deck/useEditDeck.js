@@ -1,5 +1,6 @@
-import { useReducer, useEffect } from 'react'
+import { useReducer, useEffect, useContext } from 'react'
 import { useRouter } from 'next/router'
+import { firebaseContext } from '../FireBaseAuthProvider'
 import { db } from '../../utils/firebase-config'
 
 const useEditDeck = () => {
@@ -62,6 +63,8 @@ const useEditDeck = () => {
 
   const router = useRouter()
   const { id } = router.query
+
+  const fbContext = useContext(firebaseContext)
 
   const [state, dispatch] = useReducer(editDeckReducer, {
     status: 'start',
@@ -164,7 +167,8 @@ const useEditDeck = () => {
     submitChanges,
     id,
     removeCard,
-    removeDeck
+    removeDeck,
+    uid: fbContext.user && fbContext.user.uid
   }
 }
 

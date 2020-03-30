@@ -1,12 +1,12 @@
 import Navbar from '../components/ui-fragments/Navbar'
-import MyDecksContainer from '../components/browse-decks/MyDecksContainer'
+import AllDecksContainer from '../components/browse-decks/AllDecksContainer'
 import ViewBar from '../components/browse-decks/ViewBar'
 
 const Repeat = () => (
   <>
     <Navbar />
     <ViewBar />
-    <MyDecksContainer />
+    <AllDecksContainer />
   </>
 )
 

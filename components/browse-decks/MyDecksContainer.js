@@ -1,4 +1,4 @@
-import RepeatHome from './RepeatHome'
+import BrowseDecks from './BrowseDecks'
 import LoggedInView from '../ui-fragments/LoggedInView'
 import useViewDecks from './useViewDecks'
 import Spinner, { SpinnerContainer } from '../ui-fragments/Spinner'
@@ -14,7 +14,7 @@ const Decks = ({ user: { uid } }) => {
       </SpinnerContainer>
     )
   if (status === 'loaded')
-    return <RepeatHome decks={decks || {}} createDeck={createDeck} />
+    return <BrowseDecks decks={decks} createDeck={createDeck} addDeck />
 
   // eslint-disable-next-line no-console
   console.error(error)

@@ -36,8 +36,9 @@ We will implement a search history and saved wordlist based on user profiling. W
 │   ├── browse-decks
 │   │   ├── DeckBox.js
 │   │   ├── DeckSearch.js
-│   │   ├── RepeatHome.js
-│   │   ├── RepeatHomeContainer.js
+│   │   ├── AllDecksContainer.js
+│   │   ├── BrowseDecks.js
+│   │   ├── MyDecksContainer.js
 │   │   ├── ViewBar.js
 │   │   └── useViewDecks.js
 │   ├── deck
@@ -67,6 +68,7 @@ We will implement a search history and saved wordlist based on user profiling. W
 ├── pages
 │   ├── _app.js
 │   ├── _document.js
+│   ├── browse-decks.js
 │   ├── edit-deck.js
 │   ├── index.js
 │   └── repeat.js
@@ -112,9 +114,10 @@ This directory provides components for browsing decks. Either all decks or only 
 
 - **DeckBox.js:** A card component, representing a deck.
 - **DeckSearch.js** Search sidebar presented in speak.repeat.
-- **RepeatHome.js** Presentational component for speak.repeat start page.
-- **RepeatHomeContainer.js** Container component for speak.repeat start page.
-- **useViewDecks.js:** The hook used in `RepeatHomeContainer`.
+- **AllDecksContainer.js** Container component for browse decks in speak.repeat.
+- **BrowseDecks.js** Presentational component for speak.repeat my decks(start) page and browse page.
+- **MyDecksContainer.js** Container component for speak.repeat start page.
+- **useViewDecks.js:** The hook used in `MyDecksContainer`.
 - **ViewBar.js** The viewbar below the navigation bar in speak.repeat.
 
 #### deck
@@ -160,6 +163,7 @@ This directory is where we keep all pages. Next handles routing between them, so
 
 - **\_app.js:** Contains code defining global attributes like global style and header information
 - **\_document.js:** An overwritten wrapper component that enable us to server-side render styled components
+- **browse-decks.js:** Initialises the browsedeck page
 - **edit-deck.js:** Initialises the editdeck page
 - **index.js:** Initialises the start page, i.e. speak.exchange
 - **repeat.js:** Initialises the speak.repeat start page

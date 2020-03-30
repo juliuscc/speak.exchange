@@ -26,12 +26,13 @@ const AddDeck = ({ loading, onClick }) => (
   </DeckBox>
 )
 
-export default ({ decks, createDeck }) => (
+export default ({ decks, createDeck, addDeck }) => (
   <>
     <DeckView>
       <DeckSearch />
       <DeckWrapper>
-        <AddDeck onClick={createDeck} />
+        {addDeck ? <AddDeck onClick={createDeck} /> : null}
+
         {Object.entries(decks).map(([id, deck]) => (
           <Link key={id} href={`/view-deck?id=${id}`}>
             <DeckBox key={id}>{deck.name}</DeckBox>
