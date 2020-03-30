@@ -42,9 +42,11 @@ We will implement a search history and saved wordlist based on user profiling. W
 │   │   └── useViewDecks.js
 │   ├── deck
 │   │   ├── EditDeck.js
-│   │   ├── EditDeckContainer.js
-│   │   ├── WordCardEdit.js
-│   │   └── useEditDeck.js
+│   │   ├── useEditDeck.js
+│   │   ├── ViewDeck.js
+│   │   ├── withDeck.js
+│   │   ├── WordCard.js
+│   │   └── WordCardEdit.js
 │   ├── exchange
 │   │   ├── SearchBar.js
 │   │   ├── SearchExchange.js
@@ -120,9 +122,11 @@ This directory provides components for browsing decks. Either all decks or only 
 This directory provides components for viewing and editing specific decks.
 
 - **EditDeck.js** Presentational component for edit-deck view.
-- **EditDeckContainer.js** Container component for edit-deck view.
 - **useEditDeck.js:** The hook used in `EditDeckContainer`.
-- **WordCardEdit.js:** A presentational component for a card in a deck.
+- **ViewDeck.js:** Presentational compononent for view-deck view.
+- **withDeck.js:** "Glue function" that creates the container component for edit and view deck.
+- **WordCard.js:** A presentational component for a card in a deck.
+- **WordCardEdit.js:** A presentational component for an editable card in a deck.
 
 #### exchange
 
