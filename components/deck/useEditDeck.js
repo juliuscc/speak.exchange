@@ -1,5 +1,6 @@
 import { useReducer, useEffect, useContext } from 'react'
 import { useRouter } from 'next/router'
+import firebase from 'firebase'
 import { firebaseContext } from '../FireBaseAuthProvider'
 import { db } from '../../utils/firebase-config'
 
@@ -156,6 +157,25 @@ const useEditDeck = () => {
       })
       .catch(error => dispatch({ type: 'error', error }))
   }
+
+  const copyDeck = () => {
+    dispatch({ type: 'submit_changes' })
+    const deckObject = {
+      ...state.deck,
+      uid: fbContext.user.uid,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      name: `copy of ${state.deck.name}`
+    }
+
+    return db
+      .collection('decks')
+      .add(deckObject)
+      .then(() => {
+        router.push('/repeat')
+      })
+      .catch(error => dispatch({ type: 'error', error }))
+  }
+
   return {
     status: state.status,
     deck: state.deck,
@@ -168,7 +188,8 @@ const useEditDeck = () => {
     id,
     removeCard,
     removeDeck,
-    uid: fbContext.user && fbContext.user.uid
+    uid: fbContext.user && fbContext.user.uid,
+    copyDeck
   }
 }
 
