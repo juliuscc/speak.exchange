@@ -4,10 +4,15 @@ import Link from 'next/link'
 import DeckSearch from './DeckSearch'
 import DeckBox from './DeckBox'
 import { RelativeSpinner } from '../ui-fragments/Spinner'
+import screenSizes from '../../utils/screen-sizes'
 
 const DeckView = styled.div`
   height: 100vh;
   display: flex;
+
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    flex-direction: column;
+  }
 `
 
 const DeckWrapper = styled.div`
