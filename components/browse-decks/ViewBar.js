@@ -1,8 +1,10 @@
 import styled from 'styled-components'
+import { withRouter } from 'next/router'
 import React from 'react'
 import Link from 'next/link'
+import StyledLink from '../ui-fragments/StyledLink'
 
-const ViewBar = styled.div`
+const ViewBarBox = styled.div`
   width: 100%;
   height: 80px;
   display: flex;
@@ -24,13 +26,22 @@ const ViewLinks = styled.button`
   cursor: pointer;
 `
 
-export default () => (
-  <ViewBar>
-    <Link href="/repeat">
-      <ViewLinks>My Decks</ViewLinks>
-    </Link>
-    <Link href="/all-decks">
-      <ViewLinks>Browse Decks</ViewLinks>
-    </Link>
-  </ViewBar>
-)
+const ViewBar = ({ router: { pathname } }) => {
+  return (
+    <ViewBarBox>
+      <Link href="/repeat">
+        <StyledLink active={pathname === '/repeat'}>
+          <ViewLinks>My Decks</ViewLinks>
+        </StyledLink>
+      </Link>
+
+      <Link href="/all-decks">
+        <StyledLink active={pathname === '/all-decks'}>
+          <ViewLinks>Browse Decks</ViewLinks>
+        </StyledLink>
+      </Link>
+    </ViewBarBox>
+  )
+}
+
+export default withRouter(ViewBar)
