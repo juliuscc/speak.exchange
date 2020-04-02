@@ -1,1 +1,0 @@
-self.__BUILD_MANIFEST = (function(a,b){return {"/":[a],"/all-decks":[a,b],"/edit-deck":[a,b],"/index":[a],"/repeat":[a,b],"/view-deck":[a]}}("static\u002Fchunks\u002F43178103026e7379ab7e65dd8737d3c6b11ec9f7.31bcffffa1871ecf6e95.js","static\u002Fchunks\u002Fdd4e9fa938ae4b853fde8be273bec13d2b044207.d4ce6a1ec24a71670cfe.js"));self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB()
