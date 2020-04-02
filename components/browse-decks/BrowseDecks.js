@@ -1,10 +1,10 @@
 import styled from 'styled-components'
-import React from 'react'
+import React, { useContext } from 'react'
 import Link from 'next/link'
 import DeckSearch from './DeckSearch'
-import DeckBox from './DeckBox'
-import { RelativeSpinner } from '../ui-fragments/Spinner'
+import DeckBox, { HollowDeckBox } from './DeckBox'
 import screenSizes from '../../utils/screen-sizes'
+import { firebaseContext } from '../FireBaseAuthProvider'
 
 const DeckView = styled.div`
   height: 100vh;
@@ -25,25 +25,23 @@ const DeckWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
 `
 
-const AddDeck = ({ loading, onClick }) => (
-  <DeckBox hollow as="button" onClick={onClick} disabled={loading}>
-    {loading ? <RelativeSpinner /> : '+'}
-  </DeckBox>
-)
+export default ({ decks, createDeck, addDeck }) => {
+  const fbContext = useContext(firebaseContext)
+  const { uid } = fbContext.user
 
-export default ({ decks, createDeck, addDeck }) => (
-  <>
+  return (
     <DeckView>
       <DeckSearch />
       <DeckWrapper>
-        {addDeck ? <AddDeck onClick={createDeck} /> : null}
-
+        {addDeck ? <HollowDeckBox onClick={createDeck} /> : null}
         {Object.entries(decks).map(([id, deck]) => (
-          <Link key={id} href={`/view-deck?id=${id}`}>
-            <DeckBox key={id}>{deck.name}</DeckBox>
+          <Link key={id} href={`/view-deck?id=${id}`} passHref>
+            <DeckBox id={id} edit={uid === deck.uid}>
+              {deck.name}
+            </DeckBox>
           </Link>
         ))}
       </DeckWrapper>
     </DeckView>
-  </>
-)
+  )
+}

@@ -142,6 +142,7 @@ const useEditDeck = () => {
       .set(state.deck)
       .then(() => {
         dispatch({ type: 'success' })
+        router.push('/repeat')
       })
       .catch(error => dispatch({ type: 'error', error }))
   }
@@ -164,7 +165,7 @@ const useEditDeck = () => {
       ...state.deck,
       uid: fbContext.user.uid,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      name: `copy of ${state.deck.name}`
+      name: `Copy of ${state.deck.name}`
     }
 
     return db
