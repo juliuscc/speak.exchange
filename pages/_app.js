@@ -48,6 +48,10 @@ const GlobalStyle = createGlobalStyle`
 	
 	a, button {
 		transition: all 0.2s;
+
+		:hover {
+			cursor: pointer;
+		}
 	}
 
 	* {
