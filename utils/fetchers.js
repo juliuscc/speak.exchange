@@ -4,7 +4,11 @@ import { SERVERLESS_WORD_LOOKUP_URL } from './api-config'
 
 /* eslint-disable import/prefer-default-export */
 export const fetchTranslation = onlyResolvesLast((word, from, to) => {
-  const body = { word, from, to }
+  const body = {
+    word: encodeURI(word),
+    from: encodeURI(from),
+    to: encodeURI(to)
+  }
 
   const url = SERVERLESS_WORD_LOOKUP_URL
 
