@@ -67,8 +67,8 @@ const FlipCardBack = styled.div`
   height: 100%;
   -webkit-backface-visibility: hidden; /* Safari */
   backface-visibility: hidden;
-  background-color: ${({ theme }) => theme.colors.focusBackground};
-  color: ${({ theme }) => theme.colors.primaryHighlighted};
+  background-color: ${({ theme }) => theme.colors.primaryHighlighted};
+  color: ${({ theme }) => theme.colors.white};
   font-size: 40px;
   transform: rotateY(180deg);
   border-radius: 10px;
