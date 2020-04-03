@@ -19,7 +19,7 @@ const WordCard = styled.div`
   position: relative;
 
   :hover > form > input {
-    background-color: ${({ theme }) => theme.colors.focusLight};
+    background-color: ${({ theme }) => theme.colors.focusBackground};
   }
 `
 const InputWrapper = styled.form``
