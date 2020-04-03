@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import BrowseDecks from './BrowseDecks'
 import useViewDecks from './useViewDecks'
 import Spinner, { SpinnerContainer } from '../ui-fragments/Spinner'
@@ -19,6 +20,9 @@ const Decks = () => {
 
   return (
     <ErrorBox>
+      <Head>
+        <title key="title">Oops! | Speak Repeat</title>
+      </Head>
       There was an error with fetching decks. Please refresh the page.
     </ErrorBox>
   )

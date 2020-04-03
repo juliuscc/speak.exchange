@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import React from 'react'
 import { withRouter } from 'next/router'
 import SearchBar from './SearchBar'
@@ -64,6 +65,11 @@ class SearchExchange extends React.Component {
     const { translationQuery, language } = this.state
     return (
       <>
+        <Head>
+          <title key="title">
+            {translationQuery && `${translationQuery} | `}Speak Exchange
+          </title>
+        </Head>
         <SearchBar
           language={language}
           onLanguageChange={this.languageChange}

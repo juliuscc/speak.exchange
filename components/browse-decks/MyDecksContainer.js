@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import BrowseDecks from './BrowseDecks'
 import LoggedInView from '../ui-fragments/LoggedInView'
 import useViewDecks from './useViewDecks'
@@ -21,6 +22,9 @@ const Decks = ({ user: { uid } }) => {
 
   return (
     <ErrorBox>
+      <Head>
+        <title key="title">Oops! | Speak Repeat</title>
+      </Head>
       There was an error with fetching your decks. Please refresh the page.
     </ErrorBox>
   )

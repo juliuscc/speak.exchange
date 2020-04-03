@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import styled from 'styled-components'
 import screenSizes from '../../utils/screen-sizes'
 import useSearchTranslation from './useSearchTranslation'
@@ -173,6 +174,9 @@ export default () => {
 
         return (
           <ErrorBox>
+            <Head>
+              <title key="title">Oops! | Speak Exchange</title>
+            </Head>
             There was an error with fetching the translation. Please refresh the
             page.
           </ErrorBox>

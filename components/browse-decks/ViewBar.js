@@ -41,7 +41,7 @@ const ViewBar = ({ router: { pathname } }) => {
 
       <Link href="/all-decks">
         <StyledLink active={pathname === '/all-decks'}>
-          <ViewLinks>Browse Decks</ViewLinks>
+          <ViewLinks>Browse Community Decks</ViewLinks>
         </StyledLink>
       </Link>
     </ViewBarBox>
