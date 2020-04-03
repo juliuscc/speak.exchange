@@ -17,13 +17,17 @@ const ViewBarBox = styled.div`
 const ViewLinks = styled.button`
   background-color: ${({ theme }) => theme.colors.focusBackground};
   border: none;
-  width: 100px;
-  height: 50px;
+  height: 80px;
   color: ${({ theme }) => theme.colors.black};
   font-family: ${({ theme }) => theme.fonts.text};
   font-size: 15px;
   font-weight: 300;
   cursor: pointer;
+
+  :focus {
+    outline: none;
+    box-shadow: 0px 0px 10px 2px ${({ theme }) => theme.colors.border};
+  }
 `
 
 const ViewBar = ({ router: { pathname } }) => {

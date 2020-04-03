@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { Search as SearchIcon } from 'styled-icons/zondicons/Search'
 import React from 'react'
 
 const DeckSearch = styled.div`
@@ -21,45 +20,79 @@ const SearchBox = styled.input`
   background: ${({ theme }) => theme.colors.white};
   padding: 10px 20px;
   border: 1px solid ${({ theme }) => theme.colors.border};
-  border-radius: 10px 0px 0px 10px;
+  border-radius: 10px;
   flex: 1;
   font-size: 18px;
+  :focus {
+    outline: none;
+    box-shadow: 0px 0px 10px 2px ${({ theme }) => theme.colors.border};
+  }
 `
-
-const SearchButton = styled.button`
-  background: ${({ theme }) => theme.colors.primary};
-  padding: 10px;
-  border: 1px ${({ theme }) => theme.colors.border};
-  border-style: solid solid solid none;
-  border-radius: 0px 10px 10px 0px;
-  width: 40px;
-  cursor: pointer;
-`
-
-const StyledSearchIcon = styled(SearchIcon)`
+const SortOption = styled.button`
+  background-color: ${props =>
+    props.active
+      ? props.theme.colors.primaryMutedInactive
+      : props.theme.colors.primaryMuted};
   color: ${({ theme }) => theme.colors.white};
-  width: 20px;
-`
-const FilterOption = styled.button`
-  background-color: ${({ theme }) => theme.colors.white};
+  width: 280px;
+  border-radius: 10px;
+  padding: 5px;
   border: none;
-  color: ${({ theme }) => theme.colors.black};
   font-family: ${({ theme }) => theme.fonts.text};
   font-size: 15px;
   font-weight: 300;
-  margin-left: 20px;
+  margin: 5px;
+
+  :focus {
+    outline: none;
+  }
 `
 
-export default () => (
-  <DeckSearch>
-    <SearchBar>
-      <SearchBox placeholder="Start typing to search" />
-      <SearchButton>
-        <StyledSearchIcon />
-      </SearchButton>
-    </SearchBar>
-    <FilterOption>Filter</FilterOption>
-    <FilterOption>Sort</FilterOption>
-    <FilterOption>Tag</FilterOption>
-  </DeckSearch>
-)
+export default ({ sortType, setSortType, searchWord, setSearchWord }) => {
+  const sortTypeEqualsActive = local =>
+    local.type === sortType.type && local.order === sortType.order
+
+  return (
+    <DeckSearch>
+      <SearchBar>
+        <SearchBox
+          placeholder="Search by deck name"
+          value={searchWord}
+          onChange={event => setSearchWord(event.target.value)}
+        />
+      </SearchBar>
+      <SortOption
+        onClick={() => {
+          setSortType({ type: 'date', order: 1 })
+        }}
+        active={sortTypeEqualsActive({ type: 'date', order: 1 })}
+      >
+        Sort by creation date descending
+      </SortOption>
+      <SortOption
+        onClick={() => {
+          setSortType({ type: 'date', order: -1 })
+        }}
+        active={sortTypeEqualsActive({ type: 'date', order: -1 })}
+      >
+        Sort by creation date ascending
+      </SortOption>
+      <SortOption
+        onClick={() => {
+          setSortType({ type: 'alphabetical', order: 1 })
+        }}
+        active={sortTypeEqualsActive({ type: 'alphabetical', order: 1 })}
+      >
+        Sort by name A-Z
+      </SortOption>
+      <SortOption
+        onClick={() => {
+          setSortType({ type: 'alphabetical', order: -1 })
+        }}
+        active={sortTypeEqualsActive({ type: 'alphabetical', order: -1 })}
+      >
+        Sort by name Z-A
+      </SortOption>
+    </DeckSearch>
+  )
+}

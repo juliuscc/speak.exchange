@@ -46,6 +46,11 @@ const DeckBox = styled.a`
   :disabled {
     cursor: not-allowed;
   }
+
+  :focus {
+    outline: none;
+    box-shadow: 0px 0px 10px 2px ${({ theme }) => theme.colors.primaryMuted};
+  }
 `
 
 const ActionWrapper = styled.div`
@@ -70,6 +75,10 @@ const ActionButton = styled.button`
 
   :hover > div {
     visibility: visible;
+  }
+
+  :focus {
+    outline: none;
   }
 `
 

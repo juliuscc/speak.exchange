@@ -41,6 +41,10 @@ const SlimIconButton = styled(IconButton)`
   padding: 0;
   border-radius: 5px;
   margin: 0 10px;
+  :focus {
+    outline: none;
+    box-shadow: 0px 0px 10px 2px ${({ theme }) => theme.colors.border};
+  }
 `
 
 const LanguageSelect = ({ language, onClick }) => {
@@ -79,14 +83,20 @@ const CharacterSelect = styled.div`
 `
 
 const CharButton = styled.button`
+  text-align: center;
   padding: 0 6px;
   background-color: ${({ theme }) => theme.colors.focusBackground};
   border: none;
+  border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
 
   @media screen and (max-width: ${screenSizes.tablet.max}) {
     padding: 0 5px;
+  }
+  :focus {
+    outline: none;
+    box-shadow: 0px 0px 10px 2px ${({ theme }) => theme.colors.border};
   }
 `
 
