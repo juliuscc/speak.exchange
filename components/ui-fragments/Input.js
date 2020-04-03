@@ -28,10 +28,6 @@ const SearchButton = styled(IconButton)`
   border-style: solid solid solid none;
   border-radius: 0px 10px 10px 0px;
   width: 40px;
-  :focus {
-    outline: none;
-    box-shadow: 0px 0px 10px 2px ${({ theme }) => theme.colors.border};
-  }
 `
 
 export const SearchInput = ({ onChange, value, placeholder, onClick }) => (

@@ -20,6 +20,11 @@ export const Button = styled.button`
     background: ${({ theme }) => theme.colors.primaryMutedInactive};
     cursor: not-allowed;
   }
+
+  :focus {
+    outline: none;
+    box-shadow: 0px 0px 10px 2px ${({ theme }) => theme.colors.border};
+  }
 `
 
 const FixedSizeButton = styled(Button)`

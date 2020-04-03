@@ -122,13 +122,12 @@ export default forwardRef(
         <div>{children}</div>
         <ActionWrapper>
           {edit ? <Edit id={id} /> : null}
-          {/* Add link to run test here */}
-          {/* <Link href={`/test-deck?id=${id}`}> */}
-          <ActionButton>
-            <ToolTip>Run</ToolTip>
-            <StyledPlay />
-          </ActionButton>
-          {/* </Link> */}
+          <Link href={`/run-deck?id=${id}`}>
+            <ActionButton>
+              <ToolTip>Run</ToolTip>
+              <StyledPlay />
+            </ActionButton>
+          </Link>
         </ActionWrapper>
       </DeckBox>
     )

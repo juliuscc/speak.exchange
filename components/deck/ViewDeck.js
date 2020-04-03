@@ -64,9 +64,9 @@ export default ({ name, cards, id, removeDeck, uid, deck, copyDeck }) => (
             </Button>
           )}
 
-          {/* <Link href="/repeat">
-            <Button type="button">Test</Button>
-          </Link> */}
+          <Link href={`/run-deck?id=${id}`}>
+            <Button type="button">Run deck</Button>
+          </Link>
           {uid === deck.uid ? (
             <>
               <Link href="/repeat">

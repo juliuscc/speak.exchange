@@ -41,10 +41,6 @@ const SlimIconButton = styled(IconButton)`
   padding: 0;
   border-radius: 5px;
   margin: 0 10px;
-  :focus {
-    outline: none;
-    box-shadow: 0px 0px 10px 2px ${({ theme }) => theme.colors.border};
-  }
 `
 
 const LanguageSelect = ({ language, onClick }) => {
