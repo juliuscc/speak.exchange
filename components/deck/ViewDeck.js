@@ -25,7 +25,7 @@ const TitleBar = styled.div`
   align-items: center;
 `
 
-const DeckName = styled.div`
+const DeckName = styled.h1`
   min-width: 0;
   font-weight: 800;
 
