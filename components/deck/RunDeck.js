@@ -39,7 +39,7 @@ const FlipCardInner = styled.div`
   width: 100%;
   height: 100%;
   text-align: center;
-  transition: transform 0.8s;
+  transition: transform 0.4s;
   transform-style: preserve-3d;
   transform: ${props => (props.flip ? 'rotateY(180deg)' : null)};
 `
@@ -51,11 +51,11 @@ const FlipCardFront = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  -webkit-backface-visibility: hidden; /* Safari */
   backface-visibility: hidden;
   background-color: ${({ theme }) => theme.colors.focusBackground};
   color: ${({ theme }) => theme.colors.primaryHighlighted};
   font-size: 40px;
+  transform: rotateY(0deg);
   border-radius: 10px;
 `
 const FlipCardBack = styled.div`
@@ -65,7 +65,6 @@ const FlipCardBack = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  -webkit-backface-visibility: hidden; /* Safari */
   backface-visibility: hidden;
   background-color: ${({ theme }) => theme.colors.primaryHighlighted};
   color: ${({ theme }) => theme.colors.white};
@@ -116,6 +115,7 @@ export default ({ name, cards }) => {
       </Container>
     )
   }
+
   return (
     <Container>
       <TitleWrapper>
