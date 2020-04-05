@@ -1,6 +1,8 @@
 import Link from 'next/link'
-import { withRouter } from 'next/router'
+import { useContext } from 'react'
+import { useRouter } from 'next/router'
 import styled from 'styled-components'
+import { firebaseContext } from '../FireBaseAuthProvider'
 import LogInButton from './LogInButton'
 import screenSizes from '../../utils/screen-sizes'
 import StyledLink from './StyledLink'
@@ -43,30 +45,35 @@ const Subtitle = styled.span`
   }
 `
 
-const Navbar = ({ router: { pathname } }) => (
-  <NavWrapper>
-    <TitleWrapper>
-      <Link href="/" passHref>
-        <StyledLink active={pathname === '/'}>
-          <div>
-            <Title>speak.</Title>
-            <Title muted>exchange</Title>
-          </div>
-          <Subtitle>bilingual dictionary</Subtitle>
-        </StyledLink>
-      </Link>
-      <Link href="/repeat" passHref>
-        <StyledLink active={pathname !== '/'}>
-          <div>
-            <Title>speak.</Title>
-            <Title muted>repeat</Title>
-          </div>
-          <Subtitle>vocabulary trainer</Subtitle>
-        </StyledLink>
-      </Link>
-    </TitleWrapper>
-    <LogInButton />
-  </NavWrapper>
-)
+const Navbar = () => {
+  const { pathname } = useRouter()
+  const fbContext = useContext(firebaseContext)
 
-export default withRouter(Navbar)
+  return (
+    <NavWrapper>
+      <TitleWrapper>
+        <Link href="/" passHref>
+          <StyledLink active={pathname === '/'}>
+            <div>
+              <Title>speak.</Title>
+              <Title muted>exchange</Title>
+            </div>
+            <Subtitle>bilingual dictionary</Subtitle>
+          </StyledLink>
+        </Link>
+        <Link href={fbContext.user ? '/repeat' : '/all-decks'} passHref>
+          <StyledLink active={pathname !== '/'}>
+            <div>
+              <Title>speak.</Title>
+              <Title muted>repeat</Title>
+            </div>
+            <Subtitle>vocabulary trainer</Subtitle>
+          </StyledLink>
+        </Link>
+      </TitleWrapper>
+      <LogInButton />
+    </NavWrapper>
+  )
+}
+
+export default Navbar
