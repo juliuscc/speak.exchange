@@ -90,7 +90,8 @@ export default ({
       <TitleBar>
         <DeckName
           type="text"
-          placeholder="Enter a name for you new deck"
+          placeholder="Enter a name for your deck"
+          title="Deck Name"
           onChange={e => updateName(e.target.value)}
           value={name}
         />

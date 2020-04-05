@@ -10,7 +10,9 @@ const Repeat = () => (
     </Head>
     <Navbar />
     <ViewBar />
-    <AllDecksContainer />
+    <main>
+      <AllDecksContainer />
+    </main>
   </>
 )
 

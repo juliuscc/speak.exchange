@@ -5,7 +5,7 @@ import LogInButton from './LogInButton'
 import screenSizes from '../../utils/screen-sizes'
 import StyledLink from './StyledLink'
 
-const NavWrapper = styled.div`
+const NavWrapper = styled.nav`
   display: flex;
   flex-direction: column;
   position: relative;

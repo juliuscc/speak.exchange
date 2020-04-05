@@ -57,6 +57,7 @@ export default ({ sortType, setSortType, searchWord, setSearchWord }) => {
       <SearchBar>
         <SearchBox
           placeholder="Search by deck name"
+          title="Search by deck name"
           value={searchWord}
           onChange={event => setSearchWord(event.target.value)}
         />

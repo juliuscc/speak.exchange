@@ -5,8 +5,10 @@ import Translation from '../components/exchange/Translation'
 const Home = () => (
   <>
     <Navbar />
-    <Search />
-    <Translation />
+    <main>
+      <Search />
+      <Translation />
+    </main>
   </>
 )
 

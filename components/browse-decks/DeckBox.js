@@ -107,7 +107,7 @@ export const HollowDeckBox = ({ loading, onClick }) => (
 export const Edit = ({ id }) => {
   return (
     <Link href={`/edit-deck?id=${id}`}>
-      <ActionButton>
+      <ActionButton aria-label="Edit">
         <ToolTip>Edit</ToolTip>
         <StyledEditIcon />
       </ActionButton>
@@ -123,7 +123,7 @@ export default forwardRef(
         <ActionWrapper>
           {edit ? <Edit id={id} /> : null}
           <Link href={`/run-deck?id=${id}`}>
-            <ActionButton>
+            <ActionButton aria-label="Run">
               <ToolTip>Run</ToolTip>
               <StyledPlay />
             </ActionButton>

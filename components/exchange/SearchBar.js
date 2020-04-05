@@ -47,7 +47,13 @@ const LanguageSelect = ({ language, onClick }) => {
   return (
     <>
       <Language>{language ? 'French' : 'English'}</Language>
-      <SlimIconButton onClick={onClick} icon={ArrowLeftRight} />
+      <SlimIconButton
+        onClick={onClick}
+        icon={ArrowLeftRight}
+        aria-label={`Switch language to translate to ${
+          language ? 'French' : 'English'
+        }`}
+      />
       <Language> {language ? 'English' : 'French'}</Language>
     </>
   )

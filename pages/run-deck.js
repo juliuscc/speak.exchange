@@ -12,7 +12,9 @@ const Run = () => (
   <>
     <Navbar />
     <ViewBar />
-    <RunDeckContainer />
+    <main>
+      <RunDeckContainer />
+    </main>
   </>
 )
 

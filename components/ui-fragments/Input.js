@@ -32,7 +32,12 @@ const SearchButton = styled(IconButton)`
 
 export const SearchInput = ({ onChange, value, placeholder, onClick }) => (
   <SearchInputWrapper>
-    <HalfInput onChange={onChange} value={value} placeholder={placeholder} />
-    <SearchButton onClick={onClick} icon={SearchIcon} />
+    <HalfInput
+      onChange={onChange}
+      value={value}
+      placeholder={placeholder}
+      title={placeholder}
+    />
+    <SearchButton onClick={onClick} icon={SearchIcon} aria-label="Search" />
   </SearchInputWrapper>
 )

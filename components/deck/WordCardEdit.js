@@ -58,11 +58,17 @@ const Seperator = styled.hr`
 export default ({ card, setCardWithField, removeCard }) => {
   return (
     <WordCard>
-      <Button icon={DeleteBin} onClick={removeCard} />
+      <Button
+        icon={DeleteBin}
+        onClick={removeCard}
+        title="Delete card"
+        aria-label="Delete card"
+      />
       <InputWrapper>
         <Word
           type="text"
           placeholder="Original word"
+          title="Original word"
           value={card.original}
           onChange={e => setCardWithField('original', e.target.value)}
         />
@@ -72,6 +78,7 @@ export default ({ card, setCardWithField, removeCard }) => {
         <Word
           type="text"
           placeholder="Translation"
+          title="Translation"
           value={card.translation}
           onChange={e => setCardWithField('translation', e.target.value)}
         />

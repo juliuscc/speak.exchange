@@ -8,7 +8,9 @@ const ViewDeckContainer = () =>
 const Deck = () => (
   <>
     <Navbar />
-    <ViewDeckContainer />
+    <main>
+      <ViewDeckContainer />
+    </main>
   </>
 )
 

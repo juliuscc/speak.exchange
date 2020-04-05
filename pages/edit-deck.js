@@ -8,7 +8,9 @@ const EditDeckContainer = () =>
 const Deck = () => (
   <>
     <Navbar />
-    <EditDeckContainer />
+    <main>
+      <EditDeckContainer />
+    </main>
   </>
 )
 
