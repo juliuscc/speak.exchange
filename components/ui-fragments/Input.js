@@ -8,6 +8,7 @@ export const Input = styled.input`
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: 10px;
   font-size: 18px;
+  margin: 0;
 `
 
 const SearchInputWrapper = styled.div`
