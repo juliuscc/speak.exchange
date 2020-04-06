@@ -27,7 +27,7 @@ const DeckWrapper = styled.div`
 
 export default ({ decks, createDeck, addDeck }) => {
   const fbContext = useContext(firebaseContext)
-  const { uid } = fbContext.user
+  const { uid } = fbContext.user || {}
 
   const [sortType, setSortType] = useState({ type: 'date', order: 1 })
 
