@@ -9,6 +9,7 @@ class SearchExchange extends React.Component {
     super(props)
 
     const { router } = props
+    this.inputRef = React.createRef()
 
     this.debouncedURLUpdate = debounce(() => {
       const { translationQuery, language } = this.state
@@ -24,6 +25,9 @@ class SearchExchange extends React.Component {
   componentDidMount() {
     const { router } = this.props
     this.setState({ translationQuery: router.query.search || '' })
+    if (this.inputRef.current) {
+      this.inputRef.current.focus()
+    }
   }
 
   handleChange = event => {
@@ -53,13 +57,16 @@ class SearchExchange extends React.Component {
     )
   }
 
-  addSpecialCharacter = char => () =>
+  addSpecialCharacter = char => () => {
     this.setState(
       prevState => ({
         translationQuery: prevState.translationQuery + char
       }),
       this.debouncedURLUpdate
     )
+
+    this.inputRef.current.focus()
+  }
 
   render = () => {
     const { translationQuery, language } = this.state
@@ -77,6 +84,7 @@ class SearchExchange extends React.Component {
           onTranslationQueryChange={this.handleChange}
           triggerSearch={this.triggerSearch}
           addSpecialCharacter={this.addSpecialCharacter}
+          inputRef={this.inputRef}
         />
       </>
     )

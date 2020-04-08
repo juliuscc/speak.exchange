@@ -116,7 +116,8 @@ export default ({
   translationQuery,
   onTranslationQueryChange,
   triggerSearch,
-  addSpecialCharacter
+  addSpecialCharacter,
+  inputRef
 }) => (
   <Wrapper>
     <Container>
@@ -155,6 +156,7 @@ export default ({
           onChange={onTranslationQueryChange}
           value={translationQuery}
           onClick={triggerSearch}
+          inputRef={inputRef}
         />
       </SearchBar>
     </Container>

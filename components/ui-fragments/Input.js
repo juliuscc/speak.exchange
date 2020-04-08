@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Search as SearchIcon } from 'styled-icons/zondicons/Search'
+import React from 'react'
 import { IconButton } from './Button'
 
 export const Input = styled.input`
@@ -31,14 +32,23 @@ const SearchButton = styled(IconButton)`
   width: 40px;
 `
 
-export const SearchInput = ({ onChange, value, placeholder, onClick }) => (
-  <SearchInputWrapper>
-    <HalfInput
-      onChange={onChange}
-      value={value}
-      placeholder={placeholder}
-      title={placeholder}
-    />
-    <SearchButton onClick={onClick} icon={SearchIcon} aria-label="Search" />
-  </SearchInputWrapper>
-)
+export const SearchInput = ({
+  onChange,
+  value,
+  placeholder,
+  onClick,
+  inputRef
+}) => {
+  return (
+    <SearchInputWrapper>
+      <HalfInput
+        onChange={onChange}
+        value={value}
+        placeholder={placeholder}
+        title={placeholder}
+        ref={inputRef}
+      />
+      <SearchButton onClick={onClick} icon={SearchIcon} aria-label="Search" />
+    </SearchInputWrapper>
+  )
+}
