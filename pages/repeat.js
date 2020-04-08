@@ -1,7 +1,11 @@
 import Head from 'next/head'
 import Navbar from '../components/ui-fragments/Navbar'
-import MyDecksContainer from '../components/browse-decks/MyDecksContainer'
 import ViewBar from '../components/browse-decks/ViewBar'
+import withBrowseDecks from '../components/browse-decks/withBrowseDecks'
+import BrowseDecks from '../components/browse-decks/BrowseDecks'
+import LoggedInView from '../components/ui-fragments/LoggedInView'
+
+const MyDecksContainer = withBrowseDecks(BrowseDecks)
 
 const Repeat = () => (
   <>
@@ -11,7 +15,9 @@ const Repeat = () => (
     <Navbar />
     <ViewBar />
     <main>
-      <MyDecksContainer />
+      <LoggedInView>
+        <MyDecksContainer />
+      </LoggedInView>
     </main>
   </>
 )

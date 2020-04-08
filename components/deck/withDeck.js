@@ -8,7 +8,7 @@ const SpinnerContainer = styled.div`
   position: relative;
 `
 
-export default (Presentational, createTitle) => {
+export default (Presentational, createTitle) => () => {
   const {
     status,
     deck,

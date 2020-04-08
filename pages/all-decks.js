@@ -1,7 +1,13 @@
 import Head from 'next/head'
 import Navbar from '../components/ui-fragments/Navbar'
-import AllDecksContainer from '../components/browse-decks/AllDecksContainer'
 import ViewBar from '../components/browse-decks/ViewBar'
+import BrowseDecks from '../components/browse-decks/BrowseDecks'
+import withBrowseDecks from '../components/browse-decks/withBrowseDecks'
+
+const AllDecksContainer = withBrowseDecks(
+  BrowseDecks,
+  deckName => deckName || 'Community Decks'
+)
 
 const Repeat = () => (
   <>
