@@ -1,6 +1,6 @@
 import { useReducer, useEffect, useContext } from 'react'
 import { useRouter } from 'next/router'
-import firebase from 'firebase'
+import firebase from 'firebase/app'
 import { firebaseContext } from '../FireBaseAuthProvider'
 import { db } from '../../utils/firebase-config'
 
