@@ -32,8 +32,8 @@ const TitleWrapper = styled.div`
 const Title = styled.span`
   font-size: 30px;
   font-family: ${({ theme }) => theme.fonts.title};
-  color: ${({ theme, muted }) =>
-    muted ? theme.colors.primaryMuted : theme.colors.primary};
+  color: ${({ theme, mutedColor }) =>
+    mutedColor ? theme.colors.primaryMuted : theme.colors.primary};
 `
 
 const Subtitle = styled.span`
@@ -56,7 +56,7 @@ const Navbar = () => {
           <StyledLink active={pathname === '/'}>
             <div>
               <Title>speak.</Title>
-              <Title muted>exchange</Title>
+              <Title mutedColor>exchange</Title>
             </div>
             <Subtitle>bilingual dictionary</Subtitle>
           </StyledLink>
@@ -65,7 +65,7 @@ const Navbar = () => {
           <StyledLink active={pathname !== '/'}>
             <div>
               <Title>speak.</Title>
-              <Title muted>repeat</Title>
+              <Title mutedColor>repeat</Title>
             </div>
             <Subtitle>vocabulary trainer</Subtitle>
           </StyledLink>
