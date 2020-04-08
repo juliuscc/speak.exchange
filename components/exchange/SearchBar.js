@@ -9,6 +9,10 @@ import { IconButton } from '../ui-fragments/Button'
 const Wrapper = styled.div`
   background: ${({ theme }) => theme.colors.focusBackground};
   padding: 20px 0;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 `
 
 const SearchBar = styled.div`
