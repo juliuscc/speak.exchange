@@ -13,6 +13,9 @@ const NavWrapper = styled.nav`
   position: relative;
   justify-content: center;
   align-items: center;
+  z-index: 2;
+  background: ${({ theme }) => theme.colors.white};
+
   @media screen and (max-width: ${screenSizes.smallPhone.max}) {
     display: block;
   }

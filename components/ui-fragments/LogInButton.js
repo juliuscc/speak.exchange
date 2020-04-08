@@ -19,7 +19,7 @@ const UserProfile = styled.div`
   justify-content: center;
   align-items: center;
   font-family: ${({ theme }) => theme.fonts.text};
-  z-index: 1;
+  z-index: 3;
 `
 
 const ProfileImage = styled.img`

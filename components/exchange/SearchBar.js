@@ -13,6 +13,7 @@ const Wrapper = styled.div`
   position: sticky;
   top: 0;
   z-index: 1;
+  box-shadow: black 0px 0px 13px -10px;
 `
 
 const SearchBar = styled.div`
