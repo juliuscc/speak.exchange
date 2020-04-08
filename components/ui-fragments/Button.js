@@ -36,15 +36,13 @@ export const DangerButton = styled(Button)`
   background-color: ${({ theme }) => theme.colors.danger};
 `
 
-export const IconButton = ({ icon, ...rest }) => {
-  const StyledIcon = styled(icon)`
-    color: ${({ theme }) => theme.colors.white};
-    width: 20px;
-  `
+const StyledIcon = styled.svg`
+  color: ${({ theme }) => theme.colors.white};
+  width: 20px;
+`
 
-  return (
-    <FixedSizeButton {...rest}>
-      <StyledIcon />
-    </FixedSizeButton>
-  )
-}
+export const IconButton = ({ icon, ...rest }) => (
+  <FixedSizeButton {...rest}>
+    <StyledIcon as={icon} />
+  </FixedSizeButton>
+)
