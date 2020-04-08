@@ -4,7 +4,7 @@
 }
 
 #nprogress .bar {
-  background: #0aa0de;
+  background: #05b8e6;
 
   position: fixed;
   z-index: 1031;
@@ -22,7 +22,7 @@
   right: 0px;
   width: 100px;
   height: 100%;
-  box-shadow: 0 0 10px #0aa0de, 0 0 5px #0aa0de;
+  box-shadow: 0 0 10px #05b8e6, 0 0 5px #05b8e6;
   opacity: 1;
 
   -webkit-transform: rotate(3deg) translate(0px, -4px);
@@ -32,26 +32,26 @@
 
 /* Remove these to get rid of the spinner */
 #nprogress .spinner {
-  display: block;
-  position: fixed;
+  display: none;
+  /* position: fixed;
   z-index: 1031;
   top: 15px;
-  right: 15px;
+  right: 15px; */
 }
 
-#nprogress .spinner-icon {
+/* #nprogress .spinner-icon {
   width: 18px;
   height: 18px;
   box-sizing: border-box;
 
   border: solid 2px transparent;
-  border-top-color: #0aa0de;
-  border-left-color: #0aa0de;
+  border-top-color: #05b8e6;
+  border-left-color: #05b8e6;
   border-radius: 50%;
 
   -webkit-animation: nprogress-spinner 400ms linear infinite;
   animation: nprogress-spinner 400ms linear infinite;
-}
+} */
 
 .nprogress-custom-parent {
   overflow: hidden;
