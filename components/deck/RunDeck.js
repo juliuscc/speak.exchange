@@ -94,9 +94,12 @@ const EditButton = styled(Button)`
 
 const StyledButton = styled(Button)`
   background-color: ${props =>
-    !props.flipButton ? props.theme.colors.black : props.theme.colors.primary};
+    !props.blueButton ? props.theme.colors.black : props.theme.colors.primary};
   width: ${props => (props.flipButton ? '200px' : '100px')};
   margin: 5px;
+`
+const CardStatus = styled.div`
+  padding: 20px 0;
 `
 
 export default ({ name, cards, id }) => {
@@ -137,7 +140,21 @@ export default ({ name, cards, id }) => {
     <Container>
       <TitleWrapper>
         <Title>{name}</Title>
-        <StyledButton onClick={() => Router.back()}>Done</StyledButton>
+        <ButtonWrapper>
+          <StyledButton
+            blueButton
+            disabled={wordState.index === 0}
+            onClick={() =>
+              setWordState(({ flip }) => ({
+                index: 0,
+                flip
+              }))
+            }
+          >
+            Restart
+          </StyledButton>
+          <StyledButton onClick={() => Router.back()}>Done</StyledButton>
+        </ButtonWrapper>
       </TitleWrapper>
       <FlipCardWrapper>
         <FlipCard key={wordState.index}>
@@ -147,8 +164,11 @@ export default ({ name, cards, id }) => {
           </FlipCardInner>
         </FlipCard>
         <ButtonWrapper>
-          <StyledButton onClick={back}>Back</StyledButton>
+          <StyledButton disabled={wordState.index === 0} onClick={back}>
+            Back
+          </StyledButton>
           <StyledButton
+            blueButton
             flipButton
             onClick={() =>
               setWordState(({ index, flip }) => ({
@@ -159,8 +179,14 @@ export default ({ name, cards, id }) => {
           >
             Flip
           </StyledButton>
-          <StyledButton onClick={next}>Next</StyledButton>
+          <StyledButton
+            disabled={wordState.index + 1 === cards.length}
+            onClick={next}
+          >
+            Next
+          </StyledButton>
         </ButtonWrapper>
+        <CardStatus>{`${wordState.index + 1}/${cards.length}`}</CardStatus>
       </FlipCardWrapper>
     </Container>
   )
