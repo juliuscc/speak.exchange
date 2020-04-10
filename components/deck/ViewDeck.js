@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import Link from 'next/link'
 import Container from '../ui-fragments/Container'
 import WordCard from './WordCard'
-import { Button, DangerButton } from '../ui-fragments/Button'
+import { Button, DangerButton, BlackButton } from '../ui-fragments/Button'
 import screenSizes from '../../utils/screen-sizes'
 import Modal from '../ui-fragments/Modal'
 import useToggle from '../../utils/useToggle'
@@ -84,9 +84,7 @@ export default ({ name, cards, id, removeDeck, uid, deck, copyDeck }) => {
             {uid === deck.uid ? (
               <>
                 <Link href="/repeat">
-                  <Button type="button" cancel>
-                    Go back
-                  </Button>
+                  <BlackButton type="button">Go back</BlackButton>
                 </Link>
                 <DangerButton type="button" onClick={toggleDeleteModalVisible}>
                   Delete
@@ -102,13 +100,12 @@ export default ({ name, cards, id, removeDeck, uid, deck, copyDeck }) => {
                       undone.
                     </p>
                     <AlignRight>
-                      <Button
+                      <BlackButton
                         type="button"
-                        cancel
                         onClick={toggleDeleteModalVisible}
                       >
                         Cancel
-                      </Button>
+                      </BlackButton>
                       <DangerButton type="button" onClick={removeDeck}>
                         Delete
                       </DangerButton>
@@ -118,9 +115,7 @@ export default ({ name, cards, id, removeDeck, uid, deck, copyDeck }) => {
               </>
             ) : (
               <Link href="/all-decks">
-                <Button type="button" cancel>
-                  Go back
-                </Button>
+                <BlackButton type="button">Go back</BlackButton>
               </Link>
             )}
           </ButtonsWrapper>

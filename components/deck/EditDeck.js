@@ -3,7 +3,7 @@ import { transparentize } from 'polished'
 import Link from 'next/link'
 import Container from '../ui-fragments/Container'
 import WordCardEdit from './WordCardEdit'
-import { Button } from '../ui-fragments/Button'
+import { Button, BlackButton } from '../ui-fragments/Button'
 import { Input } from '../ui-fragments/Input'
 import screenSizes from '../../utils/screen-sizes'
 
@@ -100,9 +100,7 @@ export default ({
             {edited ? 'Save changes' : 'All changes are saved'}
           </Button>
           <Link href={`/view-deck?id=${id}`}>
-            <Button type="button" cancel>
-              Cancel
-            </Button>
+            <BlackButton type="button">Cancel</BlackButton>
           </Link>
         </ButtonsWrapper>
       </TitleBar>

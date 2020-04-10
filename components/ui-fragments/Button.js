@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 
 export const Button = styled.button`
-  background: ${({ theme, cancel }) =>
-    cancel ? theme.colors.black : theme.colors.primary};
+  background: ${({ theme }) => theme.colors.primary};
   padding: 0 20px;
   border: 1px ${({ theme }) => theme.colors.border};
   border-style: solid;
@@ -34,6 +33,10 @@ const FixedSizeButton = styled(Button)`
 
 export const DangerButton = styled(Button)`
   background-color: ${({ theme }) => theme.colors.danger};
+`
+
+export const BlackButton = styled(Button)`
+  background-color: ${({ theme }) => theme.colors.black};
 `
 
 const StyledIcon = styled.svg`
