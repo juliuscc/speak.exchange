@@ -1,9 +1,18 @@
 import styled from 'styled-components'
 import { useState } from 'react'
 import Router from 'next/router'
+import Link from 'next/link'
 import { Button } from '../ui-fragments/Button'
-import ErrorBox from '../ui-fragments/ErrorBox'
 import Container from '../ui-fragments/Container'
+
+const EmptyDeck = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: ${({ theme }) => theme.colors.black};
+  text-align: center;
+`
 
 const TitleWrapper = styled.div`
   display: flex;
@@ -78,6 +87,11 @@ const ButtonWrapper = styled.div`
   flex-direction: row;
 `
 
+const EditButton = styled(Button)`
+  width: 150px;
+  margin-top: 20px;
+`
+
 const StyledButton = styled(Button)`
   background-color: ${props =>
     !props.flipButton ? props.theme.colors.black : props.theme.colors.primary};
@@ -85,7 +99,7 @@ const StyledButton = styled(Button)`
   margin: 5px;
 `
 
-export default ({ name, cards }) => {
+export default ({ name, cards, id }) => {
   const [wordState, setWordState] = useState({ index: 0, flip: false })
 
   const next = () =>
@@ -109,9 +123,12 @@ export default ({ name, cards }) => {
           <Title>{name}</Title>
           <StyledButton onClick={() => Router.back()}>Done</StyledButton>
         </TitleWrapper>
-        <ErrorBox>
-          This deck is empty. Add cards to this deck to run it.
-        </ErrorBox>
+        <EmptyDeck>
+          This deck is empty. Add cards by editing the deck.
+          <Link key={id} href={`/edit-deck?id=${id}`}>
+            <EditButton type="Edit">Edit deck</EditButton>
+          </Link>
+        </EmptyDeck>
       </Container>
     )
   }
