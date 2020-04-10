@@ -31,53 +31,41 @@ const ProfileImage = styled.img`
 `
 const PopUpBox = styled.span`
   visibility: ${props => (props.visible ? 'visible' : 'hidden')};
-  width: 300px;
-  height: 300px;
+  width: 200px;
   background-color: ${({ theme }) => theme.colors.black};
   color: #fff;
   text-align: center;
   border-radius: 6px;
-  padding: 10px 0;
+  padding: 25px 0;
   position: absolute;
   top: 70px;
   right: 30px;
-  display: grid;
-  grid-template-rows: auto auto auto auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 `
 
 const ProfileName = styled.span`
   border: none;
-  background-color: ${({ theme }) => theme.colors.black};
-  color: ${({ theme }) => theme.colors.white};
-  font-size: 15px;
-  font-weight: 600;
-`
-const ButtonWrapper = styled.div`
-  display: Grid;
-  grid-template-columns: auto auto;
-`
-
-const MyProfile = styled.button`
-  border: none;
+  padding-top: 10px;
   background-color: ${({ theme }) => theme.colors.black};
   color: ${({ theme }) => theme.colors.white};
   font-size: 15px;
   font-weight: 600;
 `
 
-const Settings = styled.button`
-  border: none;
-  background-color: ${({ theme }) => theme.colors.black};
-  color: ${({ theme }) => theme.colors.white};
-  font-size: 15px;
-  font-weight: 600;
-`
 const SignOut = styled.button`
   border: none;
+  display: grid;
+  border-radius: 5px;
   background-color: ${({ theme }) => theme.colors.white};
   color: ${({ theme }) => theme.colors.black};
   font-size: 15px;
   font-weight: 600;
+  width: 50%;
+  align-items: center;
+  margin-top: 20px;
+  padding: 5px 0;
 `
 const SignIn = styled.button`
   border: none;
@@ -100,10 +88,7 @@ const PopUp = ({ photoUrl, displayName, signOut }) => {
         <PopUpBox visible={visible}>
           <ProfileImage src={photoUrl} />
           <ProfileName> {displayName} </ProfileName>
-          <ButtonWrapper>
-            <MyProfile>MyProfile</MyProfile>
-            <Settings>Settings</Settings>
-          </ButtonWrapper>
+
           <SignOut onClick={signOut}>Log Out</SignOut>
         </PopUpBox>
       </UserProfile>
