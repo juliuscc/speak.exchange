@@ -1,6 +1,26 @@
 import { useRouter } from 'next/router'
 import { useEffect, useReducer } from 'react'
-import { fetchTranslation } from '../../utils/fetchers'
+import fetch from 'isomorphic-unfetch'
+import { SERVERLESS_WORD_LOOKUP_URL } from '../../utils/api-config'
+
+const fetchTranslation = (word, from, to) => {
+  const body = {
+    word: encodeURI(word),
+    from: encodeURI(from),
+    to: encodeURI(to)
+  }
+
+  const url = SERVERLESS_WORD_LOOKUP_URL
+
+  return fetch(url, {
+    method: 'post',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  }).then(response => response.json())
+}
 
 const useSearchTranslation = () => {
   const router = useRouter()
