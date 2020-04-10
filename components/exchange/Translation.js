@@ -9,8 +9,8 @@ import Spinner from '../ui-fragments/Spinner'
 const wordClassWidth = '50px'
 
 const LoadingOverlay = styled.div`
-  opacity: ${({ loading, theme }) =>
-    loading ? theme.transparencies.inactive : 1};
+  opacity: ${({ isLoading, theme }) =>
+    isLoading ? theme.transparencies.inactive : 1};
 `
 
 const WelcomeText = styled.h1`
@@ -120,10 +120,10 @@ const ResultRow = ({ from, toType, to, example, index }) => (
 
 const TranslationResult = ({
   translationResult: { word, translations: translationForms },
-  loading
+  isLoading
 }) => (
   <>
-    <LoadingOverlay loading={loading}>
+    <LoadingOverlay isLoading={isLoading}>
       {translationForms.length === 0 && word !== '' ? (
         <TitleBar>No translation found for {word}.</TitleBar>
       ) : (
@@ -145,7 +145,7 @@ const TranslationResult = ({
         </Translations>
       )}
     </LoadingOverlay>
-    {loading && <Spinner />}
+    {isLoading && <Spinner />}
   </>
 )
 
@@ -160,7 +160,7 @@ export default () => {
         }
         if (status === 'pending') {
           return translation ? (
-            <TranslationResult translationResult={translation} loading />
+            <TranslationResult translationResult={translation} isLoading />
           ) : (
             <Spinner />
           )

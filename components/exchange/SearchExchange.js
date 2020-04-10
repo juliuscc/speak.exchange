@@ -24,7 +24,10 @@ class SearchExchange extends React.Component {
 
   componentDidMount() {
     const { router } = this.props
-    this.setState({ translationQuery: router.query.search || '' })
+    this.setState({
+      translationQuery: router.query.search || '',
+      language: router.query.language === 'fr'
+    })
     if (this.inputRef.current) {
       this.inputRef.current.focus()
     }
