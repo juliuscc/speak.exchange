@@ -5,7 +5,7 @@ import withBrowseDecks from '../components/browse-decks/withBrowseDecks'
 import BrowseDecks from '../components/browse-decks/BrowseDecks'
 import LoggedInView from '../components/ui-fragments/LoggedInView'
 
-const MyDecksContainer = withBrowseDecks(BrowseDecks)
+const MyDecksContainer = withBrowseDecks(BrowseDecks, { addDeck: true })
 
 const Repeat = () => (
   <>

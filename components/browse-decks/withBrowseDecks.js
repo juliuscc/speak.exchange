@@ -4,7 +4,7 @@ import useViewDecks from './useViewDecks'
 import Spinner, { SpinnerContainer } from '../ui-fragments/Spinner'
 import ErrorBox from '../ui-fragments/ErrorBox'
 
-export default Presentational => ({ user: { uid } = {} }) => {
+export default (Presentational, { addDeck }) => ({ user: { uid } = {} }) => {
   const { status, decks, error, createDeck } = useViewDecks(uid)
 
   if (status === 'preloaded' || status === 'adding')
@@ -14,7 +14,9 @@ export default Presentational => ({ user: { uid } = {} }) => {
       </SpinnerContainer>
     )
   if (status === 'loaded')
-    return <Presentational decks={decks} createDeck={createDeck} addDeck />
+    return (
+      <Presentational decks={decks} createDeck={createDeck} addDeck={addDeck} />
+    )
 
   // eslint-disable-next-line no-console
   console.error(error)
