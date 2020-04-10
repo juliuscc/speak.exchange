@@ -40,7 +40,7 @@ const DeckBox = styled.a`
     background-color: ${props =>
       props.hollow
         ? transparentize(0.8, props.theme.colors.primaryMuted)
-        : props.theme.colors.primaryMuted};
+        : transparentize(0.3, props.theme.colors.primaryMuted)};
   }
 
   :disabled {
