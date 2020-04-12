@@ -139,7 +139,13 @@ const TranslationResult = ({
   <>
     <LoadingOverlay isLoading={isLoading}>
       {translationForms.length === 0 && word !== '' ? (
-        <TitleBar>No translation found for {word}.</TitleBar>
+        <ErrorBox>
+          <Head>
+            <title key="title">Uh oh là là... | Speak Exchange</title>
+          </Head>
+          We couldn&apos;t find a translation for your search term. Be sure to
+          check for any typos and that the word you&apos;re looking for exists!
+        </ErrorBox>
       ) : (
         <Translations>
           <TitleBar>{word}</TitleBar>
@@ -189,9 +195,9 @@ export default () => {
         return (
           <ErrorBox>
             <Head>
-              <title key="title">Oops! | Speak Exchange</title>
+              <title key="title">Uh oh là là... | Speak Exchange</title>
             </Head>
-            There was an error with fetching the translation. Please refresh the
+            There was an error with fetching the translation. Try refreshing the
             page.
           </ErrorBox>
         )

@@ -9,7 +9,7 @@ const ErrorBox = styled.div`
   border: solid 1px ${({ theme }) => theme.colors.danger};
   background: ${({ theme }) => theme.colors.dangerMuted};
   border-radius: 10px;
-  color: ${({ theme }) => theme.colors.danger};
+  color: ${({ theme }) => theme.colors.primary};
 
   h1 {
     margin-top: 0;
@@ -33,7 +33,7 @@ const ErrorBox = styled.div`
 
 export default ({ children }) => (
   <ErrorBox>
-    <h1>Oops, an error occurred!</h1>
+    <h1>Uh oh là là...</h1>
     <p>{children}</p>
   </ErrorBox>
 )

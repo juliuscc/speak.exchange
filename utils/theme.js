@@ -17,8 +17,8 @@ const theme = {
     highlighted: '#c7e5f0',
     primaryHighlighted: '#0AA0DE',
     selection: '#86C6DE',
-    danger: 'hsl(0, 95%, 40%)',
-    dangerMuted: 'hsl(0, 100%, 95%)'
+    danger: 'hsl(50, 100%, 50%)',
+    dangerMuted: 'hsl(50, 100%, 90%)'
   },
   fonts: {
     title: `'${fontNames.title}', '${fontNames.text}', sans-serif`,
