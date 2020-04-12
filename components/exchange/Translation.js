@@ -20,16 +20,17 @@ const WelcomeText = styled.h1`
 
 const Translations = styled.div`
   display: grid;
-  grid-template-columns: ${wordClassWidth} auto;
+  grid-template-columns: none;
   margin-bottom: 20px;
   grid-row-gap: 15px;
   position: relative;
-  width: calc(100% + ${wordClassWidth});
-  left: -${wordClassWidth};
+  width: 100%;
+  left: 0;
 
-  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
-    width: 100%;
-    left: 0;
+  @media screen and (min-width: ${screenSizes.smallPhone.max}) {
+    width: calc(100% + ${wordClassWidth});
+    left: -${wordClassWidth};
+    grid-template-columns: ${wordClassWidth} auto;
   }
 `
 
@@ -47,6 +48,11 @@ const WordClass = styled.span`
   text-align: right;
   margin-right: 10px;
   align-self: center;
+  display: none;
+
+  @media screen and (min-width: ${screenSizes.smallPhone.max}) {
+    display: block;
+  }
 `
 
 const TranslationContainer = styled.div`
@@ -70,6 +76,7 @@ const WordContainer = styled.div`
   align-content: center;
 
   @media screen and (min-width: ${screenSizes.smallPhone.max}) {
+    grid-template-columns: 1fr 2fr;
     grid-auto-flow: column;
   }
 `
@@ -102,21 +109,28 @@ const Example = styled.p`
   opacity: 70%;
 `
 
-const ResultRow = ({ from, toType, to, example, index }) => (
-  <>
-    <WordClass>{toType}</WordClass>
-    <TranslationContainer colored={index % 2 === 0}>
-      <WordContainer>
-        <OriginalWord>{from}</OriginalWord>
-        <TranslatedWord>{to}</TranslatedWord>
-      </WordContainer>
-      <ExampleContainer>
-        <Example>{example.from}</Example>
-        <Example>{example.to}</Example>
-      </ExampleContainer>
-    </TranslationContainer>
-  </>
-)
+const ResultRow = ({ from, toType, to, example, index }) => {
+  // eslint-disable-next-line no-control-regex
+  const trimmedFrom = from.replace(/[^\x00-\x7F]/g, '')
+  // eslint-disable-next-line no-control-regex
+  const trimmedTo = to.replace(/[^\x00-\x7F]/g, '')
+
+  return (
+    <>
+      <WordClass>{toType}</WordClass>
+      <TranslationContainer colored={index % 2 === 0}>
+        <WordContainer>
+          <OriginalWord>{trimmedFrom}</OriginalWord>
+          <TranslatedWord>{trimmedTo}</TranslatedWord>
+        </WordContainer>
+        <ExampleContainer>
+          <Example>{example.from}</Example>
+          <Example>{example.to}</Example>
+        </ExampleContainer>
+      </TranslationContainer>
+    </>
+  )
+}
 
 const TranslationResult = ({
   translationResult: { word, translations: translationForms },
