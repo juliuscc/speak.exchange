@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { useState } from 'react'
 import Router from 'next/router'
 import Link from 'next/link'
+import screenSizes from '../../utils/screen-sizes'
 import { Button, BlackButton } from '../ui-fragments/Button'
 import Container from '../ui-fragments/Container'
 
@@ -41,6 +42,11 @@ const FlipCard = styled.div`
   perspective: 1000px;
   margin-bottom: 20px;
   border-radius: 10px;
+
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    width: 300px;
+    height: 200px;
+  }
 `
 
 const FlipCardInner = styled.div`
@@ -90,12 +96,18 @@ const ButtonWrapper = styled.div`
 const EditButton = styled(Button)`
   width: 150px;
   margin-top: 20px;
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    width: 100px;
+  }
 `
 
 const StyledButton = styled(Button)`
   background-color: ${props => props.theme.colors.primary};
   width: ${props => (props.flipButton ? '200px' : 'auto')};
   margin: 0 5px;
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    width: ${props => (props.flipButton ? '100px' : 'auto')};
+  }
 `
 const CardStatus = styled.div`
   padding: 20px 0;
