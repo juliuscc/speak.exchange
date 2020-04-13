@@ -4,6 +4,7 @@ import styled, { ThemeProvider } from 'styled-components'
 import theme from '../utils/theme'
 import Meta from './Meta'
 import { FireBaseAuthProvider } from './FireBaseAuthProvider'
+import DeckListsContextProvider from './DeckListsContextProvider'
 import DeckContextProvider from './DeckContextProvider'
 
 // NProgress is a third party presentational component
@@ -32,16 +33,18 @@ const FlexContent = styled.div`
 
 const Page = ({ children }) => (
   <FireBaseAuthProvider>
-    <DeckContextProvider>
-      <ThemeProvider theme={theme}>
-        <>
-          <PageWrapper>
-            <Meta />
-            <FlexContent>{children}</FlexContent>
-          </PageWrapper>
-        </>
-      </ThemeProvider>
-    </DeckContextProvider>
+    <DeckListsContextProvider>
+      <DeckContextProvider>
+        <ThemeProvider theme={theme}>
+          <>
+            <PageWrapper>
+              <Meta />
+              <FlexContent>{children}</FlexContent>
+            </PageWrapper>
+          </>
+        </ThemeProvider>
+      </DeckContextProvider>
+    </DeckListsContextProvider>
   </FireBaseAuthProvider>
 )
 

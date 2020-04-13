@@ -1,9 +1,14 @@
 import { useEffect, useReducer } from 'react'
 import { useRouter } from 'next/router'
-import Deck from '../deck/model/Deck'
-import { db } from '../../utils/firebase-config'
+import firebase from 'firebase/app'
+import { db } from '../../../utils/firebase-config'
+import DeckList from './DeckList'
 
-const viewDecksReducer = (state, action) => {
+const DeckListReducer = (state, action) => {
+  if (state.status === 'adding') {
+    return state
+  }
+
   switch (action.type) {
     case 'update': {
       return {
@@ -31,44 +36,33 @@ const viewDecksReducer = (state, action) => {
   }
 }
 
-const useViewDecks = uid => {
+const useDeckList = uid => {
   const router = useRouter()
-  const [state, dispatch] = useReducer(viewDecksReducer, {
+  const [state, dispatch] = useReducer(DeckListReducer, {
     status: 'preloaded',
     decks: null,
     error: null
   })
 
   useEffect(() => {
-    const query = uid
-      ? db.collection('decks').where('uid', '==', uid)
-      : db.collection('decks')
-
-    return query.onSnapshot(
-      { includeMetadataChanges: true },
-      querySnapshot => {
-        if (querySnapshot.metadata.hasPendingWrites) return
-
-        const decks = {}
-        querySnapshot.forEach(doc => {
-          decks[doc.id] = doc.data()
-        })
-
-        dispatch({ type: 'update', decks })
-      },
-      error => dispatch({ type: 'error', error })
-    )
+    DeckList.get(dispatch, uid)
   }, [uid])
 
   const createDeck = () => {
     dispatch({ type: 'add_deck' })
 
-    Deck.create(uid)
-      .then(id => router.push(`/edit-deck?id=${id}`))
+    db.collection('decks')
+      .add({
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        uid,
+        name: 'Untitled Deck',
+        cards: []
+      })
+      .then(docRef => router.push(`/edit-deck?id=${docRef.id}`))
       .catch(error => dispatch({ type: 'error', error }))
   }
 
   return { ...state, createDeck }
 }
 
-export default useViewDecks
+export default useDeckList

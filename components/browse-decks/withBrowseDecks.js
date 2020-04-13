@@ -1,10 +1,12 @@
 import Head from 'next/head'
-import useViewDecks from './useViewDecks'
+import { useContext } from 'react'
 import Spinner, { SpinnerContainer } from '../ui-fragments/Spinner'
 import ErrorBox from '../ui-fragments/ErrorBox'
+import { DeckListsContext } from '../DeckListsContextProvider'
 
 export default (Presentational, { canAddDeck }) => ({ user: { uid } = {} }) => {
-  const { status, decks, error, createDeck } = useViewDecks(uid)
+  const { communityDecks, userDecks } = useContext(DeckListsContext)
+  const { status, decks, error, createDeck } = uid ? userDecks : communityDecks
 
   if (status === 'preloaded' || status === 'adding')
     return (
