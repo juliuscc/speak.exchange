@@ -4,6 +4,7 @@ import { transparentize } from 'polished'
 import { Edit as EditIcon } from 'styled-icons/material/Edit'
 import { Play } from 'styled-icons/foundation/Play'
 import Link from 'next/link'
+import screenSizes from '../../utils/screen-sizes'
 import { RelativeSpinner } from '../ui-fragments/Spinner'
 
 const DeckBox = styled.a`
@@ -51,6 +52,10 @@ const DeckBox = styled.a`
     outline: none;
     box-shadow: 0px 0px 10px 2px ${({ theme }) => theme.colors.primaryMuted};
   }
+
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    width: 90%;
+  }
 `
 
 const ActionWrapper = styled.div`
@@ -92,10 +97,18 @@ const ToolTip = styled.div`
 const StyledEditIcon = styled(EditIcon)`
   color: ${({ theme }) => theme.colors.white};
   width: 20px;
+
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    width: 30px;
+  }
 `
 const StyledPlay = styled(Play)`
   color: ${({ theme }) => theme.colors.white};
   width: 20px;
+
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    width: 30px;
+  }
 `
 
 export const HollowDeckBox = ({ loading, onClick }) => (

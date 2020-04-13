@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import React from 'react'
+import screenSizes from '../../utils/screen-sizes'
 
 const DeckSearch = styled.div`
   display: flex;
@@ -8,6 +9,12 @@ const DeckSearch = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   margin: 10px;
+
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+  }
 `
 const SearchBar = styled.div`
   display: flex;
@@ -15,6 +22,9 @@ const SearchBar = styled.div`
   padding-bottom: 10px;
   height: 50px;
   width: 100%;
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    width: 90%;
+  }
 `
 const SearchBox = styled.input`
   background: ${({ theme }) => theme.colors.white};
@@ -45,6 +55,10 @@ const SortOption = styled.button`
 
   :focus {
     outline: none;
+  }
+
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    width: 90%;
   }
 `
 
