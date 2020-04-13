@@ -156,10 +156,9 @@ const HeaderGrid = styled.div`
 
 const ResultRow = ({ from, toType, to, example, index }) => {
   // eslint-disable-next-line no-control-regex
-  const trimmedFrom = from.replace(/[^\x00-\x7F]/g, '')
+  const trimmedFrom = from.replace('\u21D2', '')
   // eslint-disable-next-line no-control-regex
-  const trimmedTo = to.replace(/[^\x00-\x7F]/g, '')
-
+  const trimmedTo = to.replace('\u21D2', '')
   return (
     <>
       <WordClass>{toType}</WordClass>
