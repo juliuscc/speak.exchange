@@ -25,25 +25,33 @@ const WelcomeText = styled.p`
   i {
     font-style: italics;
   }
-  light {
+  .light {
     font-weight: 600;
+  }
+  .desktop {
+    display: none;
+
+    @media screen and (min-width: ${screenSizes.smallPhone.max}) {
+      display: block;
+    }
   }
   font-size: 18px;
 `
 
 const Translations = styled.div`
   display: grid;
-  grid-template-columns: none;
   margin-bottom: 20px;
   grid-row-gap: 15px;
   position: relative;
-  width: 100%;
-  left: 0;
 
-  @media screen and (min-width: ${screenSizes.smallPhone.max}) {
-    width: calc(100% + ${wordClassWidth});
-    left: -${wordClassWidth};
-    grid-template-columns: ${wordClassWidth} auto;
+  width: calc(100% + ${wordClassWidth});
+  left: -${wordClassWidth};
+  grid-template-columns: ${wordClassWidth} auto;
+
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    width: 100%;
+    left: 0;
+    grid-template-columns: none;
   }
 `
 
@@ -61,10 +69,10 @@ const WordClass = styled.span`
   text-align: right;
   margin-right: 10px;
   align-self: center;
-  display: none;
+  display: block;
 
-  @media screen and (min-width: ${screenSizes.smallPhone.max}) {
-    display: block;
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    display: none;
   }
 `
 
@@ -73,7 +81,8 @@ const TranslationContainer = styled.div`
   background: ${({ colored, theme }) =>
     colored ? theme.colors.focusBackground : theme.colors.white};
   border-radius: 5px;
-  grid-template-columns: 2fr 4fr;
+  grid-template-rows: auto auto;
+  grid-template-columns: auto;
   grid-column-gap: 10px;
   padding: 15px;
 
@@ -124,8 +133,12 @@ const Example = styled.p`
 const HeaderTitle = styled.p`
   align-self: center;
   font-size: 14px;
-  margin: 0 0 0 10px;
   font-weight: 600;
+  margin: 0px;
+
+  @media screen and (min-width: ${screenSizes.smallPhone.max}) {
+    margin: 0 0 0 10px;
+  }
 `
 
 const HeaderTitleExample = styled.p`
@@ -133,6 +146,11 @@ const HeaderTitleExample = styled.p`
   font-size: 14px;
   margin: 0;
   font-weight: 600;
+  display: none;
+
+  @media screen and (min-width: ${screenSizes.smallPhone.max}) {
+    display: block;
+  }
 `
 
 const HeaderTitleType = styled.p`
@@ -141,12 +159,17 @@ const HeaderTitleType = styled.p`
   margin: 0 10px 0 0;
   font-weight: 600;
   text-align: right;
+  display: block;
+
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    display: none;
+  }
 `
 
 const HeaderGrid = styled.div`
   display: grid;
   border-radius: 5px;
-  grid-template-columns: 2fr 4fr;
+  grid-template-columns: auto;
   grid-column-gap: 10px;
 
   @media screen and (min-width: ${screenSizes.smallPhone.max}) {
@@ -234,26 +257,32 @@ const StartPage = () => (
       search box.
     </WelcomeText>
     <WelcomeText>
-      <b>If you need to type a special character,</b> click the character you
-      need and it will appear in the search box.
+      <div className="desktop">
+        <b>If you need to type a special character,</b> click the character you
+        need and it will appear in the search box.
+      </div>
     </WelcomeText>
     <WelcomeHeader>How to read a search result</WelcomeHeader>
     <WelcomeText>
-      <b>Type: </b>
-      <light>
-        This indicates what type of word it is. Hover over the word type to
-        learn more.
-      </light>
-      <br />
-      Words have different types: some are nouns like &quot;chair&quot;, marked{' '}
-      <i>n</i>, and some are interjections like &quot;ow!&quot;, marked{' '}
-      <i>interj</i>. This is important to display as a word can be more than one
-      type, like for example the word &quot;bail&quot;: it can be a noun and a
-      verb.
+      <div className="desktop">
+        <b>Type: </b>
+        <div className="light">
+          This indicates what type of word it is. Hover over the word type to
+          learn more.
+        </div>
+        <br />
+        Words have different types: some are nouns like &quot;chair&quot;,
+        marked <i>n</i>, and some are interjections like &quot;ow!&quot;, marked{' '}
+        <i>interj</i>. This is important to display as a word can be more than
+        one type, like for example the word &quot;bail&quot;: it can be a noun
+        and a verb.
+      </div>
     </WelcomeText>
     <WelcomeText>
       <b>Original word: </b>
-      <light>This is the word that matches your search term.</light>
+      <div className="light">
+        This is the word that matches your search term.
+      </div>
       <br />
       Sometimes the word your looking for changes meaning when used in an
       expression, and sometimes the word changes meaning depending on the
@@ -263,21 +292,26 @@ const StartPage = () => (
     </WelcomeText>
     <WelcomeText>
       <b>Translated word: </b>
-      <light>This is the translation of a given original word.</light>
+      <div className="light">
+        This is the translation of a given original word.
+      </div>
       <br />
       Sometimes a word can have several translations that apply for just one
       original word; if that&apos;s the case, we separate these by commas.
     </WelcomeText>
     <WelcomeText>
-      <b>Example: </b>
-      <light>
-        This is an example of the word used in the real communication.
-      </light>
-      <br />
-      These help you understand how a word is used in context. Some translations
-      will feature several, one or even no examples; unfortunately,
-      speak.exchange has no control over these as we source our translations
-      from an external provider, who comes up with these examples for us.
+      <div className="desktop">
+        <b>Example: </b>
+        <div className="light">
+          This is an example of the word used in the real communication.
+        </div>
+        <br />
+        These help you understand how a word is used in context. Some
+        translations will feature several, one or even no examples;
+        unfortunately, speak.exchange has no control over these as we source our
+        translations from an external provider, who comes up with these examples
+        for us.
+      </div>
     </WelcomeText>
   </>
 )
