@@ -21,7 +21,7 @@ const SearchBar = styled.div`
   flex-direction: row;
   padding-bottom: 10px;
   height: 50px;
-  width: 280px;
+  width: 100%;
   @media screen and (max-width: ${screenSizes.smallPhone.max}) {
     width: 90%;
   }
@@ -51,8 +51,9 @@ const SortOption = styled.button`
   font-family: ${({ theme }) => theme.fonts.text};
   font-size: 15px;
   font-weight: 300;
-  margin: 5px;
+  margin: 5px 0;
 
+  width: 100%;
   :focus {
     outline: none;
   }
