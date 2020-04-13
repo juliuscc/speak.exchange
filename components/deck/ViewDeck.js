@@ -25,6 +25,10 @@ const TitleBar = styled.div`
   height: 100%;
   padding-top: 20px;
   align-items: center;
+
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    flex-direction: column;
+  }
 `
 
 const DeckName = styled.h1`
