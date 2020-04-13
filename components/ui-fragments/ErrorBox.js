@@ -6,8 +6,8 @@ const ErrorBox = styled.div`
   margin-top: 20px;
   max-width: 500px;
   padding: 30px 20px;
-  border: solid 1px ${({ theme }) => theme.colors.danger};
-  background: ${({ theme }) => theme.colors.dangerMuted};
+  border: solid 1px ${({ theme }) => theme.colors.error};
+  background: ${({ theme }) => theme.colors.errorMuted};
   border-radius: 10px;
   color: ${({ theme }) => theme.colors.primary};
 
