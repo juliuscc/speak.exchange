@@ -6,7 +6,7 @@ import withBrowseDecks from '../components/browse-decks/withBrowseDecks'
 
 const AllDecksContainer = withBrowseDecks(
   BrowseDecks,
-  { addDeck: false },
+  { canAddDeck: false },
   deckName => deckName || 'Community Decks'
 )
 

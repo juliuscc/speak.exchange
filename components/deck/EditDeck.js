@@ -83,7 +83,8 @@ export default ({
   submitChanges,
   edited,
   loading,
-  removeCardWithIndex
+  removeCardWithIndex,
+  cancelEdit
 }) => (
   <Background disabled={loading}>
     <Container>
@@ -100,7 +101,9 @@ export default ({
             {edited ? 'Save changes' : 'All changes are saved'}
           </Button>
           <Link href={`/view-deck?id=${id}`}>
-            <BlackButton type="button">Cancel</BlackButton>
+            <BlackButton type="button" onClick={cancelEdit}>
+              Cancel
+            </BlackButton>
           </Link>
         </ButtonsWrapper>
       </TitleBar>

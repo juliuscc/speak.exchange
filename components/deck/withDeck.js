@@ -1,31 +1,22 @@
 import Head from 'next/head'
-import styled from 'styled-components'
-import useEditDeck from './useEditDeck'
-import Spinner from '../ui-fragments/Spinner'
+import { useContext } from 'react'
+import Spinner, { SpinnerContainer } from '../ui-fragments/Spinner'
 import ErrorBox from '../ui-fragments/ErrorBox'
-
-const SpinnerContainer = styled.div`
-  position: relative;
-`
+import { DeckContext } from '../DeckContextProvider'
 
 export default (Presentational, createTitle) => () => {
   const {
-    status,
-    deck,
-    error,
-    edited,
-    updateName,
-    updateCard,
-    addCard,
-    submitChanges,
-    id,
-    removeCard,
-    removeDeck,
-    uid,
-    copyDeck
-  } = useEditDeck()
+    state: { status, deck, error, currentId, user },
+    localActions: { updateName, updateCard, addCard, removeCard, cancelEdit },
+    actions: { submitChanges, deleteDeck, copyDeck }
+  } = useContext(DeckContext)
 
-  if (status === 'start' || status === 'fetching') {
+  if (
+    status === 'empty' ||
+    status === 'fetching' ||
+    status === 'copying' ||
+    status === 'deleting'
+  ) {
     return (
       <SpinnerContainer>
         <Head>
@@ -35,7 +26,7 @@ export default (Presentational, createTitle) => () => {
       </SpinnerContainer>
     )
   }
-  if (status === 'resolved') {
+  if (status === 'resolved' || status === 'edited') {
     return (
       <>
         <Head>
@@ -44,16 +35,16 @@ export default (Presentational, createTitle) => () => {
         <Presentational
           name={deck.name}
           cards={deck.cards}
+          cancelEdit={cancelEdit}
           updateName={updateName}
           updateCardWithIndex={updateCard}
           addCard={addCard}
           submitChanges={submitChanges}
-          edited={edited}
-          id={id}
+          edited={status === 'edited'}
+          id={currentId}
           removeCardWithIndex={removeCard}
-          removeDeck={removeDeck}
-          uid={uid}
-          deck={deck}
+          deleteDeck={deleteDeck}
+          user={user}
           copyDeck={copyDeck}
         />
       </>
@@ -68,17 +59,17 @@ export default (Presentational, createTitle) => () => {
         <Presentational
           name={deck.name}
           cards={deck.cards}
+          cancelEdit={cancelEdit}
           updateName={updateName}
           updateCardWithIndex={updateCard}
           addCard={addCard}
           submitChanges={submitChanges}
-          edited={edited}
+          edited={status === 'edited'}
           loading
-          id={id}
+          id={currentId}
           removeCardWithIndex={removeCard}
-          removeDeck={removeDeck}
-          uid={uid}
-          deck={deck}
+          deleteDeck={deleteDeck}
+          user={user}
           copyDeck={copyDeck}
         />
         <Spinner />

@@ -4,6 +4,7 @@ import styled, { ThemeProvider } from 'styled-components'
 import theme from '../utils/theme'
 import Meta from './Meta'
 import { FireBaseAuthProvider } from './FireBaseAuthProvider'
+import DeckContextProvider from './DeckContextProvider'
 
 // NProgress is a third party presentational component
 Router.events.on('routeChangeStart', nextUrl => {
@@ -31,14 +32,16 @@ const FlexContent = styled.div`
 
 const Page = ({ children }) => (
   <FireBaseAuthProvider>
-    <ThemeProvider theme={theme}>
-      <>
-        <PageWrapper>
-          <Meta />
-          <FlexContent>{children}</FlexContent>
-        </PageWrapper>
-      </>
-    </ThemeProvider>
+    <DeckContextProvider>
+      <ThemeProvider theme={theme}>
+        <>
+          <PageWrapper>
+            <Meta />
+            <FlexContent>{children}</FlexContent>
+          </PageWrapper>
+        </>
+      </ThemeProvider>
+    </DeckContextProvider>
   </FireBaseAuthProvider>
 )
 

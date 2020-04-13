@@ -1,6 +1,6 @@
 import { useEffect, useReducer } from 'react'
 import { useRouter } from 'next/router'
-import firebase from 'firebase/app'
+import Deck from '../deck/model/Deck'
 import { db } from '../../utils/firebase-config'
 
 const viewDecksReducer = (state, action) => {
@@ -63,14 +63,8 @@ const useViewDecks = uid => {
   const createDeck = () => {
     dispatch({ type: 'add_deck' })
 
-    db.collection('decks')
-      .add({
-        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-        uid,
-        name: 'Untitled Deck',
-        cards: []
-      })
-      .then(docRef => router.push(`/edit-deck?id=${docRef.id}`))
+    Deck.create(uid)
+      .then(id => router.push(`/edit-deck?id=${id}`))
       .catch(error => dispatch({ type: 'error', error }))
   }
 

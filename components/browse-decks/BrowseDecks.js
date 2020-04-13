@@ -25,7 +25,7 @@ const DeckWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
 `
 
-export default ({ decks, createDeck, addDeck }) => {
+export default ({ decks, createDeck, canAddDeck }) => {
   const fbContext = useContext(firebaseContext)
   const { uid } = fbContext.user || {}
 
@@ -65,7 +65,7 @@ export default ({ decks, createDeck, addDeck }) => {
         setSearchWord={setSearchWord}
       />
       <DeckWrapper>
-        {addDeck ? <HollowDeckBox onClick={createDeck} /> : null}
+        {canAddDeck ? <HollowDeckBox onClick={createDeck} /> : null}
         {Object.entries(decks)
           .sort(sortFunction(sortType))
           .filter(deck => {

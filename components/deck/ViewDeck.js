@@ -59,7 +59,7 @@ const AlignRight = styled.div`
   }
 `
 
-export default ({ name, cards, id, removeDeck, uid, deck, copyDeck }) => {
+export default ({ name, cards, id, deleteDeck, user, copyDeck }) => {
   const [deleteModalVisible, toggleDeleteModalVisible] = useToggle()
 
   return (
@@ -68,12 +68,16 @@ export default ({ name, cards, id, removeDeck, uid, deck, copyDeck }) => {
         <TitleBar>
           <DeckName>{name}</DeckName>
           <ButtonsWrapper>
-            {uid === deck.uid ? (
+            {user === 'same' ? (
               <Link key={id} href={`/edit-deck?id=${id}`}>
                 <Button type="button">Edit deck</Button>
               </Link>
             ) : (
-              <Button type="button" onClick={copyDeck} disabled={uid === null}>
+              <Button
+                type="button"
+                onClick={copyDeck}
+                disabled={user === 'none'}
+              >
                 Copy deck
               </Button>
             )}
@@ -81,7 +85,7 @@ export default ({ name, cards, id, removeDeck, uid, deck, copyDeck }) => {
             <Link href={`/run-deck?id=${id}`}>
               <Button type="button">Run deck</Button>
             </Link>
-            {uid === deck.uid ? (
+            {user === 'same' ? (
               <>
                 <Link href="/repeat">
                   <BlackButton type="button">Go back</BlackButton>
@@ -95,9 +99,8 @@ export default ({ name, cards, id, removeDeck, uid, deck, copyDeck }) => {
                     toggleVisible={toggleDeleteModalVisible}
                   >
                     <p>
-                      Do you really want to delete the{' '}
-                      <strong>{deck.name}</strong> deck? This action cannot be
-                      undone.
+                      Do you really want to delete the <strong>{name}</strong>{' '}
+                      deck? This action cannot be undone.
                     </p>
                     <AlignRight>
                       <BlackButton
@@ -106,7 +109,7 @@ export default ({ name, cards, id, removeDeck, uid, deck, copyDeck }) => {
                       >
                         Cancel
                       </BlackButton>
-                      <DangerButton type="button" onClick={removeDeck}>
+                      <DangerButton type="button" onClick={deleteDeck}>
                         Delete
                       </DangerButton>
                     </AlignRight>
