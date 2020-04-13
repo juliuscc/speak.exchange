@@ -4,7 +4,7 @@ import firebase from 'firebase/app'
 import { db } from '../../../utils/firebase-config'
 import DeckList from './DeckList'
 
-const DeckListReducer = (state, action) => {
+const deckListReducer = (state, action) => {
   if (state.status === 'adding') {
     return state
   }
@@ -38,7 +38,7 @@ const DeckListReducer = (state, action) => {
 
 const useDeckList = uid => {
   const router = useRouter()
-  const [state, dispatch] = useReducer(DeckListReducer, {
+  const [state, dispatch] = useReducer(deckListReducer, {
     status: 'preloaded',
     decks: null,
     error: null
