@@ -72,8 +72,7 @@ const TranslationContainer = styled.div`
 const WordContainer = styled.div`
   display: grid;
   grid-column-gap: 10px;
-  grid-auto-flow: row;
-  align-content: center;
+  grid-template-columns: 1fr 1fr;
 
   @media screen and (min-width: ${screenSizes.smallPhone.max}) {
     grid-template-columns: 1fr 2fr;
@@ -107,6 +106,39 @@ const Example = styled.p`
   font-weight: 600;
   color: ${({ theme }) => theme.colors.black};
   opacity: 70%;
+`
+
+const HeaderTitle = styled.p`
+  align-self: center;
+  font-size: 14px;
+  margin: 0 0 0 10px;
+  font-weight: 600;
+`
+
+const HeaderTitleExample = styled.p`
+  align-self: center;
+  font-size: 14px;
+  margin: 0;
+  font-weight: 600;
+`
+
+const HeaderTitleType = styled.p`
+  align-self: center;
+  font-size: 14px;
+  margin: 0 10px 0 0;
+  font-weight: 600;
+  text-align: right;
+`
+
+const HeaderGrid = styled.div`
+  display: grid;
+  border-radius: 5px;
+  grid-template-columns: 2fr 4fr;
+  grid-column-gap: 10px;
+
+  @media screen and (min-width: ${screenSizes.smallPhone.max}) {
+    grid-template-columns: 2fr 3fr;
+  }
 `
 
 const ResultRow = ({ from, toType, to, example, index }) => {
@@ -149,6 +181,14 @@ const TranslationResult = ({
       ) : (
         <Translations>
           <TitleBar>{word}</TitleBar>
+          <HeaderTitleType>Type</HeaderTitleType>
+          <HeaderGrid>
+            <WordContainer>
+              <HeaderTitle>Original word</HeaderTitle>
+              <HeaderTitle>Translation</HeaderTitle>
+            </WordContainer>
+            <HeaderTitleExample>Example</HeaderTitleExample>
+          </HeaderGrid>
           {translationForms
             .map(({ translations }) => translations)
             .flat()
