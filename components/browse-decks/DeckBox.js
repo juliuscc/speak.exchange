@@ -93,6 +93,9 @@ const ToolTip = styled.div`
   width: 20px;
   height: 20px;
   visibility: hidden;
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    width: 30px;
+  }
 `
 const StyledEditIcon = styled(EditIcon)`
   color: ${({ theme }) => theme.colors.white};
