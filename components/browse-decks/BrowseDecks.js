@@ -23,6 +23,11 @@ const DeckWrapper = styled.div`
   justify-content: flex-start;
   align-content: flex-start;
   background-color: ${({ theme }) => theme.colors.white};
+
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    justify-content: center;
+    align-items: center;
+  }
 `
 
 export default ({ decks, createDeck, canAddDeck }) => {
