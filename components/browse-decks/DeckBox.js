@@ -34,6 +34,7 @@ const DeckBox = styled.a`
   color: ${props =>
     props.hollow ? props.theme.colors.primaryMuted : props.theme.colors.white};
   text-decoration: none;
+  font-weight: 300;
 
   cursor: pointer;
 

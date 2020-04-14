@@ -5,37 +5,13 @@ import useSearchTranslation from './useSearchTranslation'
 import Container from '../ui-fragments/Container'
 import ErrorBox from '../ui-fragments/ErrorBox'
 import Spinner from '../ui-fragments/Spinner'
+import Welcome from './Welcome'
 
 const wordClassWidth = '50px'
 
 const LoadingOverlay = styled.div`
   opacity: ${({ isLoading, theme }) =>
     isLoading ? theme.transparencies.inactive : 1};
-`
-
-const WelcomeHeader = styled.h1`
-  color: ${({ theme }) => theme.colors.primaryHighlighted};
-  text-align: center;
-`
-
-const WelcomeText = styled.p`
-  b {
-    font-weight: bold;
-  }
-  i {
-    font-style: italics;
-  }
-  .light {
-    font-weight: 600;
-  }
-  .desktop {
-    display: none;
-
-    @media screen and (min-width: ${screenSizes.smallPhone.max}) {
-      display: block;
-    }
-  }
-  font-size: 18px;
 `
 
 const Translations = styled.div`
@@ -244,78 +220,6 @@ const TranslationResult = ({
   </>
 )
 
-const StartPage = () => (
-  <>
-    <WelcomeHeader>Welcome to speak.exchange!</WelcomeHeader>
-    <WelcomeText>
-      <b>To get started,</b> type in any French or English word in the search
-      bar to search for translations and examples of that word.
-    </WelcomeText>
-    <WelcomeText>
-      <b>If a word exists in both languages,</b> like &quot;<i>chaise</i>&quot;,
-      then switch translation direction by clicking the switch button above the
-      search box.
-    </WelcomeText>
-    <WelcomeText>
-      <div className="desktop">
-        <b>If you need to type a special character,</b> click the character you
-        need and it will appear in the search box.
-      </div>
-    </WelcomeText>
-    <WelcomeHeader>How to read a search result</WelcomeHeader>
-    <WelcomeText>
-      <div className="desktop">
-        <b>Type: </b>
-        <div className="light">
-          This indicates what type of word it is. Hover over the word type to
-          learn more.
-        </div>
-        <br />
-        Words have different types: some are nouns like &quot;chair&quot;,
-        marked <i>n</i>, and some are interjections like &quot;ow!&quot;, marked{' '}
-        <i>interj</i>. This is important to display as a word can be more than
-        one type, like for example the word &quot;bail&quot;: it can be a noun
-        and a verb.
-      </div>
-    </WelcomeText>
-    <WelcomeText>
-      <b>Original word: </b>
-      <div className="light">
-        This is the word that matches your search term.
-      </div>
-      <br />
-      Sometimes the word your looking for changes meaning when used in an
-      expression, and sometimes the word changes meaning depending on the
-      preposition that follows it. Our results display all the possible ways
-      your search term can be used so you can be sure to find the translation
-      for the specific context you&apos;re looking for.
-    </WelcomeText>
-    <WelcomeText>
-      <b>Translated word: </b>
-      <div className="light">
-        This is the translation of a given original word.
-      </div>
-      <br />
-      Sometimes a word can have several translations that apply for just one
-      original word; if that&apos;s the case, we separate these by commas.
-    </WelcomeText>
-    <WelcomeText>
-      <div className="desktop">
-        <b>Example: </b>
-        <div className="light">
-          This is an example of the word used in the real communication.
-        </div>
-        <br />
-        These help you understand how a word is used in context. Some
-        translations will feature several, one or even no examples;
-        unfortunately, speak.exchange has no control over these as we source our
-        translations from an external provider, who comes up with these examples
-        for us.
-      </div>
-    </WelcomeText>
-  </>
-)
-
 export default () => {
   const { status, translation, error } = useSearchTranslation()
 
@@ -323,7 +227,7 @@ export default () => {
     <Container>
       {(() => {
         if (status === 'idle') {
-          return <StartPage />
+          return <Welcome />
         }
         if (status === 'pending') {
           return translation ? (

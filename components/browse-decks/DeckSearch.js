@@ -38,6 +38,8 @@ const SearchBox = styled.input`
   border-radius: 10px;
   flex: 1;
   font-size: 18px;
+  font-weight: 300;
+
   :focus {
     outline: none;
     box-shadow: 0px 0px 10px 2px ${({ theme }) => theme.colors.border};
