@@ -9,7 +9,6 @@ import useToggle from '../../utils/useToggle'
 
 const Background = styled.fieldset`
   background-color: ${({ theme }) => theme.colors.focusBackground};
-  width: 100%;
   border: none;
   padding: 0;
   margin: 0;
@@ -37,6 +36,7 @@ const DeckName = styled.h1`
 
   @media screen and (max-width: ${screenSizes.tablet.max}) {
     flex: 1;
+    font-size: 18px;
   }
 `
 
@@ -47,6 +47,20 @@ const ButtonsWrapper = styled.div`
 
   & > button {
     margin-left: 10px;
+    margin-top: 10px;
+  }
+
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 0;
+    width: 100%;
+
+    & > button {
+      width: 100%;
+      margin-left: 0;
+    }
   }
 `
 
@@ -96,7 +110,6 @@ export default ({
                 Copy deck
               </Button>
             )}
-
             <Link
               href={`/run-deck?id=${id}&cameFrom=view-deck&browseContext=${browseContext}`}
             >

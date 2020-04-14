@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { DeleteBin } from 'styled-icons/remix-line/DeleteBin'
-
+import screenSizes from '../../utils/screen-sizes'
 import { IconButton } from '../ui-fragments/Button'
 
 const WordCard = styled.div`
@@ -21,6 +21,10 @@ const WordCard = styled.div`
   :hover > form > input {
     background-color: ${({ theme }) => theme.colors.focusBackground};
   }
+
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    padding: 0px;
+  }
 `
 const InputWrapper = styled.form``
 
@@ -31,6 +35,9 @@ const Word = styled.input`
   font-size: 16px;
   &:focus {
     outline: none;
+  }
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    font-size: 14px;
   }
 `
 
@@ -50,8 +57,8 @@ const Button = styled(IconButton)`
 `
 
 const Seperator = styled.hr`
-  width: 300px;
-  height: 10px;
+  width: 50%;
+  height: 1px;
   border: 0.5px solid ${({ theme }) => theme.colors.border};
 `
 

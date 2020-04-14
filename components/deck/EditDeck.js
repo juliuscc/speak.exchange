@@ -26,6 +26,10 @@ const TitleBar = styled.div`
   height: 100%;
   padding-top: 20px;
   align-items: center;
+
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    flex-direction: column;
+  }
 `
 
 const DeckName = styled(Input)`
@@ -33,6 +37,10 @@ const DeckName = styled(Input)`
 
   @media screen and (max-width: ${screenSizes.tablet.max}) {
     flex: 1;
+  }
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    width: 100%;
+    font-size: 18px;
   }
 `
 
@@ -43,6 +51,20 @@ const ButtonsWrapper = styled.div`
 
   & > * {
     margin-left: 10px;
+  }
+
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 0;
+    width: 100%;
+
+    & > button {
+      width: 100%;
+      margin-left: 0;
+      margin-top: 10px;
+    }
   }
 `
 

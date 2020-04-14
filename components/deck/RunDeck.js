@@ -26,6 +26,9 @@ const Title = styled.h1`
   color: ${({ theme }) => theme.colors.primary};
   margin: 0px;
   text-align: center;
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    font-size: 18px;
+  }
 `
 
 const FlipCardWrapper = styled.div`
@@ -72,6 +75,11 @@ const FlipCardFront = styled.div`
   font-size: 40px;
   transform: rotateY(0deg);
   border-radius: 10px;
+
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    font-size: 20px;
+    overflow: hidden;
+  }
 `
 const FlipCardBack = styled.div`
   display: flex;
