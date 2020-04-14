@@ -118,14 +118,7 @@ const useDeckManager = () => {
   // Remote updates
   const submitChanges = () => send('SUBMIT')
 
-  const createDeck = () => send('CREATE', { uid })
-
-  const deleteDeck = () =>
-    send({
-      type: 'DELETE',
-      id: 123,
-      callback: () => router.push('/repeat')
-    })
+  const deleteDeck = () => send('DELETE')
 
   const copyDeck = () => send('COPY', { uid })
 
@@ -151,7 +144,6 @@ const useDeckManager = () => {
     },
     actions: {
       submitChanges,
-      createDeck,
       deleteDeck,
       copyDeck
     }

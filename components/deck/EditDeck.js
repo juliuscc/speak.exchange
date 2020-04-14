@@ -6,6 +6,7 @@ import WordCardEdit from './WordCardEdit'
 import { Button, BlackButton } from '../ui-fragments/Button'
 import { Input } from '../ui-fragments/Input'
 import screenSizes from '../../utils/screen-sizes'
+import useToggle from '../../utils/useToggle'
 
 const Background = styled.fieldset`
   background-color: ${({ theme }) => theme.colors.focusBackground};
@@ -84,41 +85,66 @@ export default ({
   edited,
   loading,
   removeCardWithIndex,
-  cancelEdit
-}) => (
-  <Background disabled={loading}>
-    <Container>
-      <TitleBar>
-        <DeckName
-          type="text"
-          placeholder="Enter a name for your deck"
-          title="Deck Name"
-          onChange={e => updateName(e.target.value)}
-          value={name}
-        />
-        <ButtonsWrapper>
-          <Button type="button" onClick={submitChanges} disabled={!edited}>
-            {edited ? 'Save changes' : 'All changes are saved'}
-          </Button>
-          <Link href={`/view-deck?id=${id}`}>
-            <BlackButton type="button" onClick={cancelEdit}>
-              Cancel
-            </BlackButton>
-          </Link>
-        </ButtonsWrapper>
-      </TitleBar>
-      <WordsWrapper>
-        {cards.map((card, i) => (
-          <WordCardEdit
-            key={i}
-            card={card}
-            setCardWithField={updateCardWithIndex(i)}
-            removeCard={removeCardWithIndex(i)}
-          />
-        ))}
+  cancelEdit,
+  cameFrom,
+  browseContext
+}) => {
+  // Show the user an option to save once if the deck is newly created.
+  const [allowOneSave, toggleAllowOneSave] = useToggle(cameFrom === 'create')
+  const oneSave = () => (allowOneSave ? toggleAllowOneSave() : undefined)
 
-        <HollowWordCard onClick={addCard}>+</HollowWordCard>
-      </WordsWrapper>
-    </Container>
-  </Background>
-)
+  return (
+    <Background disabled={loading}>
+      <Container>
+        <TitleBar>
+          <DeckName
+            type="text"
+            placeholder="Enter a name for your deck"
+            title="Deck Name"
+            onChange={e => updateName(e.target.value)}
+            value={name}
+          />
+          <ButtonsWrapper>
+            <Button
+              type="button"
+              onClick={() => {
+                oneSave()
+                submitChanges()
+              }}
+              disabled={!edited && !allowOneSave}
+            >
+              {edited || allowOneSave
+                ? 'Save changes'
+                : 'All changes are saved'}
+            </Button>
+            {cameFrom !== 'create' && (
+              <Link
+                href={
+                  cameFrom === 'browse'
+                    ? `/${browseContext}`
+                    : `/${cameFrom}?id=${id}&browseContext=${browseContext}`
+                }
+              >
+                <BlackButton type="button" onClick={cancelEdit}>
+                  Cancel
+                </BlackButton>
+              </Link>
+            )}
+          </ButtonsWrapper>
+        </TitleBar>
+        <WordsWrapper>
+          {cards.map((card, i) => (
+            <WordCardEdit
+              key={i}
+              card={card}
+              setCardWithField={updateCardWithIndex(i)}
+              removeCard={removeCardWithIndex(i)}
+            />
+          ))}
+
+          <HollowWordCard onClick={addCard}>+</HollowWordCard>
+        </WordsWrapper>
+      </Container>
+    </Background>
+  )
+}

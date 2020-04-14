@@ -1,11 +1,10 @@
 import { useEffect, useReducer } from 'react'
 import { useRouter } from 'next/router'
-import firebase from 'firebase/app'
-import { db } from '../../../utils/firebase-config'
 import DeckList from './DeckList'
+import Deck from '../../deck/model/Deck'
 
 const deckListReducer = (state, action) => {
-  if (state.status === 'adding') {
+  if (state.status === 'adding' && action.type !== 'success') {
     return state
   }
 
@@ -21,6 +20,12 @@ const deckListReducer = (state, action) => {
       return {
         ...state,
         status: 'adding'
+      }
+    }
+    case 'success': {
+      return {
+        ...state,
+        status: 'loaded'
       }
     }
     case 'error': {
@@ -51,14 +56,14 @@ const useDeckList = uid => {
   const createDeck = () => {
     dispatch({ type: 'add_deck' })
 
-    db.collection('decks')
-      .add({
-        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-        uid,
-        name: 'Untitled Deck',
-        cards: []
+    Deck.create(uid)
+      .then(id => {
+        router.push(
+          `/edit-deck?id=${id}&cameFrom=${'create'}&browseContext=${'repeat'}`
+        )
+
+        dispatch({ type: 'success' })
       })
-      .then(docRef => router.push(`/edit-deck?id=${docRef.id}`))
       .catch(error => dispatch({ type: 'error', error }))
   }
 

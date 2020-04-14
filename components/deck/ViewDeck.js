@@ -63,7 +63,15 @@ const AlignRight = styled.div`
   }
 `
 
-export default ({ name, cards, id, deleteDeck, user, copyDeck }) => {
+export default ({
+  name,
+  cards,
+  id,
+  deleteDeck,
+  user,
+  copyDeck,
+  browseContext
+}) => {
   const [deleteModalVisible, toggleDeleteModalVisible] = useToggle()
 
   return (
@@ -73,7 +81,10 @@ export default ({ name, cards, id, deleteDeck, user, copyDeck }) => {
           <DeckName>{name}</DeckName>
           <ButtonsWrapper>
             {user === 'same' ? (
-              <Link key={id} href={`/edit-deck?id=${id}`}>
+              <Link
+                key={id}
+                href={`/edit-deck?id=${id}&cameFrom=view-deck&browseContext=${browseContext}`}
+              >
                 <Button type="button">Edit deck</Button>
               </Link>
             ) : (
@@ -86,14 +97,16 @@ export default ({ name, cards, id, deleteDeck, user, copyDeck }) => {
               </Button>
             )}
 
-            <Link href={`/run-deck?id=${id}`}>
+            <Link
+              href={`/run-deck?id=${id}&cameFrom=view-deck&browseContext=${browseContext}`}
+            >
               <Button type="button">Run deck</Button>
             </Link>
-            {user === 'same' ? (
+            <Link href={`/${browseContext}`}>
+              <BlackButton type="button">Go back</BlackButton>
+            </Link>
+            {user === 'same' && (
               <>
-                <Link href="/repeat">
-                  <BlackButton type="button">Go back</BlackButton>
-                </Link>
                 <DangerButton type="button" onClick={toggleDeleteModalVisible}>
                   Delete
                 </DangerButton>
@@ -120,10 +133,6 @@ export default ({ name, cards, id, deleteDeck, user, copyDeck }) => {
                   </Modal>
                 )}
               </>
-            ) : (
-              <Link href="/all-decks">
-                <BlackButton type="button">Go back</BlackButton>
-              </Link>
             )}
           </ButtonsWrapper>
         </TitleBar>

@@ -1,8 +1,8 @@
 import Navbar from '../components/ui-fragments/Navbar'
 import EditDeck from '../components/deck/EditDeck'
-import deckHOC from '../components/deck/withDeck'
+import withDeck from '../components/deck/withDeck'
 
-const EditDeckContainer = deckHOC(EditDeck, deckName =>
+const EditDeckContainer = withDeck(EditDeck, deckName =>
   deckName ? `Edit: ${deckName}` : 'Edit Deck'
 )
 

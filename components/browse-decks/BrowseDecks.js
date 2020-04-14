@@ -30,7 +30,7 @@ const DeckWrapper = styled.div`
   }
 `
 
-export default ({ decks, createDeck, canAddDeck }) => {
+export default ({ decks, createDeck, canAddDeck, browseContext }) => {
   const fbContext = useContext(firebaseContext)
   const { uid } = fbContext.user || {}
 
@@ -78,8 +78,16 @@ export default ({ decks, createDeck, canAddDeck }) => {
             return deck[1].name.match(regex)
           })
           .map(([id, deck]) => (
-            <Link key={id} href={`/view-deck?id=${id}`} passHref>
-              <DeckBox id={id} edit={uid === deck.uid}>
+            <Link
+              key={id}
+              href={`/view-deck?id=${id}&cameFrom=${'browse'}&browseContext=${browseContext}`}
+              passHref
+            >
+              <DeckBox
+                id={id}
+                edit={uid === deck.uid}
+                browseContext={browseContext}
+              >
                 {deck.name}
               </DeckBox>
             </Link>

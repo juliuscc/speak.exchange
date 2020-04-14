@@ -113,7 +113,7 @@ const CardStatus = styled.div`
   padding: 20px 0;
 `
 
-export default ({ name, cards, id }) => {
+export default ({ name, cards, id, cameFrom, browseContext }) => {
   const [wordState, setWordState] = useState({ index: 0, flip: false })
 
   const next = () =>
@@ -163,7 +163,15 @@ export default ({ name, cards, id }) => {
           >
             Restart
           </StyledButton>
-          <BlackButton onClick={() => Router.back()}>Done</BlackButton>
+          <Link
+            href={
+              cameFrom === 'view-deck'
+                ? `/${cameFrom}?id=${id}&browseContext=${browseContext}`
+                : `/${browseContext}`
+            }
+          >
+            <BlackButton type="button">Done</BlackButton>
+          </Link>
         </ButtonWrapper>
       </TitleWrapper>
       <FlipCardWrapper>

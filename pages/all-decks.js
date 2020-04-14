@@ -4,11 +4,10 @@ import ViewBar from '../components/browse-decks/ViewBar'
 import BrowseDecks from '../components/browse-decks/BrowseDecks'
 import withBrowseDecks from '../components/browse-decks/withBrowseDecks'
 
-const AllDecksContainer = withBrowseDecks(
-  BrowseDecks,
-  { canAddDeck: false },
-  deckName => deckName || 'Community Decks'
-)
+const AllDecksContainer = withBrowseDecks(BrowseDecks, {
+  canAddDeck: false,
+  browseContext: 'all-decks'
+})
 
 const Repeat = () => (
   <>

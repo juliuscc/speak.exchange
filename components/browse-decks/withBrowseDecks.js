@@ -4,7 +4,9 @@ import Spinner, { SpinnerContainer } from '../ui-fragments/Spinner'
 import ErrorBox from '../ui-fragments/ErrorBox'
 import { DeckListsContext } from '../DeckListsContextProvider'
 
-export default (Presentational, { canAddDeck }) => ({ user: { uid } = {} }) => {
+export default (Presentational, { canAddDeck, browseContext }) => ({
+  user: { uid } = {}
+}) => {
   const { communityDecks, userDecks } = useContext(DeckListsContext)
   const { status, decks, error, createDeck } = uid ? userDecks : communityDecks
 
@@ -20,6 +22,7 @@ export default (Presentational, { canAddDeck }) => ({ user: { uid } = {} }) => {
         decks={decks}
         createDeck={createDeck}
         canAddDeck={canAddDeck}
+        browseContext={browseContext}
       />
     )
 

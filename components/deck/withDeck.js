@@ -1,8 +1,15 @@
 import Head from 'next/head'
 import { useContext } from 'react'
+import { useRouter } from 'next/router'
 import Spinner, { SpinnerContainer } from '../ui-fragments/Spinner'
 import ErrorBox from '../ui-fragments/ErrorBox'
 import { DeckContext } from '../DeckContextProvider'
+
+const useCameFrom = () => {
+  const router = useRouter()
+  const { cameFrom, browseContext } = router.query
+  return { cameFrom, browseContext }
+}
 
 export default (Presentational, createTitle) => () => {
   const {
@@ -10,6 +17,8 @@ export default (Presentational, createTitle) => () => {
     localActions: { updateName, updateCard, addCard, removeCard, cancelEdit },
     actions: { submitChanges, deleteDeck, copyDeck }
   } = useContext(DeckContext)
+
+  const { cameFrom, browseContext } = useCameFrom()
 
   if (
     status === 'empty' ||
@@ -46,6 +55,8 @@ export default (Presentational, createTitle) => () => {
           deleteDeck={deleteDeck}
           user={user}
           copyDeck={copyDeck}
+          cameFrom={cameFrom}
+          browseContext={browseContext}
         />
       </>
     )
@@ -71,6 +82,8 @@ export default (Presentational, createTitle) => () => {
           deleteDeck={deleteDeck}
           user={user}
           copyDeck={copyDeck}
+          cameFrom={cameFrom}
+          browseContext={browseContext}
         />
         <Spinner />
       </SpinnerContainer>

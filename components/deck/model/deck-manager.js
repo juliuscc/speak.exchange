@@ -133,7 +133,7 @@ const deckMachine = Machine({
             })),
             (_context, event) => {
               const id = event.data
-              Router.push(`/edit-deck?id=${id}`)
+              Router.push(`/view-deck?id=${id}&browseContext=${'all-decks'}`)
             }
           ]
         }

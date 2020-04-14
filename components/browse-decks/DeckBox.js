@@ -120,9 +120,11 @@ export const HollowDeckBox = ({ loading, onClick }) => (
   </DeckBox>
 )
 
-export const Edit = ({ id }) => {
+export const Edit = ({ id, browseContext }) => {
   return (
-    <Link href={`/edit-deck?id=${id}`}>
+    <Link
+      href={`/edit-deck?id=${id}&cameFrom=${'browse'}&browseContext=${browseContext}`}
+    >
       <ActionButton aria-label="Edit">
         <ToolTip>Edit</ToolTip>
         <StyledEditIcon />
@@ -132,13 +134,15 @@ export const Edit = ({ id }) => {
 }
 
 export default forwardRef(
-  ({ children, onClick, hollow, href, id, edit }, ref) => {
+  ({ children, onClick, hollow, href, id, edit, browseContext }, ref) => {
     return (
       <DeckBox href={href} ref={ref} onClick={onClick} hollow={hollow}>
         <div>{children}</div>
         <ActionWrapper>
-          {edit ? <Edit id={id} /> : null}
-          <Link href={`/run-deck?id=${id}`}>
+          {edit ? <Edit id={id} browseContext={browseContext} /> : null}
+          <Link
+            href={`/run-deck?id=${id}&cameFrom=${'browse'}&browseContext=${browseContext}`}
+          >
             <ActionButton aria-label="Run">
               <ToolTip>Run</ToolTip>
               <StyledPlay />
