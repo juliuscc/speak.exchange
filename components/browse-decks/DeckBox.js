@@ -55,6 +55,11 @@ const DeckBox = styled.a`
 
   @media screen and (max-width: ${screenSizes.smallPhone.max}) {
     width: 90%;
+    margin: 10px 0;
+
+    :first-child {
+      margin-top: 0;
+    }
   }
 `
 

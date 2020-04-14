@@ -10,10 +10,14 @@ const DeckSearch = styled.div`
   align-items: flex-start;
   margin: 10px;
   flex: 0 0 30%;
+  max-width: 400px;
 
   @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    max-width: 600px;
+    margin: 25px 0;
     justify-content: center;
     align-items: center;
+    flex: none;
   }
 `
 const SearchBar = styled.div`
@@ -22,6 +26,7 @@ const SearchBar = styled.div`
   padding-bottom: 10px;
   height: 50px;
   width: 100%;
+
   @media screen and (max-width: ${screenSizes.smallPhone.max}) {
     width: 90%;
   }
