@@ -10,7 +10,6 @@ export const Input = styled.input`
   border-radius: 10px;
   font-size: 18px;
   margin: 0;
-  font-weight: 300;
 `
 
 const SearchInputWrapper = styled.div`

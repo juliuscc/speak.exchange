@@ -20,6 +20,10 @@ const TitleWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   margin: 20px 0;
+
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    flex-direction: column;
+  }
 `
 
 const Title = styled.h1`
@@ -96,9 +100,19 @@ const FlipCardBack = styled.div`
   border-radius: 10px;
 `
 
-const ButtonWrapper = styled.div`
+const ButtonsWrapper = styled.div`
   display: flex;
   flex-direction: row;
+
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    width: 100%;
+    flex-direction: column;
+    & > button {
+      width: 100%;
+      margin: 0;
+      margin-top: 10px;
+    }
+  }
 `
 
 const EditButton = styled(Button)`
@@ -107,6 +121,11 @@ const EditButton = styled(Button)`
   @media screen and (max-width: ${screenSizes.smallPhone.max}) {
     width: 100px;
   }
+`
+
+const FlipCardButtons = styled.div`
+  display: flex;
+  flex-direction: row;
 `
 
 const StyledButton = styled(Button)`
@@ -119,10 +138,6 @@ const StyledButton = styled(Button)`
 `
 const CardStatus = styled.div`
   padding: 20px 0;
-`
-
-const FastClicks = styled(BlackButton)`
-  touch-action: manipulation;
 `
 
 export default ({ name, cards, id, cameFrom, browseContext }) => {
@@ -163,7 +178,7 @@ export default ({ name, cards, id, cameFrom, browseContext }) => {
     <Container>
       <TitleWrapper>
         <Title>{name}</Title>
-        <ButtonWrapper>
+        <ButtonsWrapper>
           <StyledButton
             disabled={wordState.index === 0}
             onClick={() =>
@@ -184,7 +199,7 @@ export default ({ name, cards, id, cameFrom, browseContext }) => {
           >
             <BlackButton type="button">Done</BlackButton>
           </Link>
-        </ButtonWrapper>
+        </ButtonsWrapper>
       </TitleWrapper>
       <FlipCardWrapper>
         <FlipCard key={wordState.index}>
@@ -193,10 +208,10 @@ export default ({ name, cards, id, cameFrom, browseContext }) => {
             <FlipCardBack> {cards[wordState.index].translation}</FlipCardBack>
           </FlipCardInner>
         </FlipCard>
-        <ButtonWrapper>
-          <FastClicks disabled={wordState.index === 0} onClick={back}>
+        <FlipCardButtons>
+          <BlackButton disabled={wordState.index === 0} onClick={back}>
             Back
-          </FastClicks>
+          </BlackButton>
           <StyledButton
             flipButton
             onClick={() =>
@@ -208,13 +223,13 @@ export default ({ name, cards, id, cameFrom, browseContext }) => {
           >
             Flip
           </StyledButton>
-          <FastClicks
+          <BlackButton
             disabled={wordState.index + 1 === cards.length}
             onClick={next}
           >
             Next
-          </FastClicks>
-        </ButtonWrapper>
+          </BlackButton>
+        </FlipCardButtons>
         <CardStatus>{`${wordState.index + 1}/${cards.length}`}</CardStatus>
       </FlipCardWrapper>
     </Container>

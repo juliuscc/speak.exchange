@@ -43,6 +43,7 @@ const GlobalStyle = createGlobalStyle`
 	p {
 		line-height: 1.75;
 		font-size: 16px;
+		font-weight: 300;
 	}
 	
 	a, button {
@@ -54,6 +55,7 @@ const GlobalStyle = createGlobalStyle`
 	}
 
 	* {
+		font-weight: 300;
 		box-sizing:border-box;
 	}
 `

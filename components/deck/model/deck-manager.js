@@ -63,10 +63,6 @@ const containsDeckMachine = {
           localUpdate
         ]
       },
-      SUBMIT: {
-        target: 'uploading',
-        actions: assign(context => ({ editedDeck: context.deck }))
-      },
       COPY: 'copying',
       ...containsDeckEvents
     }
@@ -96,10 +92,7 @@ const containsDeckMachine = {
             deck: event.data,
             editedDeck: null
           })),
-          context =>
-            Router.push(
-              `/view-deck?id=${context.currentId}&browseContext=${'repeat'}`
-            )
+          context => Router.push(`/view-deck?id=${context.currentId}`)
         ]
       },
       onError: 'failure'

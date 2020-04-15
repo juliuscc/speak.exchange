@@ -1,109 +1,97 @@
 import Head from 'next/head'
-import React, { useEffect, useRef, useState } from 'react'
-import Router from 'next/router'
+import React from 'react'
+import { withRouter } from 'next/router'
 import SearchBar from './SearchBar'
 import debounce from '../../utils/debounce'
 
-// Synchronizes the url with the state
-const debouncedURLUpdate = debounce(translationState => {
-  const { translationQuery, language } = translationState
+class SearchExchange extends React.Component {
+  constructor(props) {
+    super(props)
 
-  Router.push(`/?search=${translationQuery}&language=${language}`)
-}, 300)
+    const { router } = props
+    this.inputRef = React.createRef()
 
-const SearchExchange = () => {
-  const [translationState, setTranslationState] = useState({
-    translationQuery: '',
-    language: 'en'
-  })
+    this.debouncedURLUpdate = debounce(() => {
+      const { translationQuery, language } = this.state
 
-  const inputRef = useRef()
+      router.push(
+        `/?search=${translationQuery}&language=${language ? 'fr' : 'en'}`
+      )
+    }, 300)
 
-  // State mutations
-  const languageChange = () =>
-    setTranslationState(({ translationQuery, language: previousLanguage }) => {
-      const newTranslationState = {
-        translationQuery,
-        language: previousLanguage === 'en' ? 'fr' : 'en'
-      }
-
-      debouncedURLUpdate(newTranslationState)
-      return newTranslationState
-    })
-
-  const handleQueryChange = event => {
-    const translationQuery = event.target.value
-
-    setTranslationState(({ language }) => {
-      const newTranslationState = { language, translationQuery }
-
-      debouncedURLUpdate(newTranslationState)
-      return newTranslationState
-    })
+    this.state = { translationQuery: '', language: true }
   }
 
-  const addSpecialCharacter = char => () => {
-    setTranslationState(({ language, translationQuery }) => {
-      const newTranslationState = {
-        language,
-        translationQuery: translationQuery + char
-      }
-
-      debouncedURLUpdate(newTranslationState)
-      inputRef.current.focus()
-      return newTranslationState
+  componentDidMount() {
+    const { router } = this.props
+    this.setState({
+      translationQuery: router.query.search || '',
+      language: router.query.language === 'fr'
     })
+    if (this.inputRef.current) {
+      this.inputRef.current.focus()
+    }
   }
 
-  // Forces a reload of the search results
-  const triggerSearch = () => {
-    const { translationQuery, language } = translationState
+  handleChange = event => {
+    this.setState(
+      { translationQuery: event.target.value },
+      this.debouncedURLUpdate
+    )
+  }
 
-    Router.push(`/?search=${translationQuery}`)
-    Router.push(
+  languageChange = () => {
+    this.setState(
+      prevState => ({
+        language: !prevState.language
+      }),
+      this.debouncedURLUpdate
+    )
+  }
+
+  triggerSearch = () => {
+    const { router } = this.props
+
+    const { translationQuery, language } = this.state
+
+    router.push(`/?search=${translationQuery}`)
+    router.push(
       `/?search=${translationQuery}&language=${language ? 'fr' : 'en'}`
     )
   }
 
-  // Only run after first render
-  useEffect(() => {
-    /**
-     * Next router.query is empty on the first (and second but not third?)
-     * render. We could either update the state on a second render, or we could
-     * use document.location. Any solution is a hack :shrug:
-     * */
+  addSpecialCharacter = char => () => {
+    this.setState(
+      prevState => ({
+        translationQuery: prevState.translationQuery + char
+      }),
+      this.debouncedURLUpdate
+    )
 
-    // eslint-disable-next-line no-undef
-    const queryParams = new URL(document.location).searchParams
+    this.inputRef.current.focus()
+  }
 
-    setTranslationState({
-      translationQuery: queryParams.get('search') || '',
-      language: queryParams.get('language') || 'en'
-    })
-
-    inputRef.current.focus()
-  }, [])
-
-  const { translationQuery, language } = translationState
-
-  return (
-    <>
-      <Head>
-        <title key="title">
-          {translationQuery && `${translationQuery} | `}Speak Exchange
-        </title>
-      </Head>
-      <SearchBar
-        language={language}
-        onLanguageChange={languageChange}
-        translationQuery={translationQuery}
-        onTranslationQueryChange={handleQueryChange}
-        triggerSearch={triggerSearch}
-        addSpecialCharacter={addSpecialCharacter}
-        inputRef={inputRef}
-      />
-    </>
-  )
+  render = () => {
+    const { translationQuery, language } = this.state
+    return (
+      <>
+        <Head>
+          <title key="title">
+            {translationQuery && `${translationQuery} | `}Speak Exchange
+          </title>
+        </Head>
+        <SearchBar
+          language={language}
+          onLanguageChange={this.languageChange}
+          translationQuery={translationQuery}
+          onTranslationQueryChange={this.handleChange}
+          triggerSearch={this.triggerSearch}
+          addSpecialCharacter={this.addSpecialCharacter}
+          inputRef={this.inputRef}
+        />
+      </>
+    )
+  }
 }
 
-export default SearchExchange
+export default withRouter(SearchExchange)

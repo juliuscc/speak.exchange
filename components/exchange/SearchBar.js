@@ -51,15 +51,15 @@ const SlimIconButton = styled(IconButton)`
 const LanguageSelect = ({ language, onClick }) => {
   return (
     <>
-      <Language>{language === 'en' ? 'English' : 'French'}</Language>
+      <Language>{language ? 'French' : 'English'}</Language>
       <SlimIconButton
         onClick={onClick}
         icon={ArrowLeftRight}
         aria-label={`Switch language to translate to ${
-          language === 'en' ? 'English' : 'French'
+          language ? 'French' : 'English'
         }`}
       />
-      <Language> {language === 'en' ? 'French' : 'English'}</Language>
+      <Language> {language ? 'English' : 'French'}</Language>
     </>
   )
 }
