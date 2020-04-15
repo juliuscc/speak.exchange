@@ -3,10 +3,11 @@ import { transparentize } from 'polished'
 import Link from 'next/link'
 import Container from '../ui-fragments/Container'
 import WordCardEdit from './WordCardEdit'
-import { Button, BlackButton } from '../ui-fragments/Button'
+import { Button, BlackButton, DangerButton } from '../ui-fragments/Button'
 import { Input } from '../ui-fragments/Input'
 import screenSizes from '../../utils/screen-sizes'
 import useToggle from '../../utils/useToggle'
+import Modal from '../ui-fragments/Modal'
 
 const Background = styled.fieldset`
   background-color: ${({ theme }) => theme.colors.focusBackground};
@@ -49,7 +50,7 @@ const ButtonsWrapper = styled.div`
   display: flex;
   flex-direction: row;
 
-  & > * {
+  & > button {
     margin-left: 10px;
   }
 
@@ -96,6 +97,15 @@ const HollowWordCard = styled.button`
   }
 `
 
+const AlignRight = styled.div`
+  display: flex;
+  justify-content: flex-end;
+
+  > button {
+    margin-left: 10px;
+  }
+`
+
 export default ({
   id,
   name,
@@ -104,6 +114,7 @@ export default ({
   updateCardWithIndex,
   addCard,
   submitChanges,
+  deleteDeck,
   edited,
   loading,
   removeCardWithIndex,
@@ -114,6 +125,10 @@ export default ({
   // Show the user an option to save once if the deck is newly created.
   const [allowOneSave, toggleAllowOneSave] = useToggle(cameFrom === 'create')
   const oneSave = () => (allowOneSave ? toggleAllowOneSave() : undefined)
+
+  const [deleteModalVisible, toggleDeleteModalVisible] = useToggle()
+
+  const creating = cameFrom === 'create'
 
   return (
     <Background disabled={loading}>
@@ -135,22 +150,80 @@ export default ({
               }}
               disabled={!edited && !allowOneSave}
             >
-              {edited || allowOneSave
+              {// eslint-disable-next-line no-nested-ternary
+              creating
+                ? 'Save Deck'
+                : edited || allowOneSave
                 ? 'Save changes'
                 : 'All changes are saved'}
             </Button>
-            {cameFrom !== 'create' && (
-              <Link
-                href={
-                  cameFrom === 'browse'
-                    ? `/${browseContext}`
-                    : `/${cameFrom}?id=${id}&browseContext=${browseContext}`
-                }
-              >
-                <BlackButton type="button" onClick={cancelEdit}>
+            {creating ? (
+              <>
+                <DangerButton type="button" onClick={toggleDeleteModalVisible}>
                   Cancel
-                </BlackButton>
-              </Link>
+                </DangerButton>
+                {deleteModalVisible && (
+                  <Modal
+                    title="Are you absolutely sure?"
+                    toggleVisible={toggleDeleteModalVisible}
+                  >
+                    <p>
+                      Are you sure you want to cancel creating this deck? This
+                      action cannot be undone.
+                    </p>
+                    <AlignRight>
+                      <BlackButton
+                        type="button"
+                        onClick={toggleDeleteModalVisible}
+                      >
+                        No, go back
+                      </BlackButton>
+                      <DangerButton type="button" onClick={deleteDeck}>
+                        Yes, I&apos;m sure
+                      </DangerButton>
+                    </AlignRight>
+                  </Modal>
+                )}
+              </>
+            ) : (
+              <>
+                <Link
+                  href={
+                    cameFrom === 'browse'
+                      ? `/${browseContext}`
+                      : `/${cameFrom}?id=${id}&browseContext=${browseContext}`
+                  }
+                >
+                  <BlackButton type="button" onClick={cancelEdit}>
+                    Cancel
+                  </BlackButton>
+                </Link>
+                <DangerButton type="button" onClick={toggleDeleteModalVisible}>
+                  Delete Deck
+                </DangerButton>
+                {deleteModalVisible && (
+                  <Modal
+                    title="Are you absolutely sure?"
+                    toggleVisible={toggleDeleteModalVisible}
+                  >
+                    <p>
+                      Do you really want to delete the <strong>{name}</strong>{' '}
+                      deck? This action cannot be undone.
+                    </p>
+                    <AlignRight>
+                      <BlackButton
+                        type="button"
+                        onClick={toggleDeleteModalVisible}
+                      >
+                        No, go back
+                      </BlackButton>
+                      <DangerButton type="button" onClick={deleteDeck}>
+                        Yes, I&apos;m sure
+                      </DangerButton>
+                    </AlignRight>
+                  </Modal>
+                )}
+              </>
             )}
           </ButtonsWrapper>
         </TitleBar>
