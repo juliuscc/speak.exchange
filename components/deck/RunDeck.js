@@ -121,6 +121,10 @@ const CardStatus = styled.div`
   padding: 20px 0;
 `
 
+const FastClicks = styled(BlackButton)`
+  touch-action: manipulation;
+`
+
 export default ({ name, cards, id, cameFrom, browseContext }) => {
   const [wordState, setWordState] = useState({ index: 0, flip: false })
 
@@ -190,9 +194,9 @@ export default ({ name, cards, id, cameFrom, browseContext }) => {
           </FlipCardInner>
         </FlipCard>
         <ButtonWrapper>
-          <BlackButton disabled={wordState.index === 0} onClick={back}>
+          <FastClicks disabled={wordState.index === 0} onClick={back}>
             Back
-          </BlackButton>
+          </FastClicks>
           <StyledButton
             flipButton
             onClick={() =>
@@ -204,12 +208,12 @@ export default ({ name, cards, id, cameFrom, browseContext }) => {
           >
             Flip
           </StyledButton>
-          <BlackButton
+          <FastClicks
             disabled={wordState.index + 1 === cards.length}
             onClick={next}
           >
             Next
-          </BlackButton>
+          </FastClicks>
         </ButtonWrapper>
         <CardStatus>{`${wordState.index + 1}/${cards.length}`}</CardStatus>
       </FlipCardWrapper>
