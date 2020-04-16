@@ -20,6 +20,10 @@ const TitleWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   margin: 20px 0;
+
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    flex-direction: column;
+  }
 `
 
 const Title = styled.h1`
@@ -47,7 +51,7 @@ const FlipCard = styled.div`
   border-radius: 10px;
 
   @media screen and (max-width: ${screenSizes.smallPhone.max}) {
-    width: 300px;
+    width: 100%;
     height: 200px;
   }
 `
@@ -96,7 +100,21 @@ const FlipCardBack = styled.div`
   border-radius: 10px;
 `
 
-const ButtonWrapper = styled.div`
+const ButtonsWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    width: 100%;
+    flex-direction: column;
+    & > button {
+      width: 100%;
+      margin: 0;
+      margin-top: 10px;
+    }
+  }
+`
+
+const FlipCardButtons = styled.div`
   display: flex;
   flex-direction: row;
 `
@@ -163,7 +181,7 @@ export default ({ name, cards, id, cameFrom, browseContext }) => {
     <Container>
       <TitleWrapper>
         <Title>{name}</Title>
-        <ButtonWrapper>
+        <ButtonsWrapper>
           <StyledButton
             disabled={wordState.index === 0}
             onClick={() =>
@@ -184,7 +202,7 @@ export default ({ name, cards, id, cameFrom, browseContext }) => {
           >
             <BlackButton type="button">Done</BlackButton>
           </Link>
-        </ButtonWrapper>
+        </ButtonsWrapper>
       </TitleWrapper>
       <FlipCardWrapper>
         <FlipCard key={wordState.index}>
@@ -193,7 +211,7 @@ export default ({ name, cards, id, cameFrom, browseContext }) => {
             <FlipCardBack> {cards[wordState.index].translation}</FlipCardBack>
           </FlipCardInner>
         </FlipCard>
-        <ButtonWrapper>
+        <FlipCardButtons>
           <FastClicks disabled={wordState.index === 0} onClick={back}>
             Back
           </FastClicks>
@@ -214,7 +232,7 @@ export default ({ name, cards, id, cameFrom, browseContext }) => {
           >
             Next
           </FastClicks>
-        </ButtonWrapper>
+        </FlipCardButtons>
         <CardStatus>{`${wordState.index + 1}/${cards.length}`}</CardStatus>
       </FlipCardWrapper>
     </Container>

@@ -27,6 +27,7 @@ const DeckWrapper = styled.div`
   @media screen and (max-width: ${screenSizes.smallPhone.max}) {
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
   }
 `
 
