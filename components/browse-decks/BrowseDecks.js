@@ -5,6 +5,7 @@ import DeckSearch from './DeckSearch'
 import DeckBox, { HollowDeckBox } from './DeckBox'
 import screenSizes from '../../utils/screen-sizes'
 import { firebaseContext } from '../FireBaseAuthProvider'
+import WelcomeRepeat from './WelcomeRepeat'
 
 const DeckView = styled.div`
   height: 100vh;
@@ -71,28 +72,31 @@ export default ({ decks, createDeck, canAddDeck, browseContext }) => {
         setSearchWord={setSearchWord}
       />
       <DeckWrapper>
-        {canAddDeck ? <HollowDeckBox onClick={createDeck} /> : null}
-        {Object.entries(decks)
-          .sort(sortFunction(sortType))
-          .filter(deck => {
-            const regex = new RegExp(searchWord, 'gi')
-            return deck[1].name.match(regex)
-          })
-          .map(([id, deck]) => (
-            <Link
-              key={id}
-              href={`/view-deck?id=${id}&cameFrom=${'browse'}&browseContext=${browseContext}`}
-              passHref
-            >
-              <DeckBox
-                id={id}
-                edit={uid === deck.uid}
-                browseContext={browseContext}
+        <>
+          {canAddDeck ? <HollowDeckBox onClick={createDeck} /> : null}
+          {Object.entries(decks)
+            .sort(sortFunction(sortType))
+            .filter(deck => {
+              const regex = new RegExp(searchWord, 'gi')
+              return deck[1].name.match(regex)
+            })
+            .map(([id, deck]) => (
+              <Link
+                key={id}
+                href={`/view-deck?id=${id}&cameFrom=${'browse'}&browseContext=${browseContext}`}
+                passHref
               >
-                {deck.name}
-              </DeckBox>
-            </Link>
-          ))}
+                <DeckBox
+                  id={id}
+                  edit={uid === deck.uid}
+                  browseContext={browseContext}
+                >
+                  {deck.name}
+                </DeckBox>
+              </Link>
+            ))}
+          {Object.keys(decks).length === 0 ? <WelcomeRepeat /> : null}
+        </>
       </DeckWrapper>
     </DeckView>
   )
