@@ -42,10 +42,10 @@ export default ({ decks, createDeck, canAddDeck, browseContext }) => {
   const sortFunction = obj => {
     if (obj.type === 'alphabetical') {
       return (a, b) => {
-        if (a[1].name > b[1].name) {
+        if (a[1].name.toLowerCase() > b[1].name.toLowerCase()) {
           return obj.order
         }
-        if (a[1].name < b[1].name) {
+        if (a[1].name.toLowerCase() < b[1].name.toLowerCase()) {
           return -obj.order
         }
         return 0
