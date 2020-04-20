@@ -68,6 +68,14 @@ const Language = styled.div`
   width: 75px;
   text-align: center;
   font-weight: 600;
+
+  @media screen and (max-width: ${screenSizes.tablet.max}) {
+    width: 50px;
+  }
+
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    width: 75px;
+  }
 `
 
 const CharacterSelect = styled.div`
@@ -90,20 +98,26 @@ const CharacterSelect = styled.div`
 `
 
 const CharButton = styled.button`
+  width: 1.5em;
   text-align: center;
-  padding: 0 6px;
-  background-color: ${({ theme }) => theme.colors.focusBackground};
+  padding: 2px 0px;
+  background-color: ${({ theme }) => theme.colors.white};
   border: none;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
+  margin: 2px;
 
   @media screen and (max-width: ${screenSizes.tablet.max}) {
-    padding: 0 5px;
+    width: 1.1em;
   }
   :focus {
     outline: none;
     box-shadow: 0px 0px 10px 2px ${({ theme }) => theme.colors.border};
+  }
+
+  :hover {
+    background-color: ${({ theme }) => theme.colors.border};
   }
 `
 
