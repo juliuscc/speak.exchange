@@ -26,6 +26,11 @@ export default class Deck {
     return new Deck(this.name, newCards, this.uid, this.createdAt)
   }
 
+  appendCard(card) {
+    const newCards = [...this.cards, card]
+    return new Deck(this.name, newCards, this.uid, this.createdAt)
+  }
+
   removeCard(cardIndex) {
     const newCards = this.cards.filter((_el, i) => i !== cardIndex)
     return new Deck(this.name, newCards, this.uid, this.createdAt)

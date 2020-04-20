@@ -15,7 +15,6 @@ const DeckBox = styled.a`
   width: 150px;
   height: 150px;
   padding: 10px;
-  padding-bottom: 20px;
   margin: 10px;
   border-radius: 10px;
   justify-content: center;
@@ -55,7 +54,7 @@ const DeckBox = styled.a`
   }
 
   @media screen and (max-width: ${screenSizes.smallPhone.max}) {
-    width: 90%;
+    width: 95%;
     margin: 10px 0;
 
     :first-child {
@@ -140,20 +139,27 @@ export const Edit = ({ id, browseContext }) => {
 }
 
 export default forwardRef(
-  ({ children, onClick, hollow, href, id, edit, browseContext }, ref) => {
+  (
+    { children, onClick, hollow, href, id, edit, browseContext, noRun },
+    ref
+  ) => {
     return (
       <DeckBox href={href} ref={ref} onClick={onClick} hollow={hollow}>
         <div>{children}</div>
         <ActionWrapper>
           {edit ? <Edit id={id} browseContext={browseContext} /> : null}
-          <Link
-            href={`/run-deck?id=${id}&cameFrom=${'browse'}&browseContext=${browseContext}`}
-          >
-            <ActionButton aria-label="Run">
-              <ToolTip>Run</ToolTip>
-              <StyledPlay />
-            </ActionButton>
-          </Link>
+          {noRun ? null : (
+            <>
+              <Link
+                href={`/run-deck?id=${id}&cameFrom=${'browse'}&browseContext=${browseContext}`}
+              >
+                <ActionButton aria-label="Run">
+                  <ToolTip>Run</ToolTip>
+                  <StyledPlay />
+                </ActionButton>
+              </Link>
+            </>
+          )}
         </ActionWrapper>
       </DeckBox>
     )

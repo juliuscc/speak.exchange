@@ -1,3 +1,4 @@
+import { MessageSquareAdd } from 'styled-icons/boxicons-solid/MessageSquareAdd'
 import Head from 'next/head'
 import styled from 'styled-components'
 import screenSizes from '../../utils/screen-sizes'
@@ -6,6 +7,9 @@ import Container from '../ui-fragments/Container'
 import ErrorBox from '../ui-fragments/ErrorBox'
 import Spinner from '../ui-fragments/Spinner'
 import Welcome from './Welcome'
+import { IconButton } from '../ui-fragments/Button'
+import useToggle from '../../utils/useToggle'
+import AddToDeckModal from './AddToDeckModal'
 
 const wordClassWidth = '50px'
 
@@ -44,12 +48,17 @@ const WordClass = styled.span`
   color: ${({ theme }) => theme.colors.primaryMuted};
   text-align: right;
   margin-right: 10px;
+  margin-bottom: 5px;
   align-self: center;
   display: block;
 
   @media screen and (max-width: ${screenSizes.smallPhone.max}) {
     display: none;
   }
+`
+
+const SearchResult = styled.div`
+  position: relative;
 `
 
 const TranslationContainer = styled.div`
@@ -61,10 +70,51 @@ const TranslationContainer = styled.div`
   grid-template-columns: auto;
   grid-column-gap: 10px;
   padding: 15px;
+  box-sizing: border-box;
+  border-bottom-style: solid;
+  border-width: thick;
+  border-color: transparent;
 
   @media screen and (min-width: ${screenSizes.smallPhone.max}) {
     grid-template-columns: 2fr 3fr;
   }
+`
+
+const AddToDeckContainer = styled.div`
+  &:hover ~ div {
+    border-bottom-style: solid;
+    border-width: thick;
+    border-color: ${({ theme }) => theme.colors.primary};
+  }
+
+  :hover {
+    opacity: 50%;
+  }
+`
+
+const AddToDeckButton = styled.div`
+  display: none;
+  position: absolute;
+  text-align: right;
+  padding: 5px;
+  bottom: 5px;
+  right: 35px;
+  cursor: pointer;
+  text-color: ${({ theme }) => theme.colors.black};
+
+  @media screen and (min-width: ${screenSizes.smallPhone.max}) {
+    display: block;
+  }
+`
+
+const AddToDeckIcon = styled(IconButton)`
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 6px;
+  right: 5px;
 `
 
 const WordContainer = styled.div`
@@ -154,23 +204,48 @@ const HeaderGrid = styled.div`
 `
 
 const ResultRow = ({ from, toType, to, example, index }) => {
+  const [deckModalVisible, toggleDeckModalVisible] = useToggle()
   // eslint-disable-next-line no-control-regex
   const trimmedFrom = from.replace('\u21D2', '')
   // eslint-disable-next-line no-control-regex
   const trimmedTo = to.replace('\u21D2', '')
+
   return (
     <>
       <WordClass>{toType}</WordClass>
-      <TranslationContainer colored={index % 2 === 0}>
-        <WordContainer>
-          <OriginalWord>{trimmedFrom}</OriginalWord>
-          <TranslatedWord>{trimmedTo}</TranslatedWord>
-        </WordContainer>
-        <ExampleContainer>
-          <Example>{example.from}</Example>
-          <Example>{example.to}</Example>
-        </ExampleContainer>
-      </TranslationContainer>
+      <SearchResult>
+        <AddToDeckContainer>
+          <AddToDeckButton
+            onClick={toggleDeckModalVisible}
+            aria-label="Add word to deck"
+          >
+            Add word to deck
+          </AddToDeckButton>
+          <AddToDeckIcon
+            onClick={toggleDeckModalVisible}
+            icon={MessageSquareAdd}
+            aria-label="Add word to deck"
+          />
+        </AddToDeckContainer>
+
+        <AddToDeckModal
+          to={trimmedTo}
+          from={trimmedFrom}
+          deckModalVisible={deckModalVisible}
+          toggleDeckModalVisible={toggleDeckModalVisible}
+        />
+
+        <TranslationContainer colored={index % 2 === 0}>
+          <WordContainer>
+            <OriginalWord>{trimmedFrom}</OriginalWord>
+            <TranslatedWord>{trimmedTo}</TranslatedWord>
+          </WordContainer>
+          <ExampleContainer>
+            <Example>{example.from}</Example>
+            <Example>{example.to}</Example>
+          </ExampleContainer>
+        </TranslationContainer>
+      </SearchResult>
     </>
   )
 }

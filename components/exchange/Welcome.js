@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import Link from 'next/link'
+import { MessageSquareAdd } from 'styled-icons/boxicons-solid/MessageSquareAdd'
 import screenSizes from '../../utils/screen-sizes'
 
 const WelcomeHeader = styled.h1`
@@ -31,6 +33,14 @@ const ShortExplanation = styled.p`
   font-weight: 600;
 `
 
+const Icon = styled.svg`
+  color: ${({ theme }) => theme.colors.primary};
+  width: 20px;
+  display: inline-block;
+  position: relative;
+  top: -3px;
+`
+
 export default () => (
   <>
     <WelcomeHeader>Welcome to speak.exchange!</WelcomeHeader>
@@ -42,6 +52,16 @@ export default () => (
       <strong>If a word exists in both languages,</strong> like{' '}
       <em>&quot;chaise&quot;</em>, then switch translation direction by clicking
       the switch button above the search box.
+    </WelcomeText>
+    <WelcomeText>
+      <strong>To add a word and its translation to a flashcard deck, </strong>
+      then click on the <Icon as={MessageSquareAdd} /> button in the
+      bottom-right corner of a search result. To learn more about learning new
+      words with flashcards, check out{' '}
+      <Link href="/repeat">
+        <a href="/repeat">speak.repeat</a>
+      </Link>
+      .
     </WelcomeText>
     <OnlyDesktop>
       <WelcomeText>
