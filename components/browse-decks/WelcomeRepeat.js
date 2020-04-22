@@ -28,7 +28,7 @@ export default () => (
     </WelcomeText>
     <WelcomeText>
       Click the Pencil icon to <strong>edit</strong> your deck or the play icon
-      to <strong>run</strong> the words in that deck and practise, flipping them
+      to <strong>run</strong> the words in that deck and practice, flipping them
       one by one, like you would with flashcards
     </WelcomeText>
   </WelcomeContainer>
