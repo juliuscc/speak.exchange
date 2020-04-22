@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import { withRouter } from 'next/router'
 import React from 'react'
 import Link from 'next/link'
-import StyledLink from '../ui-fragments/StyledLink'
 
 const ViewBarBox = styled.div`
   width: 100%;
@@ -10,23 +9,30 @@ const ViewBarBox = styled.div`
   display: flex;
   flex-direction: row;
   background-color: ${({ theme }) => theme.colors.focusBackground};
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
 `
 
-const ViewLinks = styled.button`
-  background-color: ${({ theme }) => theme.colors.focusBackground};
-  border: none;
-  height: 80px;
+const ViewLinks = styled.a`
   color: ${({ theme }) => theme.colors.black};
   font-family: ${({ theme }) => theme.fonts.text};
   font-size: 15px;
-  font-weight: 300;
+  height: 100%;
+  padding: 0 20px;
   cursor: pointer;
+  text-decoration: none;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background-color: ${({ active, theme }) =>
+    active ? theme.colors.lightgrey : null};
+  font-weight: ${({ active }) => (active ? '600' : '300')};
+  flex-direction: column;
+  opacity: ${({ active, theme }) =>
+    active ? 1 : theme.transparencies.inactive};
 
-  :focus {
-    outline: none;
-    box-shadow: 0px 0px 10px 2px ${({ theme }) => theme.colors.border};
+  :hover {
+    opacity: 1;
   }
 `
 
@@ -34,15 +40,13 @@ const ViewBar = ({ router: { pathname } }) => {
   return (
     <ViewBarBox>
       <Link href="/repeat">
-        <StyledLink active={pathname === '/repeat'}>
-          <ViewLinks>My Decks</ViewLinks>
-        </StyledLink>
+        <ViewLinks active={pathname === '/repeat'}>My Decks</ViewLinks>
       </Link>
 
       <Link href="/all-decks">
-        <StyledLink active={pathname === '/all-decks'}>
-          <ViewLinks>Browse Community Decks</ViewLinks>
-        </StyledLink>
+        <ViewLinks active={pathname === '/all-decks'}>
+          Browse Community Decks
+        </ViewLinks>
       </Link>
     </ViewBarBox>
   )
