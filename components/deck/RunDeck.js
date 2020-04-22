@@ -85,19 +85,10 @@ const FlipCardFront = styled.div`
     overflow: hidden;
   }
 `
-const FlipCardBack = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
+const FlipCardBack = styled(FlipCardFront)`
   background-color: ${({ theme }) => theme.colors.primaryHighlighted};
   color: ${({ theme }) => theme.colors.white};
-  font-size: 40px;
   transform: rotateY(180deg);
-  border-radius: 10px;
 `
 
 const ButtonsWrapper = styled.div`
