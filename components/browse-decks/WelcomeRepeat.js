@@ -2,6 +2,8 @@ import styled from 'styled-components'
 
 const WelcomeContainer = styled.div`
   display: inline;
+  width: 80%;
+  margin: 0 auto;
 `
 
 const WelcomeHeader = styled.h1`
@@ -17,7 +19,6 @@ const WelcomeText = styled.p`
 export default () => (
   <WelcomeContainer>
     <WelcomeHeader>Welcome to speak.repeat!</WelcomeHeader>
-    <WelcomeText />
     <WelcomeText>
       <strong>To get started,</strong> start by clicking the plus icon to create
       a new deck of words

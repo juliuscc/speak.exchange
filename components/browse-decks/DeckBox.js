@@ -15,7 +15,7 @@ const DeckBox = styled.a`
   width: 150px;
   height: 150px;
   padding: 10px;
-  margin: 10px;
+  margin: ${props => (props.noDecks ? '0 auto' : '10px')};
   border-radius: 10px;
   justify-content: center;
   align-items: center;
@@ -119,8 +119,14 @@ const StyledPlay = styled(Play)`
   }
 `
 
-export const HollowDeckBox = ({ loading, onClick }) => (
-  <DeckBox hollow as="button" onClick={onClick} disabled={loading}>
+export const HollowDeckBox = ({ loading, onClick, noDecks }) => (
+  <DeckBox
+    hollow
+    as="button"
+    onClick={onClick}
+    disabled={loading}
+    noDecks={noDecks}
+  >
     {loading ? <RelativeSpinner /> : '+'}
   </DeckBox>
 )

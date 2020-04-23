@@ -19,10 +19,10 @@ const DeckView = styled.div`
 const DeckWrapper = styled.div`
   width: auto;
   display: flex;
-  flex-direction: row;
+  flex-direction: ${props => (props.noDecks ? 'column' : 'row')};
   flex-wrap: wrap;
   justify-content: flex-start;
-  align-content: flex-start;
+  align-content: ${props => (props.noDecks ? 'center' : 'flex-start')};
   background-color: ${({ theme }) => theme.colors.white};
 
   @media screen and (max-width: ${screenSizes.smallPhone.max}) {
@@ -71,9 +71,16 @@ export default ({ decks, createDeck, canAddDeck, browseContext }) => {
         searchWord={searchWord}
         setSearchWord={setSearchWord}
       />
-      <DeckWrapper>
+      <DeckWrapper noDecks={Object.keys(decks).length === 0}>
         <>
-          {canAddDeck ? <HollowDeckBox onClick={createDeck} /> : null}
+          {Object.keys(decks).length === 0 ? <WelcomeRepeat /> : null}
+
+          {canAddDeck ? (
+            <HollowDeckBox
+              onClick={createDeck}
+              noDecks={Object.keys(decks).length === 0}
+            />
+          ) : null}
           {Object.entries(decks)
             .sort(sortFunction(sortType))
             .filter(deck => {
@@ -95,7 +102,6 @@ export default ({ decks, createDeck, canAddDeck, browseContext }) => {
                 </DeckBox>
               </Link>
             ))}
-          {Object.keys(decks).length === 0 ? <WelcomeRepeat /> : null}
         </>
       </DeckWrapper>
     </DeckView>
