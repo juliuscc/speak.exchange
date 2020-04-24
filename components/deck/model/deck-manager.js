@@ -59,7 +59,14 @@ const containsDeckMachine = {
       LOCAL_UPDATE: {
         target: 'edited',
         actions: [
-          assign(context => ({ editedDeck: context.deck })),
+          assign(context => ({
+            editedDeck: new Deck(
+              context.deck.name,
+              context.deck.cards,
+              context.deck.uid,
+              context.deck.createdAt
+            )
+          })),
           localUpdate
         ]
       },
