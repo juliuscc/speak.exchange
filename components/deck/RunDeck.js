@@ -5,6 +5,7 @@ import Link from 'next/link'
 import screenSizes from '../../utils/screen-sizes'
 import { Button, BlackButton } from '../ui-fragments/Button'
 import Container from '../ui-fragments/Container'
+import useToggle from '../../utils/useToggle'
 
 const EmptyDeck = styled.div`
   display: flex;
@@ -21,7 +22,7 @@ const TitleWrapper = styled.div`
   justify-content: space-between;
   margin: 20px 0;
 
-  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+  @media screen and (max-width: ${screenSizes.tablet.max}) {
     flex-direction: column;
   }
 `
@@ -94,6 +95,12 @@ const FlipCardBack = styled(FlipCardFront)`
 const ButtonsWrapper = styled.div`
   display: flex;
   flex-direction: row;
+
+  @media screen and (max-width: ${screenSizes.tablet.max}) {
+    align-items: center;
+    justify-content: center;
+  }
+
   @media screen and (max-width: ${screenSizes.smallPhone.max}) {
     width: 100%;
     flex-direction: column;
@@ -126,6 +133,10 @@ const StyledButton = styled(Button)`
     width: ${props => (props.flipButton ? '100px' : 'auto')};
   }
 `
+
+const SwitchButton = styled(Button)`
+  width: 170px;
+`
 const CardStatus = styled.div`
   padding: 20px 0;
 `
@@ -136,6 +147,7 @@ const FastClicks = styled(BlackButton)`
 
 export default ({ name, cards, id, cameFrom, browseContext }) => {
   const [wordState, setWordState] = useState({ index: 0, flip: false })
+  const [originalWordFront, setOriginalWordFront] = useToggle()
 
   const next = () =>
     setWordState(({ index }) =>
@@ -173,6 +185,14 @@ export default ({ name, cards, id, cameFrom, browseContext }) => {
       <TitleWrapper>
         <Title>{name}</Title>
         <ButtonsWrapper>
+          <SwitchButton
+            onClick={setOriginalWordFront}
+            title="Switch order of words"
+            aria-label="Switch order of words"
+          >
+            {originalWordFront ? 'Definition > Term' : 'Term > Definition'}
+          </SwitchButton>
+
           <StyledButton
             disabled={wordState.index === 0}
             onClick={() =>
@@ -198,8 +218,21 @@ export default ({ name, cards, id, cameFrom, browseContext }) => {
       <FlipCardWrapper>
         <FlipCard key={wordState.index}>
           <FlipCardInner flip={wordState.flip}>
-            <FlipCardFront> {cards[wordState.index].original}</FlipCardFront>
-            <FlipCardBack> {cards[wordState.index].translation}</FlipCardBack>
+            {originalWordFront ? (
+              <>
+                <FlipCardFront>{cards[wordState.index].original}</FlipCardFront>
+                <FlipCardBack>
+                  {cards[wordState.index].translation}
+                </FlipCardBack>
+              </>
+            ) : (
+              <>
+                <FlipCardFront>
+                  {cards[wordState.index].translation}
+                </FlipCardFront>
+                <FlipCardBack> {cards[wordState.index].original}</FlipCardBack>
+              </>
+            )}
           </FlipCardInner>
         </FlipCard>
         <FlipCardButtons>
