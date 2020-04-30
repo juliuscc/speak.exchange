@@ -1,36 +1,92 @@
+import Link from 'next/link'
 import styled from 'styled-components'
-
-const WelcomeContainer = styled.div`
-  display: inline;
-  width: 80%;
-  margin: 0 auto;
-`
+import { PlusSquare } from 'styled-icons/boxicons-solid/PlusSquare'
+import Container from '../ui-fragments/Container'
+import { Button, HollowButton } from '../ui-fragments/Button'
+import screenSizes from '../../utils/screen-sizes'
 
 const WelcomeHeader = styled.h1`
   color: ${({ theme }) => theme.colors.primaryHighlighted};
   text-align: center;
 `
 
-const WelcomeText = styled.p`
-  font-size: 18px;
-  display: inline-block;
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    button {
+      width: 100%;
+    }
+  }
 `
 
-export default () => (
-  <WelcomeContainer>
-    <WelcomeHeader>Welcome to speak.repeat!</WelcomeHeader>
-    <WelcomeText>
-      <strong>To get started,</strong> start by clicking the plus icon to create
-      a new deck of words
-    </WelcomeText>
-    <WelcomeText>
-      Use different decks for different word translations you want to memorize
-      and practise in the future.
-    </WelcomeText>
-    <WelcomeText>
-      Click the Pencil icon to <strong>edit</strong> your deck or the play icon
-      to <strong>run</strong> the words in that deck and practice, flipping them
-      one by one, like you would with flashcards
-    </WelcomeText>
-  </WelcomeContainer>
+const TextIcon = styled.svg`
+  color: ${({ theme }) => theme.colors.white};
+  height: 40px;
+  display: inline-block;
+  margin-left: 10px;
+
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    height: 30px;
+  }
+`
+
+const CreateDeck = styled(Button)`
+  font-size: 20px;
+  height: auto;
+  padding: 10px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+
+  span {
+    flex: 1;
+  }
+
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+`
+
+const SharedDecks = styled(HollowButton)`
+  font-size: 15px;
+  border: 1px solid;
+  @media screen and (max-width: ${screenSizes.smallPhone.max}) {
+    font-size: 14px;
+  }
+`
+
+const ImageWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`
+
+const WelcomeGraphic = styled.img`
+  max-height: 35vh;
+  height: 40vw;
+  margin-top: 22px;
+`
+
+export default ({ createDeck }) => (
+  <Container>
+    <ImageWrapper>
+      <WelcomeGraphic src="/wordcloud.png" />
+    </ImageWrapper>
+    <WelcomeHeader>Huh, no decks?</WelcomeHeader>
+    <ButtonWrapper>
+      <CreateDeck onClick={createDeck}>
+        <span>Click here to create your first deck!</span>
+        <TextIcon as={PlusSquare} />
+      </CreateDeck>
+      <Link href="/all-decks">
+        <SharedDecks>Or click here to view decks shared by others</SharedDecks>
+      </Link>
+    </ButtonWrapper>
+  </Container>
 )

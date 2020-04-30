@@ -63,6 +63,9 @@ export default ({ decks, createDeck, canAddDeck, browseContext }) => {
     }
   }
 
+  if (canAddDeck && Object.keys(decks).length === 0)
+    return <WelcomeRepeat createDeck={createDeck} />
+
   return (
     <DeckView>
       <DeckSearch
@@ -73,8 +76,6 @@ export default ({ decks, createDeck, canAddDeck, browseContext }) => {
       />
       <DeckWrapper noDecks={Object.keys(decks).length === 0}>
         <>
-          {Object.keys(decks).length === 0 ? <WelcomeRepeat /> : null}
-
           {canAddDeck ? (
             <HollowDeckBox
               onClick={createDeck}

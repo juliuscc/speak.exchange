@@ -39,6 +39,19 @@ export const BlackButton = styled(Button)`
   background-color: ${({ theme }) => theme.colors.black};
 `
 
+export const HollowButton = styled(Button)`
+  border-color: ${({ theme }) => theme.colors.primary};
+  border-width: 4px;
+  background-color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.primary};
+
+  :hover:not(:disabled) {
+    background-color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.white};
+    opacity: 1;
+  }
+`
+
 const StyledIcon = styled.svg`
   color: ${({ theme }) => theme.colors.white};
   width: 20px;
