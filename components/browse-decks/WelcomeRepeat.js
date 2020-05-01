@@ -50,12 +50,15 @@ const CreateDeck = styled(Button)`
   @media screen and (max-width: ${screenSizes.smallPhone.max}) {
     font-size: 16px;
     padding: 10px 20px;
+    margin-bottom: 10px;
   }
 `
 
 const SharedDecks = styled(HollowButton)`
   font-size: 15px;
   border: 1px solid;
+  margin-bottom: 20px;
+
   @media screen and (max-width: ${screenSizes.smallPhone.max}) {
     font-size: 14px;
   }
