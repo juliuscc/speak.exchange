@@ -7,6 +7,7 @@
 <details>
   <summary>Table of contents</summary>
   
+- [How to setup page](#how-to-setup-page)
 - [What have we done?](#what-have-we-done)
 - [What do we plan to do next?](#what-do-we-plan-to-do-next)
 - [How is our project structured?](#how-is-our-project-structured)
@@ -16,6 +17,24 @@
   - [Miscellaneous](#miscellaneous)
 - [Web App Link and Repository Link](#web-app-link-and-repository-link)
 </details>
+
+## How to setup page
+
+You can visit [speak.exchange](https://www.speak.exchange) for the most current version of the page, or setup the page locally. To setup the page locally you have to have [Node.js](https://nodejs.org/en/) installed.
+
+Begin by installing all dependencies by running the following command:
+
+```
+npm install
+```
+
+Then build and serve the page by running the following command:
+
+```
+npm run ci-build && npx serve out
+```
+
+The page is now available on [localhost:5000](http://localhost:5000), or on the IP-address in the terminal. If your mobile device is connected to the same network you can use the IP-address to visit the page using your mobile device.
 
 ## What have we done?
 

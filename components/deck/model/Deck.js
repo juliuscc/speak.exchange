@@ -67,7 +67,7 @@ export default class Deck {
   }
 }
 
-// Static CRUD methods
+// Static CRUD (Create Read Update Delete) methods
 Deck.create = uid =>
   db
     .collection('decks')
