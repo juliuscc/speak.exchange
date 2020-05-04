@@ -126,6 +126,9 @@ export default ({ to, from, deckModalVisible, toggleDeckModalVisible }) => {
             <>
               <ModalContentContainer>
                 <ModalContent>
+                  {Object.entries(userDecks.decks).length === 0
+                    ? `You don't seem to have any decks. Go to speak.repeat to create one.`
+                    : undefined}
                   {Object.entries(userDecks.decks).map(([id, deck]) => (
                     <DeckBoxContainer
                       key={id}

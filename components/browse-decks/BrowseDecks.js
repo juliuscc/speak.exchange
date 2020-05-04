@@ -8,7 +8,6 @@ import { firebaseContext } from '../FireBaseAuthProvider'
 import WelcomeRepeat from './WelcomeRepeat'
 
 const DeckView = styled.div`
-  height: 100vh;
   display: flex;
 
   @media screen and (max-width: ${screenSizes.smallPhone.max}) {

@@ -73,6 +73,7 @@ const SignIn = styled.button`
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
+  background-color: transparent;
 `
 const PopUp = ({ photoUrl, displayName, signOut }) => {
   const [visible, toggleVisible] = useToggle(false)
