@@ -1,0 +1,21 @@
+The running app: 
+
+First of all, I think your project idea is good and the over all functionality of your app is good. I also think that the layout is nice as well, even though there is some room for improvements. I have a few ideas on possible improvements: Regarding the speak exchange: 
+
+1. It might be good if there is some text on the start page explaining what kind of application this is and what type of input that is expected. 
+
+2. Some input data will cause minor errors. For example when the input is the English word 'hello' some rows will only have a French sentence and some rows won't have a sentence at all. 
+
+3. I think it is nice that there are som special characters above the search bar, making it easy for the user to use. But, it is not very clear that those characters are buttons and why they are there. Maybe it could be changed to be a bit more intuitive. 
+
+Regarding the speak repeat: 
+
+1. The functionality is good but when adding several entities to a deck, the deck gets very long and the user needs to scroll a lot. This makes it difficult for the user to get an overview of the complete deck. Maybe it doesn't have to be listed downwards, maybe you could find another way to present the entities. 
+
+2. I don't understand how to use the search bar, filter, sort and tag. Perhaps it could be made more clear how to use those functions. 
+
+The code: 
+
+I think the file structure is clear and over all the files are named in a meaningful way. The code is also properly indented and formatted. It seems like there are many files containing lots of CSS and maybe that could be reduced to some extent by reusing some of the code. But I also think it is fine the way it is. 
+
+Great work and good luck with the rest of the projekt!
