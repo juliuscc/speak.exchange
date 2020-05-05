@@ -145,7 +145,7 @@ const FastClicks = styled(BlackButton)`
   touch-action: manipulation;
 `
 
-export default ({ name, cards, id, cameFrom, browseContext }) => {
+export default ({ name, cards, id, cameFrom, browseContext, user }) => {
   const [wordState, setWordState] = useState({ index: 0, flip: false })
   const [originalWordFront, setOriginalWordFront] = useToggle()
 
@@ -171,10 +171,15 @@ export default ({ name, cards, id, cameFrom, browseContext }) => {
           <BlackButton onClick={() => Router.back()}>Done</BlackButton>
         </TitleWrapper>
         <EmptyDeck>
-          This deck is empty. Add cards by editing the deck.
-          <Link key={id} href={`/edit-deck?id=${id}`}>
-            <EditButton type="Edit">Edit deck</EditButton>
-          </Link>
+          Uh oh! This deck is empty. {''}
+          {user === 'same' ? (
+            <>
+              Add cards by editing the deck
+              <Link key={id} href={`/edit-deck?id=${id}`}>
+                <EditButton type="Edit">Edit deck</EditButton>
+              </Link>
+            </>
+          ) : null}
         </EmptyDeck>
       </Container>
     )
