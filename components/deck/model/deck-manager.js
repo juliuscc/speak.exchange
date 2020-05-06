@@ -8,6 +8,9 @@ import Deck from './Deck'
  *
  * Visit https://xstate.js.org/viz/?gist=a1eb632d72c26fb090557d74b033585f for a
  * visualization of this state machine.
+ *
+ * The link is not updated to the most current state machine, but it is easier
+ * to follow and understand. It is a good visual model for the state machine.
  */
 
 const localUpdate = assign((context, event) => {
