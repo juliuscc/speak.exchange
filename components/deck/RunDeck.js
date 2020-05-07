@@ -175,7 +175,10 @@ export default ({ name, cards, id, cameFrom, browseContext, user }) => {
           {user === 'same' ? (
             <>
               Add cards by editing the deck
-              <Link key={id} href={`/edit-deck?id=${id}`}>
+              <Link
+                key={id}
+                href={`/edit-deck?id=${id}&cameFrom=browse&browseContext=${browseContext}`}
+              >
                 <EditButton type="Edit">Edit deck</EditButton>
               </Link>
             </>
