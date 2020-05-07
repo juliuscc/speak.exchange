@@ -2,11 +2,8 @@ import { MessageSquareAdd } from 'styled-icons/boxicons-solid/MessageSquareAdd'
 import Head from 'next/head'
 import styled from 'styled-components'
 import screenSizes from '../../utils/screen-sizes'
-import useSearchTranslation from './useSearchTranslation'
-import Container from '../ui-fragments/Container'
 import ErrorBox from '../ui-fragments/ErrorBox'
 import Spinner from '../ui-fragments/Spinner'
-import Welcome from './Welcome'
 import { IconButton } from '../ui-fragments/Button'
 import useToggle from '../../utils/useToggle'
 import AddToDeckModal from './AddToDeckModal'
@@ -295,39 +292,4 @@ const TranslationResult = ({
   </>
 )
 
-export default () => {
-  const { status, translation, error } = useSearchTranslation()
-
-  return (
-    <Container>
-      {(() => {
-        if (status === 'idle') {
-          return <Welcome />
-        }
-        if (status === 'pending') {
-          return translation ? (
-            <TranslationResult translationResult={translation} isLoading />
-          ) : (
-            <Spinner />
-          )
-        }
-        if (status === 'resolved') {
-          return <TranslationResult translationResult={translation} />
-        }
-
-        // eslint-disable-next-line no-console
-        console.error(error)
-
-        return (
-          <ErrorBox>
-            <Head>
-              <title key="title">Uh oh là là... | Speak Exchange</title>
-            </Head>
-            There was an error with fetching the translation. Try refreshing the
-            page.
-          </ErrorBox>
-        )
-      })()}
-    </Container>
-  )
-}
+export default TranslationResult

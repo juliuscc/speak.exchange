@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import React, { useEffect, useRef, useState } from 'react'
 import Router from 'next/router'
-import SearchBar from './SearchBar'
 import debounce from '../../utils/debounce'
 
 // Synchronizes the url with the state
@@ -11,7 +10,7 @@ const debouncedURLUpdate = debounce(translationState => {
   Router.push(`/?search=${translationQuery}&language=${language}`)
 }, 300)
 
-const SearchExchange = () => {
+const withSearch = Presentational => () => {
   const [translationState, setTranslationState] = useState({
     translationQuery: '',
     language: 'en'
@@ -93,7 +92,7 @@ const SearchExchange = () => {
           {translationQuery && `${translationQuery} | `}Speak Exchange
         </title>
       </Head>
-      <SearchBar
+      <Presentational
         language={language}
         onLanguageChange={languageChange}
         translationQuery={translationQuery}
@@ -106,4 +105,4 @@ const SearchExchange = () => {
   )
 }
 
-export default SearchExchange
+export default withSearch
