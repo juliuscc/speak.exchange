@@ -42,9 +42,9 @@ const Seperator = styled.hr`
 export default ({ card }) => {
   return (
     <WordCard>
-      <Word>{card.original ? card.original : 'Original Word'}</Word>
+      <Word>{card.original}</Word>
       <Seperator />
-      <Word>{card.translation ? card.translation : 'Translation'}</Word>
+      <Word>{card.translation}</Word>
     </WordCard>
   )
 }
