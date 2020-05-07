@@ -26,7 +26,6 @@ const WordCard = styled.div`
     padding: 0px;
   }
 `
-const InputWrapper = styled.form``
 
 const Word = styled.input`
   text-align: center;
@@ -71,7 +70,7 @@ export default ({ card, setCardWithField, removeCard }) => {
         title="Delete card"
         aria-label="Delete card"
       />
-      <InputWrapper>
+      <div>
         <Word
           type="text"
           placeholder="Original word"
@@ -79,9 +78,9 @@ export default ({ card, setCardWithField, removeCard }) => {
           value={card.original}
           onChange={e => setCardWithField('original', e.target.value)}
         />
-      </InputWrapper>
+      </div>
       <Seperator />
-      <InputWrapper>
+      <div>
         <Word
           type="text"
           placeholder="Translation"
@@ -89,7 +88,7 @@ export default ({ card, setCardWithField, removeCard }) => {
           value={card.translation}
           onChange={e => setCardWithField('translation', e.target.value)}
         />
-      </InputWrapper>
+      </div>
     </WordCard>
   )
 }
