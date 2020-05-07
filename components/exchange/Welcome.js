@@ -73,8 +73,11 @@ export default () => (
     <OnlyDesktop>
       <Title>Type:</Title>
       <ShortExplanation>
-        This indicates what type of word it is. Hover over the word type to
-        learn more.
+        This indicates what type of word it is.{' '}
+        <Link href="https://www.wordreference.com/fr/Abbreviations-French.aspx?dict=enfr">
+          <a>Click here to learn more</a>
+        </Link>
+        .
       </ShortExplanation>
       <WelcomeText>
         Words have different types: some are nouns like &quot;chair&quot;,
