@@ -87,20 +87,9 @@ const AddToDeckContainer = styled.div`
   :hover {
     opacity: 50%;
   }
-`
 
-const AddToDeckButton = styled.div`
-  display: none;
-  position: absolute;
-  text-align: right;
-  padding: 5px;
-  bottom: 5px;
-  right: 35px;
-  cursor: pointer;
-  text-color: ${({ theme }) => theme.colors.black};
-
-  @media screen and (min-width: ${screenSizes.smallPhone.max}) {
-    display: block;
+  &:hover > div {
+    visibility: visible;
   }
 `
 
@@ -112,6 +101,14 @@ const AddToDeckIcon = styled(IconButton)`
   position: absolute;
   bottom: 6px;
   right: 5px;
+`
+
+const ToolTip = styled.div`
+  position: absolute;
+  bottom: 12.5px;
+  right: 40px;
+  height: 20px;
+  visibility: hidden;
 `
 
 const WordContainer = styled.div`
@@ -212,12 +209,7 @@ const ResultRow = ({ from, toType, to, example, index }) => {
       <WordClass>{toType}</WordClass>
       <SearchResult>
         <AddToDeckContainer>
-          <AddToDeckButton
-            onClick={toggleDeckModalVisible}
-            aria-label="Add word to deck"
-          >
-            Add word to deck
-          </AddToDeckButton>
+          <ToolTip> Add word to deck</ToolTip>
           <AddToDeckIcon
             onClick={toggleDeckModalVisible}
             icon={MessageSquareAdd}
