@@ -62,6 +62,14 @@ const ButtonsWrapper = styled.div`
   }
 `
 
+const MessageWrapper = styled.div`
+  padding-top: 40px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
 const WordsWrapper = styled.div`
   padding-bottom: 50px;
 `
@@ -94,6 +102,11 @@ export default ({ name, cards, id, user, copyDeck, browseContext }) => (
           </Link>
         </ButtonsWrapper>
       </TitleBar>
+      <MessageWrapper>
+        {Object.keys(cards.map).length === 0 && user === 'same'
+          ? 'Uh oh! This deck is empty. Add cards by editing the deck'
+          : 'Uh oh! This deck is empty.'}
+      </MessageWrapper>
       <WordsWrapper>
         {cards.map((card, i) => (
           <WordCard key={i} card={card}>
